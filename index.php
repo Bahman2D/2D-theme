@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <main>
-    <h2>صفحه اصلی قالب 2D-Theme</h2>
+    <h2>صفحه اصلی قالب D-Theme</h2>
     <?php
     if (have_posts()) :
         while (have_posts()) : the_post();
