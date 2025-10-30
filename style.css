@@ -7,81 +7,84 @@ Description: A custom WordPress theme with advanced features
 Version: 1.0.0
 Text Domain: 2d-theme
 */
-@import url(fontiran.css);
 
-/* متغیرهای فونت */
-:root {
-    --font-regular: 400;
-    --font-medium: 500;
-    --font-semibold: 600;
-    --font-bold: 700;
-    
-    /* سایزهای فونت */
-    --fs-body: clamp(14px, 2vw, 16px);
-    --fs-small: 0.875rem;
-    --fs-large: 1.125rem;
-}
-
-/* تنظیمات پایه */
 body {
     font-family: IRANYekanX, Tahoma, sans-serif !important;
-    font-weight: var(--font-regular);
-    font-size: var(--fs-body);
-    line-height: 1.8;
     direction: rtl;
     background-color: #cdcdcd;
-    margin: 0;
+    margin: 5px;
+    font-size: clamp(14px, 2vw, 16px);
+    line-height: 1.8;
 }
 
-/* عناوین */
+/* برای مرورگرهای که Variable Font پشتیبانی می‌کنن */
+@supports (font-variation-settings: normal) {
+    body {
+        font-family: 'IRANYekanXVF', Tahoma, sans-serif !important;
+    }
+}
+
+/* تیترها با نقطه پیوسته */
 h1, h2, h3, h4, h5, h6 {
     font-family: IRANYekanX !important;
-    font-feature-settings: "ss02" 1;
-    font-weight: var(--font-bold);
+    font-weight: bold;
     line-height: 1.4;
+    margin: 5px;
 }
 
-/* سایز عناوین - موبایل */
-h1 { font-size: 1.75rem; }
+p {
+    margin: 5px;
+}
+
+/* نقطه پیوسته برای تیترها در مرورگرهای جدید */
+@supports (font-variation-settings: normal) {
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'IRANYekanXVF' !important;
+        font-weight: 700;
+        font-variation-settings: "wght" 700, "dots" 1;
+        margin: 5px;
+    }
+}
+
+/* سایزهای ریسپانسیو */
+h1 { font-size: 1.75rem; } /* موبایل */
 h2 { font-size: 1.5rem; }
 h3 { font-size: 1.25rem; }
-h4 { font-size: 1.1rem; }
-h5 { font-size: 1rem; }
-h6 { font-size: 0.9rem; }
 
-/* تبلت */
 @media (min-width: 768px) {
-    :root {
-        --fs-body: 15px;
-    }
     h1 { font-size: 2rem; }
     h2 { font-size: 1.75rem; }
     h3 { font-size: 1.5rem; }
 }
 
-/* دسکتاپ */
 @media (min-width: 1024px) {
-    :root {
-        --fs-body: 16px;
-    }
     h1 { font-size: 2.5rem; }
     h2 { font-size: 2rem; }
     h3 { font-size: 1.75rem; }
 }
 
-/* اینپوت و تکست‌اریا */
-input, textarea, button {
-    font-family: IRANYekanX !important;
-    font-size: inherit;
+/* اگه بخوای وزن‌های مختلف تعریف کنی */
+.text-light {
+    font-weight: 300;
+    font-variation-settings: "wght" 300;
 }
 
-/* کلاس‌های وزن فونت */
-.text-light { font-weight: 300; }
-.text-regular { font-weight: var(--font-regular); }
-.text-medium { font-weight: var(--font-medium); }
-.text-semibold { font-weight: var(--font-semibold); }
-.text-bold { font-weight: var(--font-bold); }
+.text-medium {
+    font-weight: 500;
+    font-variation-settings: "wght" 500;
+}
 
-/* کلاس‌های سایز */
-.text-small { font-size: var(--fs-small); }
-.text-large { font-size: var(--fs-large); }
+.text-bold {
+    font-weight: 700;
+    font-variation-settings: "wght" 700;
+}
+
+/* اعداد فارسی (اختیاری) */
+.persian-numbers {
+    font-feature-settings: "ss02";
+}
+
+/* اعداد monospace (اختیاری - برای جداول) */
+.mono-numbers {
+    font-feature-settings: "ss03";
+}
