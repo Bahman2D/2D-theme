@@ -21,3 +21,5 @@ add_action('wp_enqueue_scripts', 'twod_theme_scripts');
 
 // تبدیل تاریخ به شمسی
 require_once get_template_directory() . '/inc/persian-date.php';
+
+wp_enqueue_style('IRANYekanX', get_template_directory_uri() . '/assets/fonts/fontiran.css', array(), '1.0.0');
