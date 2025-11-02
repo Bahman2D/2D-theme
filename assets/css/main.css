@@ -1,0 +1,431 @@
+/**
+ * Main Styles - D Theme
+ * استایل‌های اصلی قالب
+ * 
+ * @package D_Theme
+ * @version 1.0.0
+ */
+
+/* ========================================
+   🎨 Reset & Base Styles
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* ========================================
+   📝 Typography & Body
+======================================== */
+
+body {
+    font-family: IRANYekanX, -apple-system, BlinkMacSystemFont, 'Segoe UI', Tahoma, sans-serif !important;
+    direction: rtl;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-size: clamp(14px, 2vw, 16px);
+    line-height: var(--leading-normal);
+    transition: background 0.3s ease, color 0.3s ease;
+    margin: 0;
+    padding: 0;
+}
+
+/* پشتیبانی Variable Font */
+@supports (font-variation-settings: normal) {
+    body {
+        font-family: 'IRANYekanXVF', Tahoma, sans-serif !important;
+    }
+}
+
+/* ========================================
+   📰 Headings
+======================================== */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: IRANYekanX !important;
+    font-weight: var(--font-bold);
+    line-height: var(--leading-tight);
+    margin: var(--space-4) 0;
+    color: var(--text-primary);
+}
+
+/* Variable Font برای تیترها */
+@supports (font-variation-settings: normal) {
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'IRANYekanXVF' !important;
+        font-weight: 700;
+        font-variation-settings: "wght" 700, "dots" 1;
+    }
+}
+
+/* سایزهای ریسپانسیو تیترها */
+h1 { 
+    font-size: var(--text-4xl);
+}
+
+h2 { 
+    font-size: var(--text-3xl);
+}
+
+h3 { 
+    font-size: var(--text-2xl);
+}
+
+h4 { 
+    font-size: var(--text-xl);
+}
+
+h5 { 
+    font-size: var(--text-lg);
+}
+
+h6 { 
+    font-size: var(--text-base);
+}
+
+/* ========================================
+   📄 Paragraphs & Text
+======================================== */
+
+p {
+    margin: var(--space-4) 0;
+    line-height: var(--leading-relaxed);
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary);
+    transition: color var(--duration-base) var(--ease-out);
+}
+
+a:hover {
+    color: var(--accent);
+}
+
+a:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* ========================================
+   🖼️ Images & Media
+======================================== */
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+figure {
+    margin: 0;
+}
+
+/* ========================================
+   📦 Container & Layout
+======================================== */
+
+.container {
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+    width: 100%;
+}
+
+.site-main {
+    min-height: 60vh;
+}
+
+.content-section {
+    padding: var(--space-20) var(--space-5);
+}
+
+.section-title {
+    font-size: var(--text-4xl);
+    font-weight: var(--font-bold);
+    text-align: center;
+    margin-bottom: var(--space-10);
+    color: var(--text-primary);
+}
+
+.section-subtitle {
+    font-size: var(--text-lg);
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-12);
+}
+
+/* ========================================
+   📝 Lists
+======================================== */
+
+ul, ol {
+    margin: var(--space-4) 0;
+    padding-right: var(--space-6);
+}
+
+li {
+    margin: var(--space-2) 0;
+    line-height: var(--leading-relaxed);
+}
+
+/* ========================================
+   🎨 Utility Classes
+======================================== */
+
+/* Font Weights */
+.text-light {
+    font-weight: var(--font-light);
+}
+
+.text-normal {
+    font-weight: var(--font-normal);
+}
+
+.text-medium {
+    font-weight: var(--font-medium);
+}
+
+.text-semibold {
+    font-weight: var(--font-semibold);
+}
+
+.text-bold {
+    font-weight: var(--font-bold);
+}
+
+/* Variable Font Support */
+@supports (font-variation-settings: normal) {
+    .text-light { font-variation-settings: "wght" 300; }
+    .text-normal { font-variation-settings: "wght" 400; }
+    .text-medium { font-variation-settings: "wght" 500; }
+    .text-semibold { font-variation-settings: "wght" 600; }
+    .text-bold { font-variation-settings: "wght" 700; }
+}
+
+/* Text Alignment */
+.text-right { text-align: right; }
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+
+/* Text Colors */
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+.text-muted { color: var(--text-muted); }
+.text-inverse { color: var(--text-inverse); }
+
+/* اعداد فارسی */
+.persian-numbers {
+    font-feature-settings: "ss02";
+}
+
+/* اعداد monospace */
+.mono-numbers {
+    font-feature-settings: "ss03";
+}
+
+/* ========================================
+   🎯 Accessibility
+======================================== */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Skip to content */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: white;
+    padding: var(--space-2) var(--space-4);
+    text-decoration: none;
+    z-index: 9999;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* ========================================
+   📱 Responsive Design
+======================================== */
+
+/* Tablet & Mobile */
+@media (max-width: 1023px) {
+    body {
+        padding-bottom: 70px;
+    }
+    
+    .content-section {
+        padding: var(--space-16) var(--space-4);
+    }
+    
+    .section-title {
+        font-size: var(--text-3xl);
+    }
+    
+    h1 { font-size: var(--text-3xl); }
+    h2 { font-size: var(--text-2xl); }
+    h3 { font-size: var(--text-xl); }
+}
+
+/* Mobile Only */
+@media (max-width: 767px) {
+    body {
+        font-size: clamp(13px, 2vw, 14px);
+    }
+    
+    .content-section {
+        padding: var(--space-12) var(--space-3);
+    }
+    
+    .section-title {
+        font-size: var(--text-2xl);
+        margin-bottom: var(--space-8);
+    }
+    
+    h1 { font-size: var(--text-2xl); }
+    h2 { font-size: var(--text-xl); }
+    h3 { font-size: var(--text-lg); }
+}
+
+/* Desktop Large */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1400px;
+    }
+}
+
+/* ========================================
+   🖨️ Print Styles
+======================================== */
+
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+    
+    a {
+        text-decoration: underline;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+}
+
+/* ========================================
+   🎨 Selection
+======================================== */
+
+::selection {
+    background: var(--primary);
+    color: white;
+}
+
+::-moz-selection {
+    background: var(--primary);
+    color: white;
+}
+
+/* ========================================
+   📜 Scrollbar (WebKit)
+======================================== */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-medium);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--border-dark);
+}
+
+/* ========================================
+   🎬 Animations
+======================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.6s var(--ease-out);
+}
+
+/* ========================================
+   🔧 WordPress Core Classes
+======================================== */
+
+.alignleft {
+    float: right;
+    margin: 0 0 var(--space-4) var(--space-4);
+}
+
+.alignright {
+    float: left;
+    margin: 0 var(--space-4) var(--space-4) 0;
+}
+
+.aligncenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wp-caption {
+    max-width: 100%;
+}
+
+.wp-caption-text {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: var(--space-2);
+}
+
+.sticky {
+    /* استایل برای پست‌های sticky */
+}
+
+.bypostauthor {
+    /* استایل برای نویسنده پست */
+}
+
+.gallery-caption {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+}

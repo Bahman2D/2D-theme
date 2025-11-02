@@ -1,0 +1,209 @@
+/**
+ * Footer Styles - D Theme
+ * استایل‌های فوتر قالب
+ * 
+ * @package D_Theme
+ * @version 1.0.0
+ */
+
+/* ========================================
+   💻 DESKTOP FOOTER
+======================================== */
+
+.desktop-footer {
+  display: block;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-light);
+  padding: var(--space-12) var(--space-5) var(--space-5);
+  margin-top: var(--space-20);
+}
+
+.footer-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-10);
+  margin-bottom: var(--space-10);
+}
+
+.footer-col h3 {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-5);
+  font-weight: var(--font-bold);
+  color: var(--text-primary);
+}
+
+.footer-col p {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+.footer-col ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: var(--space-3);
+}
+
+.footer-col ul li:last-child {
+  margin-bottom: 0;
+}
+
+.footer-col ul li a {
+  color: var(--text-secondary);
+  font-size: var(--text-sm);
+  transition: all var(--duration-base) var(--ease-out);
+  display: inline-block;
+}
+
+.footer-col ul li a:hover {
+  color: var(--primary);
+  transform: translateX(-3px);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--border-light);
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+/* ========================================
+   📱 MOBILE FOOTER
+======================================== */
+
+.mobile-footer {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-light);
+  z-index: var(--z-sticky);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .mobile-footer {
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-footer-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: var(--space-2) 0;
+}
+
+.mobile-footer-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  color: var(--text-muted);
+  transition: all var(--duration-base) var(--ease-out);
+  border-radius: var(--radius-lg);
+  min-width: 60px;
+  text-align: center;
+}
+
+.mobile-footer-item svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--text-muted);
+  transition: fill var(--duration-base) var(--ease-out);
+}
+
+.mobile-footer-item div {
+  font-size: 0.7rem;
+  font-weight: var(--font-medium);
+  line-height: 1.2;
+}
+
+.mobile-footer-item.active,
+.mobile-footer-item:hover {
+  color: var(--primary);
+  background: rgba(var(--primary-rgb), 0.1);
+}
+
+.mobile-footer-item.active svg,
+.mobile-footer-item:hover svg {
+  fill: var(--primary);
+  transform: scale(1.1);
+}
+
+/* ========================================
+   📱 RESPONSIVE
+======================================== */
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .desktop-footer {
+    display: block;
+  }
+  
+  .mobile-footer {
+    display: none !important;
+  }
+}
+
+/* Tablet & Mobile */
+@media (max-width: 1023px) {
+  .desktop-footer {
+    display: none !important;
+  }
+  
+  .mobile-footer {
+    display: block;
+  }
+  
+  /* فضای اضافی در پایین body برای فوتر چسبان */
+  body {
+    padding-bottom: 70px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  
+  .mobile-footer-item {
+    padding: var(--space-1) var(--space-2);
+    min-width: 50px;
+  }
+  
+  .mobile-footer-item svg {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .mobile-footer-item div {
+    font-size: 0.65rem;
+  }
+}
+
+/* Tablet فقط */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+  }
+}

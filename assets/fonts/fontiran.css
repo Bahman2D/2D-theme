@@ -10,12 +10,12 @@
 /* Static Fonts - برای مرورگرهای قدیمی (Fallback) */
 @font-face {
     font-family: IRANYekanX;
-    src: url('woff/IRANYekanX-Regular.woff') format('woff');
+    src: url('staticfonts/IRANYekanX-Regular.woff') format('woff');
     font-weight: normal;
 }
 
 @font-face {
     font-family: IRANYekanX;
-    src: url('woff/IRANYekanX-Bold.woff') format('woff');
+    src: url('staticfonts/IRANYekanX-Bold.woff') format('woff');
     font-weight: bold;
 }
