@@ -115,6 +115,68 @@ a:focus {
 }
 
 /* ========================================
+   dY"o Breadcrumbs
+======================================== */
+
+.breadcrumbs,
+.breadcrumb {
+    background: var(--bg-secondary);
+    padding: var(--spacing-md) 0;
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.breadcrumbs .container,
+.breadcrumb .container {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.breadcrumbs-list,
+.breadcrumb-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrumbs-list li,
+.breadcrumb-list li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--text-secondary);
+}
+
+.breadcrumbs-list li:not(:last-child)::after,
+.breadcrumb-list li:not(:last-child)::after {
+    content: "/";
+    color: var(--text-muted);
+}
+
+.breadcrumbs a,
+.breadcrumb a {
+    color: var(--text-secondary);
+    transition: color var(--transition-base) var(--ease-out);
+}
+
+.breadcrumbs a:hover,
+.breadcrumb a:hover {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.breadcrumb-current,
+.breadcrumbs-list li:last-child {
+    color: var(--text-muted);
+}
+
+/* ========================================
    🖼️ Images & Media
 ======================================== */
 

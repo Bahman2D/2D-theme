@@ -1,0 +1,284 @@
+<?php
+/**
+ * Steel Alloy Custom Post Type
+ * 
+ * Ø«Ø¨Øª Custom Post Type Ø¨Ø±Ø§ÛŒ Ø¢Ù„ÛŒØ§Ú˜Ù‡Ø§ÛŒ ÙÙˆÙ„Ø§Ø¯ÛŒ
+ * 
+ * @package Eghbal_Steel_Theme
+ * @version 1.0.0
+ */
+
+// Ø¬Ù„ÙˆÚ¯ÛŒØ±ÛŒ Ø§Ø² Ø¯Ø³ØªØ±Ø³ÛŒ Ù…Ø³ØªÙ‚ÛŒÙ…
+if (!defined('ABSPATH')) {
+    exit('Direct access forbidden.');
+}
+
+/**
+ * Ø«Ø¨Øª Custom Post Type: steel_alloy
+ */
+function eghbal_register_steel_alloy_cpt() {
+    
+    $labels = array(
+        'name'                  => 'Ø¢Ù„ÛŒØ§Ú˜Ù‡Ø§ÛŒ ÙÙˆÙ„Ø§Ø¯ÛŒ',
+        'singular_name'         => 'Ø¢Ù„ÛŒØ§Ú˜ ÙÙˆÙ„Ø§Ø¯ÛŒ',
+        'menu_name'             => 'Ø¢Ù„ÛŒØ§Ú˜Ù‡Ø§',
+        'name_admin_bar'        => 'Ø¢Ù„ÛŒØ§Ú˜ ÙÙˆÙ„Ø§Ø¯ÛŒ',
+        'add_new'               => 'Ø§ÙØ²ÙˆØ¯Ù† Ø¢Ù„ÛŒØ§Ú˜ Ø¬Ø¯ÛŒØ¯',
+        'add_new_item'          => 'Ø§ÙØ²ÙˆØ¯Ù† Ø¢Ù„ÛŒØ§Ú˜ Ø¬Ø¯ÛŒØ¯',
+        'new_item'              => 'Ø¢Ù„ÛŒØ§Ú˜ Ø¬Ø¯ÛŒØ¯',
+        'edit_item'             => 'ÙˆÛŒØ±Ø§ÛŒØ´ Ø¢Ù„ÛŒØ§Ú˜',
+        'view_item'             => 'Ù…Ø´Ø§Ù‡Ø¯Ù‡ Ø¢Ù„ÛŒØ§Ú˜',
+        'all_items'             => 'Ù‡Ù…Ù‡ Ø¢Ù„ÛŒØ§Ú˜Ù‡Ø§',
+        'search_items'          => 'Ø¬Ø³ØªØ¬ÙˆÛŒ Ø¢Ù„ÛŒØ§Ú˜',
+        'parent_item_colon'     => 'Ø¢Ù„ÛŒØ§Ú˜ ÙˆØ§Ù„Ø¯:',
+        'not_found'             => 'Ø¢Ù„ÛŒØ§Ú˜ÛŒ ÛŒØ§ÙØª Ù†Ø´Ø¯',
+        'not_found_in_trash'    => 'Ø¢Ù„ÛŒØ§Ú˜ÛŒ Ø¯Ø± Ø²Ø¨Ø§Ù„Ù‡â€ŒØ¯Ø§Ù† ÛŒØ§ÙØª Ù†Ø´Ø¯',
+        'archives'              => 'Ø¢Ø±Ø´ÛŒÙˆ Ø¢Ù„ÛŒØ§Ú˜Ù‡Ø§',
+        'insert_into_item'      => 'Ø¯Ø±Ø¬ Ø¯Ø± Ø¢Ù„ÛŒØ§Ú˜',
+        'uploaded_to_this_item' => 'Ø¢Ù¾Ù„ÙˆØ¯ Ø´Ø¯Ù‡ Ø¨Ù‡ Ø§ÛŒÙ† Ø¢Ù„ÛŒØ§Ú˜',
+        'filter_items_list'     => 'ÙÛŒÙ„ØªØ± Ù„ÛŒØ³Øª Ø¢Ù„ÛŒØ§Ú˜Ù‡Ø§',
+        'items_list_navigation' => 'Ù†Ø§ÙˆØ¨Ø±ÛŒ Ù„ÛŒØ³Øª Ø¢Ù„ÛŒØ§Ú˜Ù‡Ø§',
+        'items_list'            => 'Ù„ÛŒØ³Øª Ø¢Ù„ÛŒØ§Ú˜Ù‡Ø§',
+    );
+    
+    $args = array(
+        'labels'              => $labels,
+        'public'              => true,
+        'publicly_queryable'  => true,
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'query_var'           => true,
+        'rewrite'             => array(
+            'slug'       => 'kharid',  // /kharid/1-3505/
+            'with_front' => false,
+        ),
+        'capability_type'     => 'post',
+        'has_archive'         => false, // Archive Ø§Ø² Taxonomy Ù…ÛŒâ€ŒØ¢Ø¯
+        'hierarchical'        => false,
+        'menu_position'       => 5,
+        'menu_icon'           => 'dashicons-hammer',
+        'supports'            => array(
+            'title',
+            'editor',
+            'excerpt',
+            'thumbnail',
+            'revisions',
+            'custom-fields',
+        ),
+        'show_in_rest'        => true, // Ø¨Ø±Ø§ÛŒ Gutenberg
+        'rest_base'           => 'steel-alloys',
+    );
+    
+    register_post_type('steel_alloy', $args);
+}
+add_action('init', 'eghbal_register_steel_alloy_cpt');
+
+/**
+ * Ø«Ø¨Øª Taxonomy: steel_category
+ */
+function eghbal_register_steel_category_taxonomy() {
+    
+    $labels = array(
+        'name'                       => 'Ø¯Ø³ØªÙ‡â€ŒØ¨Ù†Ø¯ÛŒ ÙÙˆÙ„Ø§Ø¯',
+        'singular_name'              => 'Ø¯Ø³ØªÙ‡â€ŒØ¨Ù†Ø¯ÛŒ',
+        'menu_name'                  => 'Ø¯Ø³ØªÙ‡â€ŒØ¨Ù†Ø¯ÛŒâ€ŒÙ‡Ø§',
+        'all_items'                  => 'Ù‡Ù…Ù‡ Ø¯Ø³ØªÙ‡â€ŒÙ‡Ø§',
+        'parent_item'                => 'Ø¯Ø³ØªÙ‡ ÙˆØ§Ù„Ø¯',
+        'parent_item_colon'          => 'Ø¯Ø³ØªÙ‡ ÙˆØ§Ù„Ø¯:',
+        'new_item_name'              => 'Ù†Ø§Ù… Ø¯Ø³ØªÙ‡ Ø¬Ø¯ÛŒØ¯',
+        'add_new_item'               => 'Ø§ÙØ²ÙˆØ¯Ù† Ø¯Ø³ØªÙ‡ Ø¬Ø¯ÛŒØ¯',
+        'edit_item'                  => 'ÙˆÛŒØ±Ø§ÛŒØ´ Ø¯Ø³ØªÙ‡',
+        'update_item'                => 'Ø¨Ø±ÙˆØ²Ø±Ø³Ø§Ù†ÛŒ Ø¯Ø³ØªÙ‡',
+        'view_item'                  => 'Ù…Ø´Ø§Ù‡Ø¯Ù‡ Ø¯Ø³ØªÙ‡',
+        'separate_items_with_commas' => 'Ø¯Ø³ØªÙ‡â€ŒÙ‡Ø§ Ø±Ø§ Ø¨Ø§ Ú©Ø§Ù…Ø§ Ø¬Ø¯Ø§ Ú©Ù†ÛŒØ¯',
+        'add_or_remove_items'        => 'Ø§ÙØ²ÙˆØ¯Ù† ÛŒØ§ Ø­Ø°Ù Ø¯Ø³ØªÙ‡',
+        'choose_from_most_used'      => 'Ø§Ù†ØªØ®Ø§Ø¨ Ø§Ø² Ù¾Ø±Ú©Ø§Ø±Ø¨Ø±Ø¯ØªØ±ÛŒÙ†â€ŒÙ‡Ø§',
+        'popular_items'              => 'Ø¯Ø³ØªÙ‡â€ŒÙ‡Ø§ÛŒ Ù…Ø­Ø¨ÙˆØ¨',
+        'search_items'               => 'Ø¬Ø³ØªØ¬ÙˆÛŒ Ø¯Ø³ØªÙ‡',
+        'not_found'                  => 'Ø¯Ø³ØªÙ‡â€ŒØ§ÛŒ ÛŒØ§ÙØª Ù†Ø´Ø¯',
+    );
+    
+    $args = array(
+        'labels'            => $labels,
+        'hierarchical'      => true, // Ù…Ø«Ù„ Categories
+        'public'            => true,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_nav_menus' => true,
+        'show_tagcloud'     => false,
+        'rewrite'           => array(
+            'slug'         => 'kharid-foolad', // /kharid-foolad-belbering/
+            'with_front'   => false,
+            'hierarchical' => false,
+        ),
+        'show_in_rest'      => true,
+    );
+    
+    register_taxonomy('steel_category', array('steel_alloy'), $args);
+}
+add_action('init', 'eghbal_register_steel_category_taxonomy');
+
+/**
+ * Ø«Ø¨Øª Taxonomy: steel_application (Ú©Ø§Ø±Ø¨Ø±Ø¯Ù‡Ø§)
+ */
+function eghbal_register_steel_application_taxonomy() {
+    
+    $labels = array(
+        'name'          => 'Ú©Ø§Ø±Ø¨Ø±Ø¯Ù‡Ø§',
+        'singular_name' => 'Ú©Ø§Ø±Ø¨Ø±Ø¯',
+        'menu_name'     => 'Ú©Ø§Ø±Ø¨Ø±Ø¯Ù‡Ø§',
+    );
+    
+    $args = array(
+        'labels'            => $labels,
+        'hierarchical'      => false, // Ù…Ø«Ù„ Tags
+        'public'            => true,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_nav_menus' => false,
+        'show_tagcloud'     => true,
+        'rewrite'           => array(
+            'slug' => 'karbord',
+        ),
+        'show_in_rest'      => true,
+    );
+    
+    register_taxonomy('steel_application', array('steel_alloy'), $args);
+}
+add_action('init', 'eghbal_register_steel_application_taxonomy');
+
+/**
+ * Ø§Ø¶Ø§ÙÙ‡ Ú©Ø±Ø¯Ù† Ø³ØªÙˆÙ†â€ŒÙ‡Ø§ÛŒ Ø³ÙØ§Ø±Ø´ÛŒ Ø¨Ù‡ Ù„ÛŒØ³Øª Ø¢Ù„ÛŒØ§Ú˜Ù‡Ø§ Ø¯Ø± Ø§Ø¯Ù…ÛŒÙ†
+ */
+function eghbal_alloy_admin_columns($columns) {
+    $new_columns = array();
+    
+    // Ø³ØªÙˆÙ† Checkbox
+    if (isset($columns['cb'])) {
+        $new_columns['cb'] = $columns['cb'];
+    }
+    
+    // Ø³ØªÙˆÙ† ØªØµÙˆÛŒØ± Ø´Ø§Ø®Øµ
+    $new_columns['thumbnail'] = 'ØªØµÙˆÛŒØ±';
+    
+    // Ø³ØªÙˆÙ† Ø¹Ù†ÙˆØ§Ù†
+    if (isset($columns['title'])) {
+        $new_columns['title'] = $columns['title'];
+    }
+    
+    // Ø³ØªÙˆÙ† Ú©Ø¯ Ø¢Ù„ÛŒØ§Ú˜
+    $new_columns['alloy_code'] = 'Ú©Ø¯ Ø¢Ù„ÛŒØ§Ú˜';
+    
+    // Ø³ØªÙˆÙ† Ø¯Ø³ØªÙ‡
+    if (isset($columns['taxonomy-steel_category'])) {
+        $new_columns['taxonomy-steel_category'] = 'Ø¯Ø³ØªÙ‡â€ŒØ¨Ù†Ø¯ÛŒ';
+    }
+    
+    // Ø³ØªÙˆÙ† ØªØ§Ø±ÛŒØ®
+    if (isset($columns['date'])) {
+        $new_columns['date'] = $columns['date'];
+    }
+    
+    return $new_columns;
+}
+add_filter('manage_steel_alloy_posts_columns', 'eghbal_alloy_admin_columns');
+
+/**
+ * Ù…Ø­ØªÙˆØ§ÛŒ Ø³ØªÙˆÙ†â€ŒÙ‡Ø§ÛŒ Ø³ÙØ§Ø±Ø´ÛŒ
+ */
+function eghbal_alloy_admin_column_content($column, $post_id) {
+    switch ($column) {
+        case 'thumbnail':
+            if (has_post_thumbnail($post_id)) {
+                echo get_the_post_thumbnail($post_id, array(50, 50));
+            } else {
+                echo 'â€”';
+            }
+            break;
+            
+        case 'alloy_code':
+            $code = get_post_meta($post_id, 'alloy_code', true);
+            if ($code) {
+                echo esc_html($code);
+            } else {
+                echo 'â€”';
+            }
+            break;
+    }
+}
+add_action('manage_steel_alloy_posts_custom_column', 'eghbal_alloy_admin_column_content', 10, 2);
+
+/**
+ * ÙÛŒÙ„ØªØ± Ú©Ø±Ø¯Ù† Ø¢Ù„ÛŒØ§Ú˜Ù‡Ø§ Ø¨Ø± Ø§Ø³Ø§Ø³ Ø¯Ø³ØªÙ‡ Ø¯Ø± Ø§Ø¯Ù…ÛŒÙ†
+ */
+function eghbal_alloy_admin_filter() {
+    global $typenow;
+    
+    if ($typenow == 'steel_alloy') {
+        $taxonomy = 'steel_category';
+        $selected = isset($_GET[$taxonomy]) ? $_GET[$taxonomy] : '';
+        
+        wp_dropdown_categories(array(
+            'show_option_all' => 'Ù‡Ù…Ù‡ Ø¯Ø³ØªÙ‡â€ŒÙ‡Ø§',
+            'taxonomy'        => $taxonomy,
+            'name'            => $taxonomy,
+            'orderby'         => 'name',
+            'selected'        => $selected,
+            'hierarchical'    => true,
+            'depth'           => 3,
+            'show_count'      => true,
+            'hide_empty'      => false,
+        ));
+    }
+}
+add_action('restrict_manage_posts', 'eghbal_alloy_admin_filter');
+
+/**
+ * Flush rewrite rules Ø¨Ø¹Ø¯ Ø§Ø² activation Ù‚Ø§Ù„Ø¨
+ * ÙÙ‚Ø· ÛŒÚ©Ø¨Ø§Ø± Ø§Ø¬Ø±Ø§ Ù…ÛŒâ€ŒØ´Ù‡
+ */
+function eghbal_flush_rewrite_rules() {
+    eghbal_register_steel_alloy_cpt();
+    eghbal_register_steel_category_taxonomy();
+    eghbal_register_steel_application_taxonomy();
+    flush_rewrite_rules();
+}
+register_activation_hook(__FILE__, 'eghbal_flush_rewrite_rules');
+
+/**
+ * ØªØºÛŒÛŒØ± Ù…ØªÙ† "Enter title here" Ø¨Ø±Ø§ÛŒ Ø¢Ù„ÛŒØ§Ú˜Ù‡Ø§
+ */
+function eghbal_alloy_title_placeholder($title) {
+    $screen = get_current_screen();
+    
+    if ($screen && $screen->post_type == 'steel_alloy') {
+        $title = 'Ù†Ø§Ù… Ø¢Ù„ÛŒØ§Ú˜ (Ù…Ø«Ø§Ù„: ÙÙˆÙ„Ø§Ø¯ Ø¨Ù„Ø¨Ø±ÛŒÙ†Ú¯ DIN 1.3505 - 100Cr6)';
+    }
+    
+    return $title;
+}
+add_filter('enter_title_here', 'eghbal_alloy_title_placeholder');
+
+/**
+ * Ù¾ÛŒØºØ§Ù…â€ŒÙ‡Ø§ÛŒ Ø³ÙØ§Ø±Ø´ÛŒ Ø¨Ø±Ø§ÛŒ Ø¢Ù„ÛŒØ§Ú˜Ù‡Ø§
+ */
+function eghbal_alloy_updated_messages($messages) {
+    global $post;
+    
+    $messages['steel_alloy'] = array(
+        0  => '',
+        1  => sprintf('Ø¢Ù„ÛŒØ§Ú˜ Ø¨Ø±ÙˆØ²Ø±Ø³Ø§Ù†ÛŒ Ø´Ø¯. <a href="%s">Ù…Ø´Ø§Ù‡Ø¯Ù‡ Ø¢Ù„ÛŒØ§Ú˜</a>', esc_url(get_permalink($post->ID))),
+        2  => 'ÙÛŒÙ„Ø¯ Ø³ÙØ§Ø±Ø´ÛŒ Ø¨Ø±ÙˆØ²Ø±Ø³Ø§Ù†ÛŒ Ø´Ø¯.',
+        3  => 'ÙÛŒÙ„Ø¯ Ø³ÙØ§Ø±Ø´ÛŒ Ø­Ø°Ù Ø´Ø¯.',
+        4  => 'Ø¢Ù„ÛŒØ§Ú˜ Ø¨Ø±ÙˆØ²Ø±Ø³Ø§Ù†ÛŒ Ø´Ø¯.',
+        5  => isset($_GET['revision']) ? sprintf('Ø¢Ù„ÛŒØ§Ú˜ Ø¨Ù‡ Ø¨Ø§Ø²Ù†Ú¯Ø±ÛŒ %s Ø¨Ø§Ø²Ú¯Ø±Ø¯Ø§Ù†Ø¯Ù‡ Ø´Ø¯', wp_post_revision_title((int) $_GET['revision'], false)) : false,
+        6  => sprintf('Ø¢Ù„ÛŒØ§Ú˜ Ù…Ù†ØªØ´Ø± Ø´Ø¯. <a href="%s">Ù…Ø´Ø§Ù‡Ø¯Ù‡ Ø¢Ù„ÛŒØ§Ú˜</a>', esc_url(get_permalink($post->ID))),
+        7  => 'Ø¢Ù„ÛŒØ§Ú˜ Ø°Ø®ÛŒØ±Ù‡ Ø´Ø¯.',
+        8  => sprintf('Ø¢Ù„ÛŒØ§Ú˜ Ø§Ø±Ø³Ø§Ù„ Ø´Ø¯. <a target="_blank" href="%s">Ù¾ÛŒØ´â€ŒÙ†Ù…Ø§ÛŒØ´ Ø¢Ù„ÛŒØ§Ú˜</a>', esc_url(add_query_arg('preview', 'true', get_permalink($post->ID)))),
+        9  => sprintf('Ø¢Ù„ÛŒØ§Ú˜ Ø¨Ø±Ø§ÛŒ ØªØ§Ø±ÛŒØ®: <strong>%1$s</strong> Ø²Ù…Ø§Ù†â€ŒØ¨Ù†Ø¯ÛŒ Ø´Ø¯. <a target="_blank" href="%2$s">Ù¾ÛŒØ´â€ŒÙ†Ù…Ø§ÛŒØ´ Ø¢Ù„ÛŒØ§Ú˜</a>', date_i18n('Y/m/d @ g:i a', strtotime($post->post_date)), esc_url(get_permalink($post->ID))),
+        10 => sprintf('Ù¾ÛŒØ´â€ŒÙ†ÙˆÛŒØ³ Ø¢Ù„ÛŒØ§Ú˜ Ø¨Ø±ÙˆØ²Ø±Ø³Ø§Ù†ÛŒ Ø´Ø¯. <a target="_blank" href="%s">Ù¾ÛŒØ´â€ŒÙ†Ù…Ø§ÛŒØ´ Ø¢Ù„ÛŒØ§Ú˜</a>', esc_url(add_query_arg('preview', 'true', get_permalink($post->ID)))),
+    );
+    
+    return $messages;
+}
+add_filter('post_updated_messages', 'eghbal_alloy_updated_messages');

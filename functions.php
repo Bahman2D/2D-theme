@@ -1,20 +1,16 @@
 ﻿<?php
 /**
  * D Theme - Functions
- * 
- * Ù‡Ø³ØªÙ‡ Ø§ØµÙ„ÛŒ Ù‚Ø§Ù„Ø¨ Ø¯ÛŒ ØªÙ…
+ * فایل functions.php قالب D با قابلیت‌های اضافه شده برای فولاد اقبالی
  * 
  * @package D_Theme
  * @version 1.0.0
- * @author Bahman2D
- * @link https://t.me/behman2d
  */
 
-// Ø¬Ù„ÙˆÚ¯ÛŒØ±ÛŒ Ø§Ø² Ø¯Ø³ØªØ±Ø³ÛŒ Ù…Ø³ØªÙ‚ÛŒÙ…
+// Exit if accessed directly
 if (!defined('ABSPATH')) {
-    exit('Direct access forbidden.');
+    exit;
 }
-
 
 /**
  * ==========================================
@@ -38,6 +34,8 @@ function d_theme_setup() {
     add_image_size('d-card', 600, 400, true);
     add_image_size('d-hero', 1920, 1080, true);
     add_image_size('d-banner', 1400, 600, true);
+    add_image_size('alloy-thumbnail', 400, 300, true);
+    add_image_size('alloy-large', 800, 600, true);
 
     // پشتیبانی از HTML5
     add_theme_support('html5', array(
@@ -63,6 +61,9 @@ function d_theme_setup() {
         'default-color' => 'ffffff',
     ));
     
+    // بارگذاری Textdomain برای ترجمه‌ها
+    load_theme_textdomain('d-theme', get_template_directory() . '/languages');
+
     // پشتیبانی از Refresh انتخابی در Customizer
     add_theme_support('customize-selective-refresh-widgets');
     
@@ -70,8 +71,8 @@ function d_theme_setup() {
     add_theme_support('automatic-feed-links');
 
     // تنظیم حداقل عرض محتوا
-    if (!isset($content_width)) {
-        $content_width = 1400;
+    if (!isset($GLOBALS['content_width'])) {
+        $GLOBALS['content_width'] = 1400;
     }
 
     // ثبت منوها
@@ -89,143 +90,355 @@ add_action('after_setup_theme', 'd_theme_setup');
  * ==========================================
  */
 function d_theme_enqueue_assets() {
-    
+
+    $version = wp_get_theme()->get('Version');
+
+    if (empty($version)) {
+
+        $version = '1.0.0';
+
+    }
+
+
+
+    $theme_dir = get_template_directory_uri();
+
+
+
     // ========== CSS Files ==========
-    
-    // 1. فونت‌ها (اولین و تنهایت)
+
+
+
+    // 1. Fonts (global)
+
     wp_enqueue_style(
+
         'd-theme-fonts',
-        get_template_directory_uri() . '/assets/fonts/fontiran.css',
+
+        $theme_dir . '/assets/fonts/fontiran.css',
+
         array(),
+
         '2.4'
+
     );
 
-    // 2. متغیرهای CSS
+
+
+    // 2. Variables
+
     wp_enqueue_style(
+
         'd-theme-variables',
-        get_template_directory_uri() . '/assets/css/variables.css',
+
+        $theme_dir . '/assets/css/variables.css',
+
         array(),
-        '1.0.0'
+
+        $version
+
     );
 
-    // 3. استایل اصلی
+
+
+    // 3. Base stylesheet
+
     wp_enqueue_style(
+
         'd-theme-main',
-        get_template_directory_uri() . '/assets/css/main.css',
+
+        $theme_dir . '/assets/css/main.css',
+
         array('d-theme-variables'),
-        '1.0.0'
+
+        $version
+
     );
 
-    // 4. کامپوننت‌ها
+
+
+    // 4. Components
+
     wp_enqueue_style(
+
         'd-theme-components',
-        get_template_directory_uri() . '/assets/css/components.css',
+
+        $theme_dir . '/assets/css/components.css',
+
         array('d-theme-main'),
-        '1.0.0'
+
+        $version
+
     );
 
-    // 5. هدر
+
+
+    // 5. Header
+
     wp_enqueue_style(
+
         'd-theme-header',
-        get_template_directory_uri() . '/assets/css/header.css',
+
+        $theme_dir . '/assets/css/header.css',
+
         array('d-theme-main'),
-        '1.0.0'
+
+        $version
+
     );
 
-    // 6. فوتر
+
+
+    // 6. Footer
+
     wp_enqueue_style(
+
         'd-theme-footer',
-        get_template_directory_uri() . '/assets/css/footer.css',
+
+        $theme_dir . '/assets/css/footer.css',
+
         array('d-theme-main'),
-        '1.0.0'
+
+        $version
+
     );
 
-    // 7. Hero CSS برای صفحه اصلی
+
+
+    // 7. Front page hero
+
     if (is_front_page()) {
+
         wp_enqueue_style(
+
             'd-theme-hero',
-            get_template_directory_uri() . '/assets/css/hero.css',
+
+            $theme_dir . '/assets/css/hero.css',
+
             array('d-theme-main'),
-            '1.0.0'
+
+            $version
+
         );
+
     }
 
-    // 8. Category CSS برای صفحه دسته‌بندی
-    if (is_page_template('page-category.php')) {
+
+
+    // 8. Category page template (حذف شد: فایل/تمپلیت موجود نیست)
+
+
+
+    // 9. Steel alloy single pages
+
+    if (is_singular('steel_alloy')) {
+
         wp_enqueue_style(
-            'd-theme-category',
-            get_template_directory_uri() . '/assets/css/category.css',
+
+            'd-alloy-single',
+
+            $theme_dir . '/assets/css/alloy-single.css',
+
             array('d-theme-main'),
-            '1.0.0'
+
+            $version
+
         );
+
     }
+
+
+
+    // 10. Steel category archives
+
+    if (is_tax('steel_category')) {
+
+        wp_enqueue_style(
+
+            'd-category',
+
+            $theme_dir . '/assets/css/category-archive.css',
+
+            array('d-theme-main'),
+
+            $version
+
+        );
+
+    }
+
+
 
     // ========== JavaScript Files ==========
-    
-    // 1. اسکریپت اصلی
+
+
+
+    // 1. Core script
+
     wp_enqueue_script(
+
         'd-theme-main',
-        get_template_directory_uri() . '/assets/js/main.js',
-        array(),
-        '1.0.0',
+
+        $theme_dir . '/assets/js/main.js',
+
+        array('jquery'),
+
+        $version,
+
         true
+
     );
 
-    // 2. تغییر تم (شب/روز)
+
+
+    // 2. Theme toggle
+
     wp_enqueue_script(
+
         'd-theme-toggle',
-        get_template_directory_uri() . '/assets/js/toggle.js',
+
+        $theme_dir . '/assets/js/toggle.js',
+
         array(),
-        '1.0.0',
+
+        $version,
+
         true
+
     );
 
-    // 3. منو
+
+
+    // 3. Menu interactions
+
     wp_enqueue_script(
+
         'd-theme-menu',
-        get_template_directory_uri() . '/assets/js/menu.js',
+
+        $theme_dir . '/assets/js/menu.js',
+
         array(),
-        '1.0.0',
+
+        $version,
+
         true
+
     );
 
-    // 4. جستجو
+
+
+    // 4. Search
+
     wp_enqueue_script(
+
         'd-theme-search',
-        get_template_directory_uri() . '/assets/js/search.js',
+
+        $theme_dir . '/assets/js/search.js',
+
         array(),
-        '1.0.0',
+
+        $version,
+
         true
+
     );
 
-    
-    // 5. آکاردئون (برای سوالات متداول و محتوای تاشو)
-    wp_enqueue_script(
-        'd-theme-accordion',
-        get_template_directory_uri() . '/assets/js/accordion.js',
-        array(),
-        '1.0.0',
-        true
-    );
-    // 5. Hero Slider برای صفحه اصلی
+
+
+    // 5. Front page hero slider
+
     if (is_front_page()) {
+
         wp_enqueue_script(
+
             'd-theme-hero-slider',
-            get_template_directory_uri() . '/assets/js/hero-slider.js',
+
+            $theme_dir . '/assets/js/hero-slider.js',
+
             array(),
-            '1.0.0',
+
+            $version,
+
             true
+
         );
+
     }
 
-    // انتقال داده‌ها به بخش JavaScript
+
+
+    // 6. Steel alloy single pages
+
+    if (is_singular('steel_alloy')) {
+
+        wp_enqueue_script(
+
+            'd-alloy-single',
+
+            $theme_dir . '/assets/js/alloy-single.js',
+
+            array('jquery', 'd-theme-main'),
+
+            $version,
+
+            true
+
+        );
+
+    }
+
+
+
+    // 7. Steel category archives
+
+    if (is_tax('steel_category')) {
+
+        wp_enqueue_script(
+
+            'd-category',
+
+            $theme_dir . '/assets/js/category-archive.js',
+
+            array('jquery', 'd-theme-main'),
+
+            $version,
+
+            true
+
+        );
+
+    }
+
+
+
+    // Localize data for scripts
+
     wp_localize_script('d-theme-main', 'dTheme', array(
+
         'ajaxUrl' => admin_url('admin-ajax.php'),
+
         'nonce' => wp_create_nonce('d-theme-nonce'),
-        'themeUrl' => get_template_directory_uri(),
+
+        'themeUrl' => $theme_dir,
+
         'homeUrl' => home_url('/'),
+
     ));
+
+
+
+    wp_localize_script('d-theme-main', 'eghbalData', array(
+
+        'ajaxUrl' => admin_url('admin-ajax.php'),
+
+        'nonce' => wp_create_nonce('eghbal_nonce'),
+
+        'siteUrl' => get_site_url(),
+
+    ));
+
 }
+
 add_action('wp_enqueue_scripts', 'd_theme_enqueue_assets');
 
 /**
@@ -241,8 +454,8 @@ require get_template_directory() . '/inc/customizer/logo.php';
 require get_template_directory() . '/inc/customizer/hero.php';
 
 // 🔍 Menus (منوها)
-// require get_template_directory() . '/inc/menus/menu-setup.php';
-// require get_template_directory() . '/inc/menus/menu-walker.php';
+require get_template_directory() . '/inc/menus/menu-setup.php';
+require get_template_directory() . '/inc/menus/menu-walker.php';
 
 // 🛠 Custom Fields
 // require get_template_directory() . '/inc/custom-fields/category-fields.php';
@@ -250,9 +463,10 @@ require get_template_directory() . '/inc/customizer/hero.php';
 // 🛠 Helpers (توابع کمکی)
 require get_template_directory() . '/inc/helpers/helpers.php';
 require get_template_directory() . '/inc/helpers/color-helper.php';
-require get_template_directory() . '/inc/helpers/schema.php';
-require get_template_directory() . '/inc/helpers/svg-support.php';
-require get_template_directory() . '/inc/helpers/performance.php';
+require get_template_directory() . '/inc/post-types/steel-alloy-cpt.php';
+require get_template_directory() . '/inc/seo/schema.php';
+require get_template_directory() . '/inc/ajax/quote-form.php';
+
 
 // 🗓 تاریخ شمسی
 require get_template_directory() . '/inc/persian-date.php';
@@ -268,39 +482,80 @@ require get_template_directory() . '/inc/persian-date.php';
  */
 function d_theme_body_classes($classes) {
 
-    // اگر صفحه فعلی از نوع page باشد
+    $theme_mode = isset($_COOKIE['theme_mode']) ? sanitize_text_field($_COOKIE['theme_mode']) : 'dark';
+
+    $classes[] = 'theme-' . sanitize_html_class($theme_mode);
+
+
+
     if (is_page()) {
+
         global $post;
 
-        // اضافه کردن slug صفحه
+
+
         $classes[] = 'page-' . $post->post_name;
 
-        // اگر صفحه والد دارد
+
+
         if ($post->post_parent) {
+
             $parent = get_post($post->post_parent);
+
             if ($parent) {
+
                 $classes[] = 'category-' . $parent->post_name;
+
             }
+
         }
+
     }
 
-    // اگر صفحه اصلی باشد
+
+
     if (is_front_page()) {
+
         $classes[] = 'front-page';
+
     }
 
-    // اگر صفحه تکی باشد
+
+
     if (is_single()) {
+
         $classes[] = 'single-post';
+
     }
 
-    // اگر صفحه بایگانی باشد
+
+
     if (is_archive()) {
+
         $classes[] = 'archive-page';
+
     }
-    
+
+
+
+    if (is_singular('steel_alloy')) {
+
+        $categories = get_the_terms(get_the_ID(), 'steel_category');
+
+        if ($categories && !is_wp_error($categories)) {
+
+            $classes[] = 'category-' . sanitize_html_class($categories[0]->slug);
+
+        }
+
+    }
+
+
+
     return $classes;
+
 }
+
 add_filter('body_class', 'd_theme_body_classes');
 
 /**
@@ -326,6 +581,10 @@ add_action('wp_head', 'd_theme_customizer_css');
  * تنظیم طول excerpt
  */
 function d_theme_excerpt_length($length) {
+    if (is_tax('steel_category')) {
+        return 20;
+    }
+
     return 30;
 }
 add_filter('excerpt_length', 'd_theme_excerpt_length');
@@ -371,6 +630,16 @@ remove_action('wp_head', 'rsd_link');
  */
 remove_action('wp_head', 'wlwmanifest_link');
 
+function d_theme_remove_query_strings($src) {
+    if (strpos($src, '?ver=') !== false) {
+        $src = remove_query_arg('ver', $src);
+    }
+
+    return $src;
+}
+add_filter('style_loader_src', 'd_theme_remove_query_strings', 10, 1);
+add_filter('script_loader_src', 'd_theme_remove_query_strings', 10, 1);
+
 /**
  * اضافه کردن defer به اسکریپت‌ها (بهینه‌سازی)
  */
@@ -382,6 +651,8 @@ function d_theme_add_defer($tag, $handle) {
         'd-theme-menu',
         'd-theme-search',
         'd-theme-hero-slider',
+        'd-alloy-single',
+        'd-category',
     );
     
     if (in_array($handle, $defer_scripts)) {
@@ -532,9 +803,10 @@ function d_theme_get_logo() {
  */
 function d_theme_breadcrumb() {
     if (!is_front_page()) {
-        echo '<nav class="breadcrumb" aria-label="breadcrumb">';
+        echo '<nav class="breadcrumbs breadcrumb" aria-label="breadcrumb">';
+        echo '<div class="container">';
         echo '<a href="' . home_url() . '">خانه</a>';
-        
+
         if (is_category() || is_single()) {
             echo ' / ';
             the_category(' / ');
@@ -546,23 +818,13 @@ function d_theme_breadcrumb() {
             echo ' / ';
             the_title();
         }
-        
+
+        echo '</div>';
         echo '</nav>';
     }
 }
 
-/**
- * نمایش زمان مطالعه محتوا
- */
-if (!function_exists('d_theme_reading_time')) {
-    function d_theme_reading_time() {
-        $content = get_post_field('post_content', get_the_ID());
-        $word_count = str_word_count(strip_tags($content));
-        $reading_time = ceil($word_count / 200); // برآورد زمان مطالعه محتوا در دقیقه
-        
-        return $reading_time . ' دقیقه';
-    }
-}
+// حذف تابع تکراری زمان مطالعه؛ نسخه اصلی در inc/helpers/helpers.php موجود است
 
 /**
  * بررسی اینکه آیا صفحه دسته‌بندی است
@@ -654,4 +916,15 @@ function d_theme_after_footer() {
     do_action('d_theme_after_footer');
 }
 
-
+/**
+ * ACF Options Page
+ */
+if (function_exists('acf_add_options_page')) {
+    acf_add_options_page(array(
+        'page_title' => 'تنظیمات قالب',
+        'menu_title' => 'تنظیمات قالب',
+        'menu_slug' => 'theme-settings',
+        'capability' => 'edit_posts',
+        'icon_url' => 'dashicons-admin-settings',
+    ));
+}
