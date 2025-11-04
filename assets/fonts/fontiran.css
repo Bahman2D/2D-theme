@@ -1,0 +1,21 @@
+/* Variable Font - برای مرورگرهای جدید */
+@font-face {
+    font-family: 'IRANYekanXVF';
+    src: url('IRANYekanXVF.woff2') format('woff2-variations'),
+         url('IRANYekanXVF.woff2') format('woff2');
+    font-weight: 100 1000;
+    font-display: swap;
+}
+
+/* Static Fonts - برای مرورگرهای قدیمی (Fallback) */
+@font-face {
+    font-family: IRANYekanX;
+    src: url('staticfonts/IRANYekanX-Regular.woff') format('woff');
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: IRANYekanX;
+    src: url('staticfonts/IRANYekanX-Bold.woff') format('woff');
+    font-weight: bold;
+}
