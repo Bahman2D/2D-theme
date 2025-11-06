@@ -14,17 +14,39 @@ if (!defined('ABSPATH')) {
 }
 
 /**
+ * Optimize database queries - Define constants early
+ * These should be defined before init hook
+ */
+if (!defined('WP_POST_REVISIONS')) {
+    define('WP_POST_REVISIONS', 3);
+}
+
+if (!defined('EMPTY_TRASH_DAYS')) {
+    define('EMPTY_TRASH_DAYS', 7);
+}
+
+/**
  * Add lazy loading to images
+ * Only add if WordPress native lazy loading is not already present
  */
 function d_theme_add_lazy_loading($content) {
-    // Only add loading="lazy" if not already present
-    if (strpos($content, 'loading=') === false) {
-        $content = preg_replace('/<img([^>]*?)>/i', '<img$1 loading="lazy">', $content);
+    // Skip if content is empty or already has loading attribute
+    if (empty($content) || strpos($content, 'loading=') !== false) {
+        return $content;
     }
+    
+    // Use more specific regex to avoid conflicts
+    // Only match img tags without loading attribute
+    $content = preg_replace(
+        '/<img((?![^>]*loading=)[^>]*?)>/i',
+        '<img$1 loading="lazy">',
+        $content
+    );
+    
     return $content;
 }
-add_filter('the_content', 'd_theme_add_lazy_loading');
-add_filter('post_thumbnail_html', 'd_theme_add_lazy_loading');
+add_filter('the_content', 'd_theme_add_lazy_loading', 20);
+add_filter('post_thumbnail_html', 'd_theme_add_lazy_loading', 20);
 
 /**
  * حذف query strings از استاتیک resources
@@ -100,19 +122,13 @@ add_action('wp_default_scripts', 'd_theme_remove_jquery_migrate');
 
 /**
  * Optimize database queries
+ * Note: Constants are now defined at the top of the file
+ * This function is kept for backward compatibility
  */
 function d_theme_optimize_database_queries() {
-    // Limit post revisions
-    if (!defined('WP_POST_REVISIONS')) {
-        define('WP_POST_REVISIONS', 3);
-    }
-    
-    // Auto-empty trash
-    if (!defined('EMPTY_TRASH_DAYS')) {
-        define('EMPTY_TRASH_DAYS', 7);
-    }
+    // Constants are already defined at file level
+    // This function can be used for additional optimizations if needed
 }
-add_action('init', 'd_theme_optimize_database_queries');
 
 /**
  * Add Cache-Control headers
@@ -168,9 +184,10 @@ function d_theme_async_defer_scripts($tag, $handle, $src) {
         'facebook-pixel',
     );
     
-    if (in_array($handle, $async_scripts)) {
+    // Validate array before using in_array
+    if (!empty($async_scripts) && is_array($async_scripts) && in_array($handle, $async_scripts, true)) {
         // Only add async if not already present
-        if (strpos($tag, ' async') === false) {
+        if (strpos($tag, ' async') === false && strpos($tag, 'defer') === false) {
             return str_replace(' src', ' async src', $tag);
         }
     }

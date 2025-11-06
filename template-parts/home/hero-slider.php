@@ -8,7 +8,8 @@
  * @version 1.0.0
  */
 
-// چک کردن فعال بودن Hero
+// چک کردن فعال بودن Hero  
+// Use get_theme_mod directly for customizer to work properly
 if (!get_theme_mod('hero_enabled', true)) {
     return;
 }
@@ -17,35 +18,45 @@ if (!get_theme_mod('hero_enabled', true)) {
 <section class="hero-slider" role="banner" aria-label="اسلایدر اصلی">
     
     <?php
-    // تعداد اسلایدهای فعال
-    $active_slides = array();
-    
-    for ($i = 1; $i <= 3; $i++) {
-        if (get_theme_mod("hero_slide_{$i}_enabled", true)) {
-            $active_slides[] = $i;
+    // Get cached active slides to reduce database queries
+    $active_slides = d_theme_get_cached('hero_active_slides', function() {
+        $slides = array();
+        $theme_mods = get_theme_mods(); // Get all mods at once
+        
+        for ($i = 1; $i <= 3; $i++) {
+            $key = "hero_slide_{$i}_enabled";
+            $enabled = isset($theme_mods[$key]) ? $theme_mods[$key] : true;
+            if ($enabled) {
+                $slides[] = $i;
+            }
         }
-    }
+        
+        return $slides;
+    }, HOUR_IN_SECONDS);
     
     // اگر هیچ اسلایدی فعال نیست
     if (empty($active_slides)) {
         return;
     }
     
+    // Get all theme mods at once to reduce queries
+    $theme_mods = get_theme_mods();
+    
     // نمایش اسلایدها
     $slide_index = 0;
     foreach ($active_slides as $i) :
         $is_active = ($slide_index === 0) ? 'active' : '';
         
-        // دریافت تنظیمات اسلاید
-        $title = get_theme_mod("hero_slide_{$i}_title", "عنوان اسلاید {$i}");
-        $text = get_theme_mod("hero_slide_{$i}_text", "متن توضیحات اسلاید {$i}");
-        $btn1_text = get_theme_mod("hero_slide_{$i}_btn1_text", 'دکمه 1');
-        $btn1_link = get_theme_mod("hero_slide_{$i}_btn1_link", '#');
-        $btn2_text = get_theme_mod("hero_slide_{$i}_btn2_text", 'دکمه 2');
-        $btn2_link = get_theme_mod("hero_slide_{$i}_btn2_link", '#');
-        $gradient_start = get_theme_mod("hero_slide_{$i}_gradient_start", '#667eea');
-        $gradient_end = get_theme_mod("hero_slide_{$i}_gradient_end", '#764ba2');
-        $bg_image = get_theme_mod("hero_slide_{$i}_bg_image", '');
+        // دریافت تنظیمات اسلاید از cached mods
+        $title = isset($theme_mods["hero_slide_{$i}_title"]) ? $theme_mods["hero_slide_{$i}_title"] : "عنوان اسلاید {$i}";
+        $text = isset($theme_mods["hero_slide_{$i}_text"]) ? $theme_mods["hero_slide_{$i}_text"] : "متن توضیحات اسلاید {$i}";
+        $btn1_text = isset($theme_mods["hero_slide_{$i}_btn1_text"]) ? $theme_mods["hero_slide_{$i}_btn1_text"] : 'دکمه 1';
+        $btn1_link = isset($theme_mods["hero_slide_{$i}_btn1_link"]) ? $theme_mods["hero_slide_{$i}_btn1_link"] : '#';
+        $btn2_text = isset($theme_mods["hero_slide_{$i}_btn2_text"]) ? $theme_mods["hero_slide_{$i}_btn2_text"] : 'دکمه 2';
+        $btn2_link = isset($theme_mods["hero_slide_{$i}_btn2_link"]) ? $theme_mods["hero_slide_{$i}_btn2_link"] : '#';
+        $gradient_start = isset($theme_mods["hero_slide_{$i}_gradient_start"]) ? $theme_mods["hero_slide_{$i}_gradient_start"] : '#667eea';
+        $gradient_end = isset($theme_mods["hero_slide_{$i}_gradient_end"]) ? $theme_mods["hero_slide_{$i}_gradient_end"] : '#764ba2';
+        $bg_image = isset($theme_mods["hero_slide_{$i}_bg_image"]) ? $theme_mods["hero_slide_{$i}_bg_image"] : '';
         
         // Build background style
         $bg_style = "background: linear-gradient(135deg, " . esc_attr($gradient_start) . ", " . esc_attr($gradient_end) . ");";

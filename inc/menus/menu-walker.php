@@ -107,8 +107,9 @@ class D_Theme_Menu_Walker extends Walker_Nav_Menu {
             }
         }
         
-        $title = apply_filters('the_title', $item->title, $item->ID);
-        $title = apply_filters('nav_menu_item_title', $title, $item, $args, $depth);
+        // Use item title directly to avoid N+1 query issue
+        // Only apply nav_menu_item_title filter which is menu-specific
+        $title = apply_filters('nav_menu_item_title', $item->title, $item, $args, $depth);
         
         $item_output = isset($args->before) ? $args->before : '';
         $item_output .= '<a' . $attributes . '>';
@@ -174,20 +175,23 @@ class D_Theme_Mobile_Menu_Walker extends Walker_Nav_Menu {
 
         $output .= $indent . '<div' . $class_names . '>';
 
+        // Get title once to avoid multiple filter calls
+        $title = apply_filters('nav_menu_item_title', $item->title, $item, $args, $depth);
+        
         // Link or button (if has submenu)
         if ($has_children && $depth === 0) {
             $output .= '<div class="mobile-menu-link">';
-            $output .= '<span>' . esc_html(apply_filters('the_title', $item->title, $item->ID)) . '</span>';
+            $output .= '<span>' . esc_html($title) . '</span>';
             $output .= '<span class="mobile-menu-icon" aria-hidden="true">◀</span>';
             $output .= '</div>';
         } elseif ($has_children && $depth === 1) {
             $output .= '<div class="mobile-submenu-link">';
-            $output .= '<span>' . esc_html(apply_filters('the_title', $item->title, $item->ID)) . '</span>';
+            $output .= '<span>' . esc_html($title) . '</span>';
             $output .= '<span class="mobile-menu-icon" aria-hidden="true">◀</span>';
             $output .= '</div>';
         } elseif ($has_children && $depth === 2) {
             $output .= '<div class="mobile-submenu-level-2-link">';
-            $output .= '<span>' . esc_html(apply_filters('the_title', $item->title, $item->ID)) . '</span>';
+            $output .= '<span>' . esc_html($title) . '</span>';
             $output .= '<span class="mobile-menu-icon" aria-hidden="true">◀</span>';
             $output .= '</div>';
         } else {
@@ -226,9 +230,7 @@ class D_Theme_Mobile_Menu_Walker extends Walker_Nav_Menu {
                 }
             }
 
-            $title = apply_filters('the_title', $item->title, $item->ID);
-            $title = apply_filters('nav_menu_item_title', $title, $item, $args, $depth);
-
+            // Title already retrieved above, reuse it
             $output .= '<a' . $attributes . '>';
 
             if ($depth >= 3) {

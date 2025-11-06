@@ -1,0 +1,138 @@
+/**
+ * Alloy Page Styles
+ * 
+ * استایل‌های صفحه آلیاژها
+ * 
+ * @package D_Theme
+ * @version 1.0.0
+ */
+
+.alloy-page-main {
+    padding: 2rem 0;
+}
+
+.alloy-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+/* ========== Alloy Header ========== */
+.alloy-header {
+    margin-bottom: 3rem;
+}
+
+.alloy-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--text-primary, #1f2937);
+}
+
+.alloy-thumbnail {
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.alloy-thumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ========== Alloy Content ========== */
+.alloy-content {
+    max-width: 100%;
+}
+
+/* ========== Specs Table ========== */
+.alloy-specs {
+    margin: 3rem 0;
+    padding: 2rem;
+    background: var(--bg-secondary, #f8f9fa);
+    border-radius: 8px;
+}
+
+.alloy-specs-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary, #1f2937);
+}
+
+.alloy-specs-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-primary, #fff);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.alloy-specs-table th,
+.alloy-specs-table td {
+    padding: 1rem 1.5rem;
+    text-align: right;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+}
+
+.alloy-specs-table th {
+    background: var(--bg-secondary, #f8f9fa);
+    font-weight: 600;
+    color: var(--text-primary, #1f2937);
+    width: 40%;
+}
+
+.alloy-specs-table td {
+    color: var(--text-secondary, #6b7280);
+}
+
+.alloy-specs-table tr:last-child th,
+.alloy-specs-table tr:last-child td {
+    border-bottom: none;
+}
+
+.alloy-specs-table tr:hover {
+    background: var(--bg-hover, #f8f9fa);
+}
+
+/* ========== Sidebar ========== */
+.alloy-sidebar {
+    display: none;
+}
+
+/* ========== Desktop Layout ========== */
+@media (min-width: 1024px) {
+    .alloy-wrapper {
+        grid-template-columns: 1fr 300px;
+    }
+    
+    .alloy-sidebar {
+        display: block;
+    }
+    
+    .toc-mobile-wrapper {
+        display: none;
+    }
+}
+
+/* ========== Mobile ========== */
+@media (max-width: 767px) {
+    .alloy-title {
+        font-size: 1.75rem;
+    }
+    
+    .alloy-specs {
+        padding: 1.5rem;
+    }
+    
+    .alloy-specs-table {
+        font-size: 0.9rem;
+    }
+    
+    .alloy-specs-table th,
+    .alloy-specs-table td {
+        padding: 0.75rem 1rem;
+    }
+}
+

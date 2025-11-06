@@ -78,7 +78,17 @@ function d_theme_customize_register($wp_customize) {
     foreach ($socials as $key => $label) {
         $wp_customize->add_setting("social_{$key}", array(
             'default' => '',
-            'sanitize_callback' => 'esc_url_raw',
+            'sanitize_callback' => function($value) {
+                // Validate URL before sanitizing
+                $url = esc_url_raw($value);
+                return filter_var($url, FILTER_VALIDATE_URL) ? $url : '';
+            },
+            'validate_callback' => function($validity, $value) {
+                if (!empty($value) && !filter_var($value, FILTER_VALIDATE_URL)) {
+                    $validity->add('invalid_url', __('لینک وارد شده معتبر نیست.', 'd-theme'));
+                }
+                return $validity;
+            },
         ));
         
         $wp_customize->add_control("social_{$key}", array(
@@ -124,3 +134,17 @@ function d_theme_customizer_styles() {
     <?php
 }
 add_action('customize_controls_print_styles', 'd_theme_customizer_styles');
+
+/**
+ * Clear theme cache when customizer is saved
+ */
+function d_theme_customizer_save_cache_clear() {
+    // Clear all theme-related caches
+    d_theme_clear_all_cache();
+    
+    // Clear specific caches
+    d_theme_delete_cached('hero_active_slides');
+    d_theme_delete_cached('search_suggestions');
+    d_theme_delete_cached('logo_urls');
+}
+add_action('customize_save_after', 'd_theme_customizer_save_cache_clear');

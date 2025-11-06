@@ -1,0 +1,213 @@
+/**
+ * Comments Styles
+ * 
+ * استایل‌های سیستم کامنت
+ * 
+ * @package D_Theme
+ * @version 1.0.0
+ */
+
+.comments-area {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 2px solid var(--border-color, #e5e7eb);
+}
+
+.comments-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: var(--text-primary, #1f2937);
+}
+
+/* ========== Comment List ========== */
+.comment-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+}
+
+.comment-item {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+}
+
+.comment-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.comment-body {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.comment-author-avatar {
+    flex-shrink: 0;
+}
+
+.comment-author-avatar img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color, #e5e7eb);
+}
+
+.comment-content {
+    flex: 1;
+}
+
+.comment-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary, #6b7280);
+}
+
+.comment-author {
+    font-weight: 600;
+    color: var(--text-primary, #1f2937);
+    font-style: normal;
+}
+
+.comment-author a {
+    color: var(--primary, #3b82f6);
+    text-decoration: none;
+}
+
+.comment-time {
+    color: var(--text-secondary, #6b7280);
+}
+
+.comment-text {
+    color: var(--text-primary, #1f2937);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.comment-awaiting-moderation {
+    padding: 0.75rem 1rem;
+    background: var(--bg-warning, #fef3c7);
+    border-radius: 6px;
+    color: var(--text-warning, #92400e);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.comment-reply {
+    margin-top: 0.75rem;
+}
+
+.comment-reply a {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: var(--bg-secondary, #f8f9fa);
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--text-secondary, #6b7280);
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.comment-reply a:hover {
+    background: var(--primary, #3b82f6);
+    color: #fff;
+}
+
+/* ========== Nested Comments ========== */
+.comment-list .children {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0 3rem;
+    border-right: 2px solid var(--border-color, #e5e7eb);
+    padding-right: 1.5rem;
+}
+
+.comment-list .children .children {
+    margin-right: 2rem;
+}
+
+/* ========== Comment Form ========== */
+.comment-form {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: var(--bg-secondary, #f8f9fa);
+    border-radius: 8px;
+}
+
+.comment-form-comment textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 150px;
+}
+
+.comment-form-author input,
+.comment-form-email input,
+.comment-form-url input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.comment-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-primary, #1f2937);
+}
+
+.required {
+    color: #dc2626;
+}
+
+.form-submit input[type="submit"] {
+    padding: 0.75rem 2rem;
+    background: var(--primary, #3b82f6);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.form-submit input[type="submit"]:hover {
+    background: var(--primary-dark, #2563eb);
+}
+
+.no-comments {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-secondary, #6b7280);
+    background: var(--bg-secondary, #f8f9fa);
+    border-radius: 8px;
+}
+
+/* ========== Mobile ========== */
+@media (max-width: 767px) {
+    .comment-body {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .comment-list .children {
+        margin-right: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .comment-form {
+        padding: 1.5rem;
+    }
+}
+

@@ -26,61 +26,64 @@ d_theme_before_footer();
                 ?></p>
             </div>
 
-            <!-- ستون 2: دسترسی سریع -->
+            <?php
+            // Footer columns configuration
+            $footer_columns = array(
+                array(
+                    'title' => 'دسترسی سریع',
+                    'sidebar' => 'footer-1',
+                    'fallback' => array(
+                        array('text' => 'صفحه اصلی', 'url' => home_url('/')),
+                        array('text' => 'دسته‌بندی محصولات', 'url' => '#'),
+                        array('text' => 'بلاگ آموزشی', 'url' => '#'),
+                        array('text' => 'تماس با ما', 'url' => '#'),
+                    )
+                ),
+                array(
+                    'title' => 'لینک‌های مفید',
+                    'sidebar' => 'footer-2',
+                    'fallback' => array(
+                        array('text' => 'درباره ما', 'url' => '#'),
+                        array('text' => 'خدمات', 'url' => '#'),
+                        array('text' => 'سوالات متداول', 'url' => '#'),
+                        array('text' => 'حریم خصوصی', 'url' => '#'),
+                    )
+                ),
+                array(
+                    'title' => 'تماس با ما',
+                    'sidebar' => 'footer-3',
+                    'fallback' => array(
+                        array('text' => '📞 021-00000000', 'url' => 'tel:02100000000'),
+                        array('text' => '📱 0912-195-0000', 'url' => 'tel:09120000000'),
+                        array('text' => '✉️ info@example.com', 'url' => 'mailto:info@example.com'),
+                        array('text' => '📍 تهران، ایران', 'url' => '#'),
+                    )
+                ),
+            );
+            
+            // Render footer columns
+            foreach ($footer_columns as $col) :
+            ?>
             <div class="footer-col">
-                <h3>دسترسی سریع</h3>
+                <h3><?php echo esc_html($col['title']); ?></h3>
                 <?php
-                if (is_active_sidebar('footer-1')) {
-                    dynamic_sidebar('footer-1');
+                if (is_active_sidebar($col['sidebar'])) {
+                    dynamic_sidebar($col['sidebar']);
                 } else {
                 ?>
                     <ul>
-                        <li><a href="<?php echo esc_url(home_url('/')); ?>">صفحه اصلی</a></li>
-                        <li><a href="#">دسته‌بندی محصولات</a></li>
-                        <li><a href="#">بلاگ آموزشی</a></li>
-                        <li><a href="#">تماس با ما</a></li>
+                        <?php foreach ($col['fallback'] as $item) : ?>
+                            <li><a href="<?php echo esc_url($item['url']); ?>"><?php echo esc_html($item['text']); ?></a></li>
+                        <?php endforeach; ?>
                     </ul>
                 <?php } ?>
             </div>
-
-            <!-- ستون 3: لینک‌ها -->
-            <div class="footer-col">
-                <h3>لینک‌های مفید</h3>
-                <?php
-                if (is_active_sidebar('footer-2')) {
-                    dynamic_sidebar('footer-2');
-                } else {
-                ?>
-                    <ul>
-                        <li><a href="#">درباره ما</a></li>
-                        <li><a href="#">خدمات</a></li>
-                        <li><a href="#">سوالات متداول</a></li>
-                        <li><a href="#">حریم خصوصی</a></li>
-                    </ul>
-                <?php } ?>
-            </div>
-
-            <!-- ستون 4: تماس -->
-            <div class="footer-col">
-                <h3>تماس با ما</h3>
-                <?php
-                if (is_active_sidebar('footer-3')) {
-                    dynamic_sidebar('footer-3');
-                } else {
-                ?>
-                    <ul>
-                        <li><a href="tel:02100000000">📞 021-00000000</a></li>
-                        <li><a href="tel:09120000000">📱 0912-195-0000</a></li>
-                        <li><a href="mailto:info@example.com">✉️ info@example.com</a></li>
-                        <li><a href="#">📍 تهران، ایران</a></li>
-                    </ul>
-                <?php } ?>
-            </div>
+            <?php endforeach; ?>
 
         </div>
 
         <div class="footer-bottom">
-            <p>© <?php echo date_i18n('Y'); ?> <?php bloginfo('name'); ?> - تمامی حقوق محفوظ است</p>
+            <p>© <?php echo esc_html(d_theme_get_current_year()); ?> <?php bloginfo('name'); ?> - تمامی حقوق محفوظ است</p>
         </div>
     </div>
 </footer>

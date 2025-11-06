@@ -14,6 +14,14 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <?php
+    // Resource hints for better performance
+    $template_uri = get_template_directory_uri();
+    ?>
+    <link rel="dns-prefetch" href="<?php echo esc_url(parse_url(home_url(), PHP_URL_HOST)); ?>">
+    <link rel="preconnect" href="<?php echo esc_url($template_uri); ?>" crossorigin>
+    
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
@@ -26,24 +34,22 @@
         <!-- لوگو -->
         <a href="<?php echo esc_url(home_url('/')); ?>" class="logo" aria-label="<?php bloginfo('name'); ?>">
             <?php
-            $custom_logo_id = get_theme_mod('custom_logo');
-            $logo_light_id = get_theme_mod('logo_light');
+            // Use cached logo URLs for better performance
+            $logo_urls = d_theme_get_cached_logo_urls();
             
-            if ($custom_logo_id) :
-                $logo_dark_url = wp_get_attachment_image_src($custom_logo_id, 'full');
-                $logo_light_url = $logo_light_id ? wp_get_attachment_image_src($logo_light_id, 'full') : $logo_dark_url;
-                
-                if ($logo_dark_url && isset($logo_dark_url[0])) :
-                    $logo_light_src = ($logo_light_url && isset($logo_light_url[0])) ? $logo_light_url[0] : $logo_dark_url[0];
+            if ($logo_urls && !empty($logo_urls['dark'])) :
+                $logo_dark_src = esc_url($logo_urls['dark']);
+                $logo_light_src = !empty($logo_urls['light']) ? esc_url($logo_urls['light']) : $logo_dark_src;
             ?>
                 <!-- Dark Mode Logo (default) -->
-                <img src="<?php echo esc_url($logo_dark_url[0]); ?>" 
+                <img src="<?php echo $logo_dark_src; ?>" 
                      alt="<?php echo esc_attr(get_bloginfo('name')); ?>" 
                      class="logo-img logo-dark"
-                     data-logo-dark="<?php echo esc_url($logo_dark_url[0]); ?>"
-                     data-logo-light="<?php echo esc_url($logo_light_src); ?>">
+                     data-logo-dark="<?php echo $logo_dark_src; ?>" 
+                     data-logo-light="<?php echo $logo_light_src; ?>"
+                     loading="eager"
+                     fetchpriority="high">
             <?php 
-                endif;
             else : 
             ?>
                 <span class="logo-text"><?php bloginfo('name'); ?></span>
@@ -165,19 +171,48 @@
         <div class="search-suggestions">
             <div class="search-suggestions-title">جستجوهای پیشنهادی:</div>
             <?php
-            // جستجوهای پیشنهادی (می‌تونی دینامیک کنی)
-            $suggestions = array(
-                array('title' => 'محصولات', 'icon' => '🔍'),
-                array('title' => 'بلاگ', 'icon' => '📝'),
-                array('title' => 'درباره ما', 'icon' => 'ℹ️')
-            );
+            // جستجوهای پیشنهادی - پویا با استفاده از صفحات مهم
+            $suggestions = d_theme_get_cached('search_suggestions', function() {
+                $suggestions = array();
+                
+                // صفحات مهم
+                $important_pages = array('محصولات', 'بلاگ', 'درباره ما', 'تماس با ما');
+                
+                foreach ($important_pages as $page_title) {
+                    $page = get_page_by_title($page_title);
+                    if ($page) {
+                        $suggestions[] = array(
+                            'title' => $page_title,
+                            'url' => get_permalink($page->ID),
+                            'icon' => '🔍'
+                        );
+                    }
+                }
+                
+                // اگر هیچ صفحه‌ای پیدا نشد، از پیش‌فرض استفاده کن
+                if (empty($suggestions)) {
+                    $suggestions = array(
+                        array('title' => 'محصولات', 'url' => home_url('/?s=محصولات'), 'icon' => '🔍'),
+                        array('title' => 'بلاگ', 'url' => home_url('/?s=بلاگ'), 'icon' => '📝'),
+                        array('title' => 'درباره ما', 'url' => home_url('/?s=درباره'), 'icon' => 'ℹ️')
+                    );
+                }
+                
+                return $suggestions;
+            }, HOUR_IN_SECONDS);
             
-            foreach ($suggestions as $suggestion) :
+            if (!empty($suggestions) && is_array($suggestions)) :
+                foreach ($suggestions as $suggestion) :
+                    $url = isset($suggestion['url']) ? $suggestion['url'] : home_url('/?s=' . urlencode($suggestion['title']));
+                    $icon = isset($suggestion['icon']) ? $suggestion['icon'] : '🔍';
             ?>
-                <a href="<?php echo esc_url(home_url('/?s=' . urlencode($suggestion['title']))); ?>" class="search-suggestion-item">
-                    <?php echo esc_html($suggestion['icon'] . ' ' . $suggestion['title']); ?>
+                <a href="<?php echo esc_url($url); ?>" class="search-suggestion-item">
+                    <?php echo esc_html($icon . ' ' . esc_html($suggestion['title'])); ?>
                 </a>
-            <?php endforeach; ?>
+            <?php 
+                endforeach;
+            endif;
+            ?>
         </div>
     </div>
 </div>

@@ -86,14 +86,34 @@ add_action('after_setup_theme', 'd_theme_setup');
  * 2️⃣ Enqueue Styles and Scripts
  * ==========================================
  */
+
+/**
+ * Get cached theme version
+ * 
+ * @return string Theme version
+ */
+function d_theme_get_version() {
+    static $version = null;
+    
+    if (null === $version) {
+        $theme = wp_get_theme();
+        $version = $theme->get('Version') ?: '1.0.0';
+    }
+    
+    return $version;
+}
+
 function d_theme_enqueue_assets() {
+    // Cache theme version to avoid multiple calls
+    $theme_version = d_theme_get_version();
+    $template_uri = get_template_directory_uri();
     
     // ========== CSS Files ==========
     
     // 1. Fonts (load first)
     wp_enqueue_style(
         'd-theme-fonts',
-        get_template_directory_uri() . '/assets/fonts/fontiran.css',
+        $template_uri . '/assets/fonts/fontiran.css',
         array(),
         '2.4'
     );
@@ -101,50 +121,50 @@ function d_theme_enqueue_assets() {
     // 2. CSS Variables
     wp_enqueue_style(
         'd-theme-variables',
-        get_template_directory_uri() . '/assets/css/variables.css',
+        $template_uri . '/assets/css/variables.css',
         array(),
-        wp_get_theme()->get('Version') ?: '1.0.0'
+        $theme_version
     );
 
     // 3. Main Styles
     wp_enqueue_style(
         'd-theme-main',
-        get_template_directory_uri() . '/assets/css/main.css',
+        $template_uri . '/assets/css/main.css',
         array('d-theme-variables'),
-        wp_get_theme()->get('Version') ?: '1.0.0'
+        $theme_version
     );
 
     // 4. Components
     wp_enqueue_style(
         'd-theme-components',
-        get_template_directory_uri() . '/assets/css/components.css',
+        $template_uri . '/assets/css/components.css',
         array('d-theme-main'),
-        wp_get_theme()->get('Version') ?: '1.0.0'
+        $theme_version
     );
 
     // 5. Header
     wp_enqueue_style(
         'd-theme-header',
-        get_template_directory_uri() . '/assets/css/header.css',
+        $template_uri . '/assets/css/header.css',
         array('d-theme-main'),
-        wp_get_theme()->get('Version') ?: '1.0.0'
+        $theme_version
     );
 
     // 6. Footer
     wp_enqueue_style(
         'd-theme-footer',
-        get_template_directory_uri() . '/assets/css/footer.css',
+        $template_uri . '/assets/css/footer.css',
         array('d-theme-main'),
-        wp_get_theme()->get('Version') ?: '1.0.0'
+        $theme_version
     );
 
     // 7. Hero CSS for front page
     if (is_front_page()) {
         wp_enqueue_style(
             'd-theme-hero',
-            get_template_directory_uri() . '/assets/css/hero.css',
+            $template_uri . '/assets/css/hero.css',
             array('d-theme-main'),
-            '1.0.0'
+            $theme_version
         );
     }
 
@@ -152,9 +172,87 @@ function d_theme_enqueue_assets() {
     if (is_page_template('page-category.php')) {
         wp_enqueue_style(
             'd-theme-category',
-            get_template_directory_uri() . '/assets/css/category.css',
+            $template_uri . '/assets/css/category.css',
             array('d-theme-main'),
-            '1.0.0'
+            $theme_version
+        );
+    }
+    
+    // 9. TOC CSS (for single posts and pages with TOC)
+    if (is_singular()) {
+        global $post;
+        $content = $post ? $post->post_content : '';
+        if (d_theme_needs_toc($content)) {
+            wp_enqueue_style(
+                'd-theme-toc',
+                $template_uri . '/assets/css/toc.css',
+                array('d-theme-main'),
+                $theme_version
+            );
+        }
+    }
+    
+    // 10. FAQ CSS (if FAQ exists)
+    if (is_singular()) {
+        global $post;
+        $faqs = $post ? get_post_meta($post->ID, 'd_theme_faq_items', true) : array();
+        if (!empty($faqs)) {
+            wp_enqueue_style(
+                'd-theme-faq',
+                $template_uri . '/assets/css/faq.css',
+                array('d-theme-main'),
+                $theme_version
+            );
+        }
+    }
+    
+    // 11. Single Post CSS
+    if (is_single()) {
+        wp_enqueue_style(
+            'd-theme-single',
+            $template_uri . '/assets/css/single.css',
+            array('d-theme-main'),
+            $theme_version
+        );
+    }
+    
+    // 12. Blog Page CSS
+    if (is_page_template('page-blog.php')) {
+        wp_enqueue_style(
+            'd-theme-blog',
+            $template_uri . '/assets/css/blog.css',
+            array('d-theme-main'),
+            $theme_version
+        );
+    }
+    
+    // 13. Alloy Page CSS
+    if (is_page_template('page-alloy.php')) {
+        wp_enqueue_style(
+            'd-theme-alloy',
+            $template_uri . '/assets/css/alloy.css',
+            array('d-theme-main'),
+            $theme_version
+        );
+    }
+    
+    // 14. Taxonomy CSS
+    if (is_tax('page_category')) {
+        wp_enqueue_style(
+            'd-theme-taxonomy',
+            $template_uri . '/assets/css/taxonomy.css',
+            array('d-theme-main'),
+            $theme_version
+        );
+    }
+    
+    // 15. Comments CSS
+    if (is_singular() && (comments_open() || get_comments_number())) {
+        wp_enqueue_style(
+            'd-theme-comments',
+            $template_uri . '/assets/css/comments.css',
+            array('d-theme-main'),
+            $theme_version
         );
     }
 
@@ -163,36 +261,36 @@ function d_theme_enqueue_assets() {
     // 1. Main Script
     wp_enqueue_script(
         'd-theme-main',
-        get_template_directory_uri() . '/assets/js/main.js',
+        $template_uri . '/assets/js/main.js',
         array(),
-        wp_get_theme()->get('Version') ?: '1.0.0',
+        $theme_version,
         true
     );
 
     // 2. Theme Toggle (Dark/Light)
     wp_enqueue_script(
         'd-theme-toggle',
-        get_template_directory_uri() . '/assets/js/toggle.js',
+        $template_uri . '/assets/js/toggle.js',
         array(),
-        wp_get_theme()->get('Version') ?: '1.0.0',
+        $theme_version,
         true
     );
 
     // 3. Menu
     wp_enqueue_script(
         'd-theme-menu',
-        get_template_directory_uri() . '/assets/js/menu.js',
+        $template_uri . '/assets/js/menu.js',
         array(),
-        wp_get_theme()->get('Version') ?: '1.0.0',
+        $theme_version,
         true
     );
 
     // 4. Search
     wp_enqueue_script(
         'd-theme-search',
-        get_template_directory_uri() . '/assets/js/search.js',
+        $template_uri . '/assets/js/search.js',
         array(),
-        wp_get_theme()->get('Version') ?: '1.0.0',
+        $theme_version,
         true
     );
 
@@ -201,18 +299,48 @@ function d_theme_enqueue_assets() {
     if (is_front_page()) {
         wp_enqueue_script(
             'd-theme-hero-slider',
-            get_template_directory_uri() . '/assets/js/hero-slider.js',
+            $template_uri . '/assets/js/hero-slider.js',
             array(),
-            wp_get_theme()->get('Version') ?: '1.0.0',
+            $theme_version,
             true
         );
+    }
+    
+    // 6. TOC JavaScript (for single posts and pages with TOC)
+    if (is_singular()) {
+        global $post;
+        $content = $post ? $post->post_content : '';
+        if (d_theme_needs_toc($content)) {
+            wp_enqueue_script(
+                'd-theme-toc',
+                $template_uri . '/assets/js/toc.js',
+                array(),
+                $theme_version,
+                true
+            );
+        }
+    }
+    
+    // 7. FAQ JavaScript (if FAQ exists)
+    if (is_singular()) {
+        global $post;
+        $faqs = $post ? get_post_meta($post->ID, 'd_theme_faq_items', true) : array();
+        if (!empty($faqs)) {
+            wp_enqueue_script(
+                'd-theme-faq',
+                $template_uri . '/assets/js/faq.js',
+                array(),
+                $theme_version,
+                true
+            );
+        }
     }
 
     // Localize script data for JavaScript
     wp_localize_script('d-theme-main', 'dTheme', array(
         'ajaxUrl' => admin_url('admin-ajax.php'),
         'nonce' => wp_create_nonce('d-theme-nonce'),
-        'themeUrl' => get_template_directory_uri(),
+        'themeUrl' => $template_uri,
         'homeUrl' => home_url('/'),
     ));
 }
@@ -243,6 +371,15 @@ require get_template_directory() . '/inc/helpers/color-helper.php';
 require get_template_directory() . '/inc/helpers/schema.php';
 require get_template_directory() . '/inc/helpers/svg-support.php';
 require get_template_directory() . '/inc/helpers/performance.php';
+require get_template_directory() . '/inc/helpers/toc-helper.php';
+require get_template_directory() . '/inc/helpers/seo-helper.php';
+
+// Taxonomies
+require get_template_directory() . '/inc/taxonomies/page-category.php';
+
+// Metaboxes
+require get_template_directory() . '/inc/metaboxes/faq-metabox.php';
+require get_template_directory() . '/inc/metaboxes/alloy-metabox.php';
 
 // Persian Date
 require get_template_directory() . '/inc/persian-date.php';
@@ -299,14 +436,41 @@ function d_theme_body_classes($classes) {
 add_filter('body_class', 'd_theme_body_classes');
 
 /**
+ * Get cached theme mods
+ * 
+ * @param string $key Theme mod key
+ * @param mixed $default Default value
+ * @return mixed Theme mod value
+ */
+function d_theme_get_cached_mod($key, $default = '') {
+    static $mods_cache = null;
+    
+    if (null === $mods_cache) {
+        // Cache all theme mods at once to reduce database queries
+        $mods_cache = get_theme_mods();
+    }
+    
+    return isset($mods_cache[$key]) ? $mods_cache[$key] : $default;
+}
+
+/**
  * Add Customizer color settings CSS to head
  */
 function d_theme_customizer_css() {
-    $primary = get_theme_mod('primary_color', '#3b82f6');
-    $secondary = get_theme_mod('secondary_color', '#64748b');
-    $accent = get_theme_mod('accent_color', '#ff8800');
+    // Use cached theme mods
+    $primary = d_theme_get_cached_mod('primary_color', '#3b82f6');
+    $secondary = d_theme_get_cached_mod('secondary_color', '#64748b');
+    $accent = d_theme_get_cached_mod('accent_color', '#ff8800');
+    
+    // Only output if colors are different from defaults or custom
+    $has_custom_colors = ($primary !== '#3b82f6' || $secondary !== '#64748b' || $accent !== '#ff8800');
+    
+    if (!$has_custom_colors) {
+        return;
+    }
+    
     ?>
-    <style type="text/css">
+    <style type="text/css" id="d-theme-customizer-colors">
         :root {
             --primary: <?php echo esc_attr($primary); ?>;
             --secondary: <?php echo esc_attr($secondary); ?>;
@@ -315,7 +479,7 @@ function d_theme_customizer_css() {
     </style>
     <?php
 }
-add_action('wp_head', 'd_theme_customizer_css');
+add_action('wp_head', 'd_theme_customizer_css', 5);
 
 /**
  * Set excerpt length
@@ -384,10 +548,10 @@ add_filter('script_loader_tag', 'd_theme_add_defer', 10, 2);
  */
 function d_theme_rtl_support() {
     if (is_rtl()) {
-        echo '<style>body { direction: rtl; }</style>';
+        echo '<style id="d-theme-rtl">body { direction: rtl; }</style>';
     }
 }
-add_action('wp_head', 'd_theme_rtl_support');
+add_action('wp_head', 'd_theme_rtl_support', 5);
 
 /**
  * ==========================================
@@ -522,7 +686,7 @@ function d_theme_get_logo() {
  * Display breadcrumb
  */
 function d_theme_breadcrumb() {
-    if (!is_front_page() && get_theme_mod('show_breadcrumb', true)) {
+    if (!is_front_page() && d_theme_get_cached_mod('show_breadcrumb', true)) {
         echo '<nav class="breadcrumb" aria-label="breadcrumb">';
         echo '<a href="' . esc_url(home_url()) . '">خانه</a>';
         
@@ -631,5 +795,4 @@ function d_theme_before_footer() {
 function d_theme_after_footer() {
     do_action('d_theme_after_footer');
 }
-
 

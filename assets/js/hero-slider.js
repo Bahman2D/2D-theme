@@ -166,6 +166,14 @@
       touchEndX = e.changedTouches[0].screenX;
       handleSwipe();
     }, { passive: true });
+    
+    // Prevent default touchmove to improve scroll performance
+    heroSlider.addEventListener('touchmove', function(e) {
+      // Only prevent if we're actually swiping
+      if (Math.abs(touchStartX - e.changedTouches[0].screenX) > 10) {
+        e.preventDefault();
+      }
+    }, { passive: false });
   }
   
   function handleSwipe() {
