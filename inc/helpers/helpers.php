@@ -45,23 +45,27 @@ function d_theme_svg_icon($name, $class = '') {
 }
 
 /**
- * محاسبه زمان خواندن مقاله
+ * Calculate reading time
  * 
- * @param string|int $content محتوای مقاله یا post ID
- * @return int زمان تقریبی به دقیقه
+ * @param string|int $content Post content or post ID
+ * @return int Estimated time in minutes
  */
 function d_theme_reading_time($content = '') {
     if (empty($content)) {
         $content = get_the_content();
     } elseif (is_numeric($content)) {
-        $post = get_post($content);
+        $post = get_post(absint($content));
         $content = $post ? $post->post_content : '';
     }
     
-    $word_count = str_word_count(strip_tags($content));
-    $minutes = ceil($word_count / 200); // فرض: 200 کلمه در دقیقه
+    if (empty($content)) {
+        return 1;
+    }
     
-    return max(1, $minutes); // حداقل 1 دقیقه
+    $word_count = str_word_count(strip_tags($content));
+    $minutes = ceil($word_count / 200); // Assume: 200 words per minute
+    
+    return max(1, $minutes); // Minimum 1 minute
 }
 
 /**
@@ -92,55 +96,6 @@ function d_theme_format_price($price) {
 function d_theme_default_thumbnail() {
     return get_template_directory_uri() . '/assets/images/placeholder.jpg';
 }
-
-/**
- * تولید Breadcrumb ساده
- * 
- * @return string کد HTML Breadcrumb
- */
-
-// function d_theme_breadcrumb() {
-//     if (is_front_page()) {
-//         return '';
-//     }
-    
-//     $output = '<nav class="breadcrumb" aria-label="مسیر صفحه">';
-//     $output .= '<a href="' . esc_url(home_url('/')) . '">خانه</a>';
-//     $output .= '<span class="breadcrumb-separator" aria-hidden="true">/</span>';
-    
-//     if (is_category() || is_single()) {
-//         $category = get_the_category();
-//         if (!empty($category)) {
-//             $cat_link = get_category_link($category[0]->term_id);
-//             $output .= '<a href="' . esc_url($cat_link) . '">' . esc_html($category[0]->name) . '</a>';
-            
-//             if (is_single()) {
-//                 $output .= '<span class="breadcrumb-separator" aria-hidden="true">/</span>';
-//                 $output .= '<span class="breadcrumb-current" aria-current="page">' . get_the_title() . '</span>';
-//             }
-//         }
-//     } elseif (is_page()) {
-//         global $post;
-//         if ($post->post_parent) {
-//             $parent = get_post($post->post_parent);
-//             if ($parent) {
-//                 $output .= '<a href="' . esc_url(get_permalink($parent)) . '">' . esc_html($parent->post_title) . '</a>';
-//                 $output .= '<span class="breadcrumb-separator" aria-hidden="true">/</span>';
-//             }
-//         }
-//         $output .= '<span class="breadcrumb-current" aria-current="page">' . get_the_title() . '</span>';
-//     } elseif (is_search()) {
-//         $output .= '<span class="breadcrumb-current" aria-current="page">نتایج جستجو: ' . get_search_query() . '</span>';
-//     } elseif (is_404()) {
-//         $output .= '<span class="breadcrumb-current" aria-current="page">صفحه یافت نشد</span>';
-//     } elseif (is_archive()) {
-//         $output .= '<span class="breadcrumb-current" aria-current="page">' . get_the_archive_title() . '</span>';
-//     }
-    
-//     $output .= '</nav>';
-    
-//     return $output;
-// }
 
 /**
  * نمایش پیغام هشدار

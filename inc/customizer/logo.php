@@ -2,36 +2,36 @@
 /**
  * Customizer - Logo
  * 
- * تنظیمات لوگو قالب در Customizer
+ * Logo settings in Customizer
  * 
  * @package D_Theme
  * @version 1.0.0
  */
 
-// جلوگیری از دسترسی مستقیم
+// Prevent direct access
 if (!defined('ABSPATH')) {
     exit('Direct access forbidden.');
 }
 
 /**
- * اضافه کردن تنظیمات لوگو به Customizer
- * توجه: از Custom Logo پیش‌فرض وردپرس استفاده می‌کنیم
- * این فایل برای تنظیمات اضافی لوگو است
+ * Add logo settings to Customizer
+ * Note: We use WordPress default Custom Logo
+ * This file is for additional logo settings
  */
 function d_theme_customize_logo($wp_customize) {
     
     /**
-     * Section: لوگو (بهبود section پیش‌فرض وردپرس)
+     * Section: Logo (enhance default WordPress section)
      */
     
-    // تغییر توضیحات section لوگو پیش‌فرض
+    // Change default logo section description
     if ($wp_customize->get_section('title_tagline')) {
         $wp_customize->get_section('title_tagline')->description = 
             __('لوگو و تنظیمات هویت سایت', 'd-theme');
     }
     
     /**
-     * Setting: لوگوی حالت روز (Light Mode)
+     * Setting: Light Mode Logo
      */
     $wp_customize->add_setting('logo_light', array(
         'default' => '',
@@ -48,7 +48,7 @@ function d_theme_customize_logo($wp_customize) {
     )));
     
     /**
-     * Setting: نمایش نام سایت در کنار لوگو
+     * Setting: Show site title with logo
      */
     $wp_customize->add_setting('show_site_title_with_logo', array(
         'default' => false,
@@ -65,7 +65,7 @@ function d_theme_customize_logo($wp_customize) {
     ));
     
     /**
-     * Setting: ارتفاع لوگو (دسکتاپ)
+     * Setting: Logo height (Desktop)
      */
     $wp_customize->add_setting('logo_height_desktop', array(
         'default' => 45,
@@ -87,7 +87,7 @@ function d_theme_customize_logo($wp_customize) {
     ));
     
     /**
-     * Setting: ارتفاع لوگو (موبایل)
+     * Setting: Logo height (Mobile)
      */
     $wp_customize->add_setting('logo_height_mobile', array(
         'default' => 38,
@@ -109,7 +109,7 @@ function d_theme_customize_logo($wp_customize) {
     ));
     
     /**
-     * راهنما
+     * Help/Guide
      */
     $wp_customize->add_setting('logo_note', array(
         'sanitize_callback' => 'wp_kses_post',
@@ -126,7 +126,7 @@ function d_theme_customize_logo($wp_customize) {
 add_action('customize_register', 'd_theme_customize_logo', 11);
 
 /**
- * اضافه کردن استایل سفارشی لوگو به head
+ * Add custom logo styles to head
  */
 function d_theme_logo_custom_css() {
     $height_desktop = get_theme_mod('logo_height_desktop', 45);

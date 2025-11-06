@@ -1,7 +1,7 @@
 /**
  * CSS Variables - D Theme
  * 
- * متغیرهای CSS قالب - طبق Design System
+ * Theme CSS variables following Design System
  * 
  * @package D_Theme
  * @version 1.0.0
@@ -9,7 +9,7 @@
 
 :root {
   /* ========================================
-     🎨 رنگ‌های پایه
+     🎨 Base Colors
   ======================================== */
   --primary: #3b82f6;
   --primary-rgb: 59, 130, 246;
@@ -21,7 +21,7 @@
   --info: #06b6d4;
   
   /* ========================================
-     📝 رنگ‌های متن
+     📝 Text Colors
   ======================================== */
   --text-primary: #1e293b;
   --text-secondary: #64748b;
@@ -29,7 +29,7 @@
   --text-inverse: #ffffff;
   
   /* ========================================
-     🖼️ پس‌زمینه
+     🖼️ Backgrounds
   ======================================== */
   --bg-primary: #ffffff;
   --bg-secondary: #f8fafc42;
@@ -53,7 +53,7 @@
   --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
   --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.25);
   
-  /* Shadows رنگی */
+  /* Colored Shadows */
   --shadow-primary: 0 10px 25px rgba(59, 130, 246, 0.3);
   --shadow-accent: 0 10px 25px rgba(255, 136, 0, 0.3);
   --shadow-success: 0 10px 25px rgba(16, 185, 129, 0.3);
@@ -89,17 +89,17 @@
   --space-32: 8rem;        /* 128px */
   
   /* ========================================
-     🔤 Font Sizes (ریسپانسیو با clamp)
+     🔤 Font Sizes (Responsive with clamp)
   ======================================== */
   
-  /* سایزهای پایه */
+  /* Base Sizes */
   --text-xs: clamp(0.625rem, 1.5vw, 0.75rem);        /* 10-12px */
   --text-sm: clamp(0.75rem, 1.8vw, 0.875rem);        /* 12-14px */
   --text-base: clamp(0.875rem, 2vw, 1rem);           /* 14-16px */
   --text-lg: clamp(1rem, 2.2vw, 1.125rem);           /* 16-18px */
   --text-xl: clamp(1.125rem, 2.5vw, 1.25rem);        /* 18-20px */
   
-  /* سایزهای تیتر - Desktop */
+  /* Heading Sizes - Desktop */
   --text-2xl: 1.5rem;      /* 24px */
   --text-3xl: 1.875rem;    /* 30px */
   --text-4xl: 2.25rem;     /* 36px */
@@ -205,19 +205,19 @@
 ======================================== */
 
 [data-theme="dark"] {
-  /* رنگ‌ها */
+  /* Colors */
   --primary: #60a5fa;
   --primary-rgb: 96, 165, 250;
   --secondary: #94a3b8;
   --accent: #ffa940;
   
-  /* متن */
+  /* Text */
   --text-primary: #f1f5f9;
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
   --text-inverse: #0f172a;
   
-  /* پس‌زمینه */
+  /* Background */
   --bg-primary: #0f172a;
   --bg-secondary: #1e293b;
   --bg-tertiary: #334155;
@@ -228,7 +228,7 @@
   --border-medium: #475569;
   --border-dark: #64748b;
   
-  /* Shadows - قوی‌تر برای Dark Mode */
+  /* Shadows - Stronger for Dark Mode */
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.6);
@@ -236,13 +236,13 @@
   --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.8);
   --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.9);
   
-  /* Shadows رنگی */
+  /* Colored Shadows */
   --shadow-primary: 0 10px 25px rgba(96, 165, 250, 0.4);
   --shadow-accent: 0 10px 25px rgba(255, 169, 64, 0.4);
 }
 
 /* ========================================
-   🎨 رنگ‌های Accent دسته‌ها
+   🎨 Category Accent Colors
 ======================================== */
 
 body.category-bearing-steel {
@@ -276,7 +276,7 @@ body.category-other-alloys {
 
 @supports (font-variation-settings: normal) {
   :root {
-    /* تنظیمات Variable Font */
+    /* Variable Font Settings */
     --font-variation-thin: "wght" 100;
     --font-variation-extralight: "wght" 200;
     --font-variation-light: "wght" 300;
@@ -287,17 +287,17 @@ body.category-other-alloys {
     --font-variation-extrabold: "wght" 800;
     --font-variation-black: "wght" 900;
     
-    /* نقطه پیوسته برای تیترها */
+    /* Connected dots for headings */
     --font-variation-heading: "wght" 700, "dots" 1;
     
-    /* حالت‌های خاص */
+    /* Special modes */
     --font-variation-persian-numbers: "wght" 400, "ss02" 1;
     --font-variation-mono-numbers: "wght" 400, "ss03" 1;
   }
 }
 
 /* ========================================
-   📐 Breakpoints (برای استفاده در JS)
+   📐 Breakpoints (for use in JS)
 ======================================== */
 
 :root {

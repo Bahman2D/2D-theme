@@ -1,6 +1,6 @@
 /**
  * Hero Slider - D Theme
- * اسکریپت اسلایدر Hero صفحه اصلی
+ * Hero slider script for front page
  * 
  * @package D_Theme
  * @version 1.0.0
@@ -9,24 +9,29 @@
 (function() {
   'use strict';
   
-  let currentSlide = 0;
   const slides = document.querySelectorAll('.hero-slide');
   const dots = document.querySelectorAll('.hero-nav-dot');
   const totalSlides = slides.length;
   
   if (totalSlides === 0) return;
   
+  let currentSlide = 0;
   let slideInterval;
   let isAnimating = false;
   
+  // Cache DOM elements
+  const heroSlider = document.querySelector('.hero-slider');
+  const nextBtn = document.getElementById('heroNext');
+  const prevBtn = document.getElementById('heroPrev');
+  
   /**
-   * نمایش اسلاید
+   * Show slide at index
    */
   function showSlide(index) {
     if (isAnimating) return;
     isAnimating = true;
     
-    // محدود کردن index
+    // Normalize index
     if (index >= totalSlides) {
       currentSlide = 0;
     } else if (index < 0) {
@@ -35,46 +40,42 @@
       currentSlide = index;
     }
     
-    // حذف کلاس active از همه
-    slides.forEach(slide => {
-      slide.classList.remove('active');
-      slide.setAttribute('aria-hidden', 'true');
+    // Update slides
+    slides.forEach((slide, i) => {
+      const isActive = i === currentSlide;
+      slide.classList.toggle('active', isActive);
+      slide.setAttribute('aria-hidden', !isActive);
     });
     
-    dots.forEach(dot => {
-      dot.classList.remove('active');
-      dot.setAttribute('aria-selected', 'false');
+    // Update dots
+    dots.forEach((dot, i) => {
+      const isActive = i === currentSlide;
+      dot.classList.toggle('active', isActive);
+      dot.setAttribute('aria-selected', isActive);
     });
     
-    // اضافه کردن active به اسلاید فعلی
-    slides[currentSlide].classList.add('active');
-    slides[currentSlide].setAttribute('aria-hidden', 'false');
-    
-    dots[currentSlide].classList.add('active');
-    dots[currentSlide].setAttribute('aria-selected', 'true');
-    
-    // تاخیر برای جلوگیری از کلیک‌های سریع
+    // Reset animation flag
     setTimeout(() => {
       isAnimating = false;
     }, 600);
   }
   
   /**
-   * اسلاید بعدی
+   * Next slide
    */
   function nextSlide() {
     showSlide(currentSlide + 1);
   }
   
   /**
-   * اسلاید قبلی
+   * Previous slide
    */
   function prevSlide() {
     showSlide(currentSlide - 1);
   }
   
   /**
-   * شروع اتوپلی
+   * Start autoplay
    */
   function startAutoPlay() {
     stopAutoPlay();
@@ -82,76 +83,67 @@
   }
   
   /**
-   * توقف اتوپلی
+   * Stop autoplay
    */
   function stopAutoPlay() {
     if (slideInterval) {
       clearInterval(slideInterval);
+      slideInterval = null;
     }
   }
   
   /**
-   * دکمه‌های بعدی/قبلی
+   * Handle navigation action
    */
-  const nextBtn = document.getElementById('heroNext');
-  const prevBtn = document.getElementById('heroPrev');
+  function handleNavigation(action) {
+    action();
+    startAutoPlay();
+  }
   
+  /**
+   * Setup navigation buttons
+   */
   if (nextBtn) {
-    nextBtn.addEventListener('click', function() {
-      nextSlide();
-      startAutoPlay();
-    });
+    nextBtn.addEventListener('click', () => handleNavigation(nextSlide));
   }
   
   if (prevBtn) {
-    prevBtn.addEventListener('click', function() {
-      prevSlide();
-      startAutoPlay();
-    });
+    prevBtn.addEventListener('click', () => handleNavigation(prevSlide));
   }
   
   /**
-   * Navigation Dots
+   * Setup navigation dots
    */
   dots.forEach((dot, index) => {
-    dot.addEventListener('click', function() {
-      showSlide(index);
-      startAutoPlay();
-    });
+    dot.addEventListener('click', () => handleNavigation(() => showSlide(index)));
   });
   
   /**
-   * Keyboard Navigation
+   * Keyboard navigation
    */
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-      const heroSection = document.querySelector('.hero-slider');
-      if (!heroSection) return;
-      
-      // فقط اگر اسلایدر در viewport باشد
-      const rect = heroSection.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        if (e.key === 'ArrowRight') {
-          prevSlide(); // در RTL، راست = قبلی
-          startAutoPlay();
-        } else if (e.key === 'ArrowLeft') {
-          nextSlide(); // در RTL، چپ = بعدی
-          startAutoPlay();
-        }
-      }
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    if (!heroSlider) return;
+    
+    // Only if slider is in viewport
+    const rect = heroSlider.getBoundingClientRect();
+    if (rect.top >= window.innerHeight || rect.bottom <= 0) return;
+    
+    if (e.key === 'ArrowRight') {
+      handleNavigation(prevSlide); // RTL: right = previous
+    } else if (e.key === 'ArrowLeft') {
+      handleNavigation(nextSlide); // RTL: left = next
     }
   });
   
   /**
-   * توقف اتوپلی هنگام hover
+   * Pause autoplay on hover/focus
    */
-  const heroSlider = document.querySelector('.hero-slider');
-  
   if (heroSlider) {
     heroSlider.addEventListener('mouseenter', stopAutoPlay);
     heroSlider.addEventListener('mouseleave', startAutoPlay);
     
-    // توقف اتوپلی هنگام focus روی دکمه‌ها
+    // Pause on focus
     const controls = heroSlider.querySelectorAll('button, a');
     controls.forEach(control => {
       control.addEventListener('focus', stopAutoPlay);
@@ -160,7 +152,7 @@
   }
   
   /**
-   * Swipe Support برای موبایل
+   * Swipe support for mobile
    */
   let touchStartX = 0;
   let touchEndX = 0;
@@ -182,18 +174,15 @@
     
     if (Math.abs(diff) > swipeThreshold) {
       if (diff > 0) {
-        // Swipe left - بعدی
-        nextSlide();
+        handleNavigation(nextSlide); // Swipe left = next
       } else {
-        // Swipe right - قبلی
-        prevSlide();
+        handleNavigation(prevSlide); // Swipe right = previous
       }
-      startAutoPlay();
     }
   }
   
   /**
-   * Pause/Resume با Visibility API
+   * Pause/Resume with Visibility API
    */
   document.addEventListener('visibilitychange', function() {
     if (document.hidden) {
@@ -204,35 +193,38 @@
   });
   
   /**
-   * مقداردهی اولیه
+   * Preload background images
    */
-  function init() {
-    showSlide(0);
-    startAutoPlay();
-    
-    // Preload تصاویر background اگر وجود داشته باشند
+  function preloadImages() {
     slides.forEach(slide => {
       const bg = window.getComputedStyle(slide).backgroundImage;
       
-      // Only preload when we actually have a URL-based background (skip gradients)
+      // Only preload URL-based backgrounds (skip gradients)
       if (!bg || bg === 'none' || !bg.startsWith('url(')) {
         return;
       }
 
-      const url = bg.slice(4, -1).replace(/"/g, '');
-      if (!url) {
-        return;
+      const url = bg.slice(4, -1).replace(/["']/g, '');
+      if (url) {
+        const img = new Image();
+        img.src = url;
       }
-
-      const img = new Image();
-      img.src = url;
     });
+  }
+  
+  /**
+   * Initialize
+   */
+  function init() {
+    showSlide(0);
+    startAutoPlay();
+    preloadImages();
   }
   
   init();
   
   /**
-   * API عمومی
+   * Public API
    */
   window.dThemeHeroSlider = {
     next: nextSlide,

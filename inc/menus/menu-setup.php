@@ -1,32 +1,36 @@
 <?php
 /**
- * Menu Setup
+ * Menu Setup - D Theme
  * 
- * ثبت و تنظیم منوهای قالب
+ * Register and configure theme menus
  * 
  * @package D_Theme
  * @version 1.0.0
  */
 
-// جلوگیری از دسترسی مستقیم
+// Prevent direct access
 if (!defined('ABSPATH')) {
     exit('Direct access forbidden.');
 }
 
 /**
- * اضافه کردن کلاس فعال به آیتم منوی فعلی
+ * Add active class to current menu item
  */
-function d_theme_active_menu_class($classes, $item, $args) {
-    if (in_array('current-menu-item', $classes) || in_array('current-page-ancestor', $classes)) {
+function d_theme_menu_active_class($classes, $item) {
+    if (in_array('current-menu-item', $classes)) {
         $classes[] = 'active';
+    }
+    
+    if (in_array('current-page-ancestor', $classes)) {
+        $classes[] = 'active-ancestor';
     }
     
     return $classes;
 }
-add_filter('nav_menu_css_class', 'd_theme_active_menu_class', 10, 3);
+add_filter('nav_menu_css_class', 'd_theme_menu_active_class', 10, 2);
 
 /**
- * اضافه کردن aria-current به لینک فعال
+ * Add aria-current to active link
  */
 function d_theme_menu_link_attributes($atts, $item, $args) {
     if (in_array('current-menu-item', $item->classes)) {
@@ -38,20 +42,21 @@ function d_theme_menu_link_attributes($atts, $item, $args) {
 add_filter('nav_menu_link_attributes', 'd_theme_menu_link_attributes', 10, 3);
 
 /**
- * حذف کلاس‌های اضافی وردپرس از منو (اختیاری - برای کد تمیزتر)
+ * Remove extra WordPress classes from menu (optional - for cleaner code)
  */
-function d_theme_clean_menu_classes($classes, $item, $args, $depth) {
-    // کلاس‌هایی که می‌خواهیم حفظ کنیم
-    $allowed_classes = array(
-        'menu-item-has-children',
+function d_theme_clean_menu_classes($classes, $item, $args) {
+    // Classes we want to keep
+    $keep_classes = array(
+        'menu-item',
         'current-menu-item',
-        'current-menu-parent',
-        'current-menu-ancestor',
         'current-page-ancestor',
+        'menu-item-has-children',
+        'active',
+        'active-ancestor'
     );
     
-    // فیلتر کردن کلاس‌ها
-    return array_intersect($classes, $allowed_classes);
+    // Filter classes
+    return array_intersect($classes, $keep_classes);
 }
-// فعال‌سازی این فیلتر اختیاری است
-// add_filter('nav_menu_css_class', 'd_theme_clean_menu_classes', 10, 4);
+// Enable this filter optionally
+// add_filter('nav_menu_css_class', 'd_theme_clean_menu_classes', 10, 3);

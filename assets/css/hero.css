@@ -1,13 +1,13 @@
 ﻿/**
  * Hero Slider Styles - D Theme
- * Ø§Ø³ØªØ§ÛŒÙ„â€ŒÙ‡Ø§ÛŒ Hero Slider ØµÙØ­Ù‡ Ø§ØµÙ„ÛŒ
+ * Hero Slider styles for front page
  * 
  * @package D_Theme
  * @version 1.0.0
  */
 
 /* ========================================
-   ðŸŽ¬ HERO SLIDER
+   🎬 HERO SLIDER
 ======================================== */
 
 .hero-slider {
@@ -17,14 +17,14 @@
   min-height: 600px;
   max-height: none;
   overflow: hidden;
-  margin-top: -80px; /* Ø§Ø±ØªÙØ§Ø¹ header */
+  margin-top: -80px; /* Header offset */
 }
 
 @media (max-width: 767px) {
   .hero-slider {
     height: 100vh;
     min-height: 500px;
-    margin-top: -60px; /* Ø§Ø±ØªÙØ§Ø¹ header Ø¯Ø± Ù…ÙˆØ¨Ø§ÛŒÙ„ */
+    margin-top: -60px; /* Header offset on mobile */
   }
 }
 @media (max-width: 1023px) {
@@ -35,7 +35,7 @@
 
 
 /* ========================================
-   ðŸ“¸ HERO SLIDE
+   📸 HERO SLIDE
 ======================================== */
 
 .hero-slide {
@@ -70,7 +70,7 @@
 }
 
 /* ========================================
-   ðŸ“ HERO CONTENT
+   📝 HERO CONTENT
 ======================================== */
 
 .hero-content {
@@ -124,7 +124,7 @@
 }
 
 /* ========================================
-   ðŸ”˜ HERO BUTTONS
+   🔘 HERO BUTTONS
 ======================================== */
 
 .hero-buttons {
@@ -159,7 +159,7 @@
 }
 
 /* ========================================
-   â¬…ï¸âž¡ï¸ HERO ARROWS
+   ⬅️➡️ HERO ARROWS
 ======================================== */
 
 .hero-arrow {
@@ -225,7 +225,7 @@
 }
 
 /* ========================================
-   âš« HERO NAVIGATION DOTS
+   ⚫ HERO NAVIGATION DOTS
 ======================================== */
 
 .hero-nav {
@@ -276,7 +276,7 @@
 }
 
 /* ========================================
-   â™¿ ACCESSIBILITY
+   ♿ ACCESSIBILITY
 ======================================== */
 
 .hero-arrow:focus,
@@ -286,7 +286,7 @@
 }
 
 /* ========================================
-   ðŸ“± RESPONSIVE
+   📱 RESPONSIVE
 ======================================== */
 
 @media (max-width: 1023px) {
@@ -332,7 +332,7 @@
 }
 
 /* ========================================
-   ðŸŒ™ DARK MODE
+   🌙 DARK MODE
 ======================================== */
 
 [data-theme="dark"] .hero-slide::before {
@@ -340,7 +340,7 @@
 }
 
 /* ========================================
-   ðŸŽ¨ ANIMATION PERFORMANCE
+   🎬 ANIMATION PERFORMANCE
 ======================================== */
 
 .hero-slide,
@@ -359,5 +359,3 @@
     transition: none;
   }
 }
-
-

@@ -1,6 +1,6 @@
 /**
  * Theme Toggle - D Theme
- * اسکریپت تغییر تم شب/روز
+ * Dark/Light theme toggle script
  * 
  * @package D_Theme
  * @version 1.0.0
@@ -16,45 +16,36 @@
   
   if (!themeToggle || !html) return;
   
+  // Cache logo element
+  let logoImg = null;
+  
   /**
-   * تشخیص تم سیستم
+   * Get system theme preference
    */
   function getSystemTheme() {
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
       return 'light';
     }
-    return 'dark'; // دیفالت dark
+    return 'dark'; // Default dark
   }
   
   /**
-   * دریافت تم فعلی
+   * Get current theme
    */
   function getCurrentTheme() {
-    // ابتدا از localStorage بخوانیم
+    // First check localStorage
     const savedTheme = localStorage.getItem('d-theme');
     
     if (savedTheme) {
       return savedTheme;
     }
     
-    // اگر ذخیره نشده، از تم سیستم استفاده کنیم
+    // If not saved, use system theme
     return getSystemTheme();
   }
   
   /**
-   * تنظیم تم
-   */
-  function setTheme(theme) {
-    html.setAttribute('data-theme', theme);
-    localStorage.setItem('d-theme', theme);
-    updateIcons(theme);
-    
-    // ارسال event سفارشی برای سایر اسکریپت‌ها
-    document.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme } }));
-  }
-  
-  /**
-   * بروزرسانی آیکون‌ها
+   * Update icons based on theme
    */
   function updateIcons(theme) {
     if (!lightIcon || !darkIcon) return;
@@ -62,15 +53,18 @@
     if (theme === 'dark') {
       lightIcon.style.display = 'none';
       darkIcon.style.display = 'block';
-      themeToggle.setAttribute('aria-label', 'تغییر به حالت روز');
+      themeToggle.setAttribute('aria-label', 'Switch to light mode');
     } else {
       lightIcon.style.display = 'block';
       darkIcon.style.display = 'none';
-      themeToggle.setAttribute('aria-label', 'تغییر به حالت شب');
+      themeToggle.setAttribute('aria-label', 'Switch to dark mode');
     }
     
-    // تغییر لوگو بر اساس تم
-    const logoImg = document.querySelector('.logo-img');
+    // Update logo based on theme (cache logo on first access)
+    if (!logoImg) {
+      logoImg = document.querySelector('.logo-img');
+    }
+    
     if (logoImg) {
       const darkLogo = logoImg.getAttribute('data-logo-dark');
       const lightLogo = logoImg.getAttribute('data-logo-light');
@@ -82,13 +76,25 @@
   }
   
   /**
-   * Toggle تم
+   * Set theme
+   */
+  function setTheme(theme) {
+    html.setAttribute('data-theme', theme);
+    localStorage.setItem('d-theme', theme);
+    updateIcons(theme);
+    
+    // Dispatch custom event for other scripts
+    document.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme } }));
+  }
+  
+  /**
+   * Toggle theme
    */
   function toggleTheme() {
     const currentTheme = html.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     
-    // انیمیشن نرم برای تغییر تم
+    // Smooth animation for theme change
     html.classList.add('theme-transitioning');
     
     setTheme(newTheme);
@@ -99,19 +105,20 @@
   }
   
   /**
-   * مقداردهی اولیه
+   * Initialize
    */
   function init() {
     const currentTheme = getCurrentTheme();
     setTheme(currentTheme);
     
-    // Event listener برای دکمه
+    // Event listener for button
     themeToggle.addEventListener('click', toggleTheme);
     
-    // گوش دادن به تغییرات تم سیستم
+    // Listen to system theme changes
     if (window.matchMedia) {
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        // فقط اگر کاربر خودش تمی انتخاب نکرده
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      mediaQuery.addEventListener('change', (e) => {
+        // Only if user hasn't manually selected a theme
         if (!localStorage.getItem('d-theme')) {
           setTheme(e.matches ? 'dark' : 'light');
         }
@@ -119,11 +126,11 @@
     }
   }
   
-  // اجرای مقداردهی
+  // Execute initialization
   init();
   
   /**
-   * API عمومی برای دسترسی از خارج
+   * Public API for external access
    */
   window.dThemeToggle = {
     setTheme: setTheme,
@@ -132,20 +139,3 @@
   };
   
 })();
-
-/**
- * استایل CSS برای انیمیشن نرم تغییر تم
- * این کد باید در یکی از فایل‌های CSS قرار بگیرد
- */
-/*
-html:not(.theme-transitioning) * {
-  transition: background-color 0.3s ease, 
-              color 0.3s ease, 
-              border-color 0.3s ease,
-              box-shadow 0.3s ease !important;
-}
-
-html.theme-transitioning * {
-  transition: none !important;
-}
-*/

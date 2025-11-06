@@ -33,14 +33,15 @@
                 $logo_dark_url = wp_get_attachment_image_src($custom_logo_id, 'full');
                 $logo_light_url = $logo_light_id ? wp_get_attachment_image_src($logo_light_id, 'full') : $logo_dark_url;
                 
-                if ($logo_dark_url) :
+                if ($logo_dark_url && isset($logo_dark_url[0])) :
+                    $logo_light_src = ($logo_light_url && isset($logo_light_url[0])) ? $logo_light_url[0] : $logo_dark_url[0];
             ?>
-                <!-- لوگوی Dark Mode (پیش‌فرض) -->
+                <!-- Dark Mode Logo (default) -->
                 <img src="<?php echo esc_url($logo_dark_url[0]); ?>" 
-                     alt="<?php bloginfo('name'); ?>" 
+                     alt="<?php echo esc_attr(get_bloginfo('name')); ?>" 
                      class="logo-img logo-dark"
                      data-logo-dark="<?php echo esc_url($logo_dark_url[0]); ?>"
-                     data-logo-light="<?php echo esc_url($logo_light_url[0]); ?>">
+                     data-logo-light="<?php echo esc_url($logo_light_src); ?>">
             <?php 
                 endif;
             else : 

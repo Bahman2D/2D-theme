@@ -47,11 +47,12 @@ if (!get_theme_mod('hero_enabled', true)) {
         $gradient_end = get_theme_mod("hero_slide_{$i}_gradient_end", '#764ba2');
         $bg_image = get_theme_mod("hero_slide_{$i}_bg_image", '');
         
-        // ساخت استایل پس‌زمینه
-        $bg_style = "background: linear-gradient(135deg, {$gradient_start}, {$gradient_end});";
+        // Build background style
+        $bg_style = "background: linear-gradient(135deg, " . esc_attr($gradient_start) . ", " . esc_attr($gradient_end) . ");";
         
         if ($bg_image) {
-            $bg_style .= " background-image: linear-gradient(135deg, {$gradient_start}cc, {$gradient_end}cc), url('" . esc_url($bg_image) . "');";
+            $bg_image_url = esc_url($bg_image);
+            $bg_style .= " background-image: linear-gradient(135deg, " . esc_attr($gradient_start) . "cc, " . esc_attr($gradient_end) . "cc), url('" . $bg_image_url . "');";
             $bg_style .= " background-size: cover; background-position: center;";
         }
     ?>

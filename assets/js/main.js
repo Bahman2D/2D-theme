@@ -1,6 +1,6 @@
 /**
  * Main JavaScript - D Theme
- * اسکریپت اصلی قالب
+ * Main theme script
  * 
  * @package D_Theme
  * @version 1.0.0
@@ -9,21 +9,22 @@
 (function() {
   'use strict';
   
+  // Cache DOM elements
+  const header = document.getElementById('header');
+  const logoImg = document.querySelector('.logo-img');
   
   /**
    * Keep logo and header visuals in sync with theme/scroll state
    */
   function syncHeaderLogo(headerElement) {
-    const logoImg = document.querySelector('.logo-img');
-    if (!logoImg) return;
+    if (!logoImg || !headerElement) return;
     
     const darkLogo = logoImg.getAttribute('data-logo-dark');
     const lightLogo = logoImg.getAttribute('data-logo-light') || darkLogo;
     if (!darkLogo && !lightLogo) return;
     
     const theme = document.documentElement.getAttribute('data-theme') || 'dark';
-    const header = headerElement || document.getElementById('header');
-    const headerTransparent = header && !header.classList.contains('scrolled') && !header.classList.contains('solid-bg');
+    const headerTransparent = !headerElement.classList.contains('scrolled') && !headerElement.classList.contains('solid-bg');
     
     let targetSrc = logoImg.src;
     if (theme === 'light') {
@@ -34,46 +35,60 @@
       targetSrc = darkLogo || lightLogo || targetSrc;
     }
     
-    if (targetSrc) {
+    if (targetSrc && logoImg.src !== targetSrc) {
       logoImg.src = targetSrc;
     }
   }
   
   /**
-   * هدر Scroll Effect
+   * Header Scroll Effect with requestAnimationFrame
    */
   function initHeaderScroll() {
-    const header = document.getElementById('header');
     if (!header) return;
+    
+    let ticking = false;
+    let lastScroll = 0;
     
     const updateHeaderState = () => {
       const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
       const isScrolled = currentScroll > 50;
       const hasClass = header.classList.contains('scrolled');
       
-      if (isScrolled && !hasClass) {
-        header.classList.add('scrolled');
-      } else if (!isScrolled && hasClass) {
-        header.classList.remove('scrolled');
+      if (isScrolled !== hasClass) {
+        if (isScrolled) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+        syncHeaderLogo(header);
       }
       
-      if (isScrolled !== hasClass) {
-        syncHeaderLogo(header);
+      lastScroll = currentScroll;
+      ticking = false;
+    };
+    
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateHeaderState);
+        ticking = true;
       }
     };
     
-    window.addEventListener('scroll', updateHeaderState, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
     document.addEventListener('themeChanged', () => syncHeaderLogo(header));
     
+    // Initial state
     updateHeaderState();
     syncHeaderLogo(header);
   }
 
   /**
-   * فوتر موبایل - کلاس active
+   * Mobile Footer - Active class management
    */
   function initMobileFooter() {
     const mobileFooterItems = document.querySelectorAll('.mobile-footer-item:not(#mobileFooterMenu)');
+    
+    if (mobileFooterItems.length === 0) return;
     
     mobileFooterItems.forEach(item => {
       item.addEventListener('click', function() {
@@ -84,14 +99,14 @@
   }
   
   /**
-   * Smooth Scroll برای لینک‌های anchor
+   * Smooth Scroll for anchor links
    */
   function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
         
-        // فقط برای لینک‌های anchor واقعی، نه #
+        // Only for real anchor links, not #
         if (href !== '#' && href !== '#!') {
           const target = document.querySelector(href);
           
@@ -108,17 +123,27 @@
   }
   
   /**
-   * Back to Top Button (اختیاری)
+   * Back to Top Button (optional)
    */
   function initBackToTop() {
     const backToTop = document.querySelector('.back-to-top');
     if (!backToTop) return;
     
-    window.addEventListener('scroll', function() {
+    let ticking = false;
+    
+    const updateVisibility = () => {
       if (window.pageYOffset > 300) {
         backToTop.classList.add('visible');
       } else {
         backToTop.classList.remove('visible');
+      }
+      ticking = false;
+    };
+    
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateVisibility);
+        ticking = true;
       }
     }, { passive: true });
     
@@ -132,7 +157,7 @@
   }
   
   /**
-   * اجرای همه توابع
+   * Initialize all functions
    */
   function init() {
     initHeaderScroll();
@@ -141,7 +166,7 @@
     initBackToTop();
   }
   
-  // اجرای کد پس از بارگذاری DOM
+  // Execute after DOM is loaded
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {

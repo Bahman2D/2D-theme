@@ -2,19 +2,19 @@
 /**
  * Menu Walker
  * 
- * Custom Walker برای نمایش منوی 3 سطحی
+ * Custom Walker for 3-level menu display
  * 
  * @package D_Theme
  * @version 1.0.0
  */
 
-// جلوگیری از دسترسی مستقیم
+// Prevent direct access
 if (!defined('ABSPATH')) {
     exit('Direct access forbidden.');
 }
 
 /**
- * Custom Walker برای منوی دسکتاپ (3 سطح)
+ * Custom Walker for desktop menu (3 levels)
  */
 class D_Theme_Menu_Walker extends Walker_Nav_Menu {
     
@@ -42,15 +42,19 @@ class D_Theme_Menu_Walker extends Walker_Nav_Menu {
     }
     
     /**
-     * شروع آیتم منو
+     * Start menu item
      */
     public function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
+        if (!isset($item) || !is_object($item)) {
+            return;
+        }
+        
         $indent = ($depth) ? str_repeat("\t", $depth) : '';
         
-        // کلاس‌های آیتم
+        // Item classes
         $classes = empty($item->classes) ? array() : (array) $item->classes;
         
-        // اضافه کردن کلاس بر اساس سطح
+        // Add class based on depth
         if ($depth === 0) {
             $classes[] = 'nav-item';
         } elseif ($depth === 1) {
@@ -59,12 +63,12 @@ class D_Theme_Menu_Walker extends Walker_Nav_Menu {
             $classes[] = 'submenu-item';
         }
         
-        // اگر آیتم زیرمنو دارد
+        // If item has submenu
         if (in_array('menu-item-has-children', $classes)) {
             $classes[] = 'has-submenu';
         }
         
-        // کلاس active برای صفحه جاری
+        // Active class for current page
         if (in_array('current-menu-item', $classes) || in_array('current-page-ancestor', $classes)) {
             $classes[] = 'active';
         }
@@ -74,21 +78,21 @@ class D_Theme_Menu_Walker extends Walker_Nav_Menu {
         
         $output .= $indent . '<li' . $class_names . '>';
         
-        // لینک آیتم
+        // Item link
         $atts = array();
-        $atts['title'] = !empty($item->attr_title) ? $item->attr_title : '';
-        $atts['target'] = !empty($item->target) ? $item->target : '';
-        $atts['rel'] = !empty($item->xfn) ? $item->xfn : '';
-        $atts['href'] = !empty($item->url) ? $item->url : '';
+        $atts['title'] = !empty($item->attr_title) ? esc_attr($item->attr_title) : '';
+        $atts['target'] = !empty($item->target) ? esc_attr($item->target) : '';
+        $atts['rel'] = !empty($item->xfn) ? esc_attr($item->xfn) : '';
+        $atts['href'] = !empty($item->url) ? esc_url($item->url) : '#';
         
-        // کلاس لینک بر اساس سطح
+        // Link class based on depth
         if ($depth === 0) {
             $atts['class'] = 'nav-link';
         } elseif ($depth >= 1) {
             $atts['class'] = 'submenu-link';
         }
         
-        // اضافه کردن aria-current برای صفحه فعلی
+        // Add aria-current for current page
         if (in_array('current-menu-item', $classes)) {
             $atts['aria-current'] = 'page';
         }
@@ -170,7 +174,7 @@ class D_Theme_Mobile_Menu_Walker extends Walker_Nav_Menu {
 
         $output .= $indent . '<div' . $class_names . '>';
 
-        // لینک یا دکمه (اگر زیرمنو دارد)
+        // Link or button (if has submenu)
         if ($has_children && $depth === 0) {
             $output .= '<div class="mobile-menu-link">';
             $output .= '<span>' . esc_html(apply_filters('the_title', $item->title, $item->ID)) . '</span>';
@@ -187,7 +191,7 @@ class D_Theme_Mobile_Menu_Walker extends Walker_Nav_Menu {
             $output .= '<span class="mobile-menu-icon" aria-hidden="true">◀</span>';
             $output .= '</div>';
         } else {
-            // لینک بدون زیرمنو
+            // Link without submenu
             if ($depth === 0) {
                 $link_class = 'mobile-menu-link';
             } elseif ($depth === 1) {
@@ -200,14 +204,14 @@ class D_Theme_Mobile_Menu_Walker extends Walker_Nav_Menu {
 
             // Attributes
             $atts = array(
-                'href' => !empty($item->url) ? $item->url : '',
+                'href' => !empty($item->url) ? esc_url($item->url) : '#',
                 'class' => $link_class,
-                'title' => !empty($item->attr_title) ? $item->attr_title : '',
-                'target' => !empty($item->target) ? $item->target : '',
-                'rel' => !empty($item->xfn) ? $item->xfn : ''
+                'title' => !empty($item->attr_title) ? esc_attr($item->attr_title) : '',
+                'target' => !empty($item->target) ? esc_attr($item->target) : '',
+                'rel' => !empty($item->xfn) ? esc_attr($item->xfn) : ''
             );
 
-            // aria-current برای صفحه فعلی
+            // aria-current for current page
             if (in_array('current-menu-item', $classes)) {
                 $atts['aria-current'] = 'page';
             }

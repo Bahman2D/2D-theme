@@ -2,19 +2,19 @@
 /**
  * Customizer - Hero Slider
  * 
- * تنظیمات Hero Slider صفحه اصلی در Customizer
+ * Hero Slider settings for front page in Customizer
  * 
  * @package D_Theme
  * @version 1.0.0
  */
 
-// جلوگیری از دسترسی مستقیم
+// Prevent direct access
 if (!defined('ABSPATH')) {
     exit('Direct access forbidden.');
 }
 
 /**
- * اضافه کردن تنظیمات Hero به Customizer
+ * Add Hero settings to Customizer
  */
 function d_theme_customize_hero($wp_customize) {
     
@@ -29,7 +29,7 @@ function d_theme_customize_hero($wp_customize) {
     ));
     
     /**
-     * Setting: فعال/غیرفعال سازی Hero Slider
+     * Setting: Enable/Disable Hero Slider
      */
     $wp_customize->add_setting('hero_enabled', array(
         'default' => true,
@@ -45,7 +45,7 @@ function d_theme_customize_hero($wp_customize) {
     ));
     
     /**
-     * Setting: سرعت اتوپلی (میلی‌ثانیه)
+     * Setting: Autoplay speed (milliseconds)
      */
     $wp_customize->add_setting('hero_autoplay_speed', array(
         'default' => 5000,
@@ -64,7 +64,7 @@ function d_theme_customize_hero($wp_customize) {
         ),
     ));
     
-    // تنظیمات 3 اسلاید
+    // Settings for 3 slides
     for ($i = 1; $i <= 3; $i++) {
         d_theme_add_hero_slide_settings($wp_customize, $i);
     }
@@ -72,14 +72,14 @@ function d_theme_customize_hero($wp_customize) {
 add_action('customize_register', 'd_theme_customize_hero', 11);
 
 /**
- * اضافه کردن تنظیمات یک اسلاید
+ * Add settings for one slide
  * 
  * @param WP_Customize_Manager $wp_customize
- * @param int $slide_number شماره اسلاید
+ * @param int $slide_number Slide number
  */
 function d_theme_add_hero_slide_settings($wp_customize, $slide_number) {
     
-    // عنوان‌های پیش‌فرض
+    // Default titles
     $default_titles = array(
         1 => 'خوش آمدید به قالب D Theme',
         2 => 'طراحی مدرن و حرفه‌ای',
@@ -99,7 +99,7 @@ function d_theme_add_hero_slide_settings($wp_customize, $slide_number) {
     );
     
     /**
-     * جداکننده
+     * Separator
      */
     $wp_customize->add_setting("hero_slide_{$slide_number}_separator", array(
         'sanitize_callback' => 'wp_kses_post',
@@ -113,7 +113,7 @@ function d_theme_add_hero_slide_settings($wp_customize, $slide_number) {
     )));
     
     /**
-     * فعال/غیرفعال سازی اسلاید
+     * Enable/Disable slide
      */
     $wp_customize->add_setting("hero_slide_{$slide_number}_enabled", array(
         'default' => true,
@@ -127,7 +127,7 @@ function d_theme_add_hero_slide_settings($wp_customize, $slide_number) {
     ));
     
     /**
-     * عنوان اسلاید
+     * Slide title
      */
     $wp_customize->add_setting("hero_slide_{$slide_number}_title", array(
         'default' => $default_titles[$slide_number],
@@ -142,7 +142,7 @@ function d_theme_add_hero_slide_settings($wp_customize, $slide_number) {
     ));
     
     /**
-     * متن اسلاید
+     * Slide text
      */
     $wp_customize->add_setting("hero_slide_{$slide_number}_text", array(
         'default' => $default_texts[$slide_number],
@@ -157,7 +157,7 @@ function d_theme_add_hero_slide_settings($wp_customize, $slide_number) {
     ));
     
     /**
-     * دکمه 1 - متن
+     * Button 1 - Text
      */
     $wp_customize->add_setting("hero_slide_{$slide_number}_btn1_text", array(
         'default' => ($slide_number == 1) ? 'مشاهده بیشتر' : (($slide_number == 2) ? 'ویژگی‌ها' : 'تماس با ما'),
@@ -172,7 +172,7 @@ function d_theme_add_hero_slide_settings($wp_customize, $slide_number) {
     ));
     
     /**
-     * دکمه 1 - لینک
+     * Button 1 - Link
      */
     $wp_customize->add_setting("hero_slide_{$slide_number}_btn1_link", array(
         'default' => '#',
@@ -186,7 +186,7 @@ function d_theme_add_hero_slide_settings($wp_customize, $slide_number) {
     ));
     
     /**
-     * دکمه 2 - متن
+     * Button 2 - Text
      */
     $wp_customize->add_setting("hero_slide_{$slide_number}_btn2_text", array(
         'default' => ($slide_number == 1) ? 'شروع کنید' : (($slide_number == 2) ? 'نمونه کارها' : 'درباره ما'),
@@ -201,7 +201,7 @@ function d_theme_add_hero_slide_settings($wp_customize, $slide_number) {
     ));
     
     /**
-     * دکمه 2 - لینک
+     * Button 2 - Link
      */
     $wp_customize->add_setting("hero_slide_{$slide_number}_btn2_link", array(
         'default' => '#',
@@ -215,7 +215,7 @@ function d_theme_add_hero_slide_settings($wp_customize, $slide_number) {
     ));
     
     /**
-     * رنگ گرادینت شروع
+     * Gradient start color
      */
     $wp_customize->add_setting("hero_slide_{$slide_number}_gradient_start", array(
         'default' => $default_gradients[$slide_number]['start'],
@@ -230,7 +230,7 @@ function d_theme_add_hero_slide_settings($wp_customize, $slide_number) {
     )));
     
     /**
-     * رنگ گرادینت پایان
+     * Gradient end color
      */
     $wp_customize->add_setting("hero_slide_{$slide_number}_gradient_end", array(
         'default' => $default_gradients[$slide_number]['end'],
@@ -245,7 +245,7 @@ function d_theme_add_hero_slide_settings($wp_customize, $slide_number) {
     )));
     
     /**
-     * تصویر پس‌زمینه (اختیاری)
+     * Background image (optional)
      */
     $wp_customize->add_setting("hero_slide_{$slide_number}_bg_image", array(
         'default' => '',

@@ -2,23 +2,25 @@
 /**
  * Performance Optimizations
  * 
- * بهینه‌سازی‌های پرفورمنس برای سرعت بارگذاری بهتر
+ * Performance optimizations for better loading speed
  * 
  * @package D_Theme
  * @version 1.0.0
  */
 
-// جلوگیری از دسترسی مستقیم
+// Prevent direct access
 if (!defined('ABSPATH')) {
     exit('Direct access forbidden.');
 }
 
 /**
- * اضافه کردن Lazy Loading به تصاویر
+ * Add lazy loading to images
  */
 function d_theme_add_lazy_loading($content) {
-    // اضافه کردن loading="lazy" به تگ img
-    $content = preg_replace('/<img(.*?)>/', '<img$1 loading="lazy">', $content);
+    // Only add loading="lazy" if not already present
+    if (strpos($content, 'loading=') === false) {
+        $content = preg_replace('/<img([^>]*?)>/i', '<img$1 loading="lazy">', $content);
+    }
     return $content;
 }
 add_filter('the_content', 'd_theme_add_lazy_loading');
@@ -37,15 +39,18 @@ add_filter('style_loader_src', 'd_theme_remove_query_strings', 10, 1);
 add_filter('script_loader_src', 'd_theme_remove_query_strings', 10, 1);
 
 /**
- * اضافه کردن preconnect برای فونت‌ها و CDN‌ها
+ * Add preconnect for fonts and CDNs
+ * Note: Only add if using Google Fonts
  */
 function d_theme_preconnect_fonts() {
-    ?>
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    // Only add if actually using Google Fonts
+    // Uncomment if you add Google Fonts
+    // ?>
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com"> -->
     <?php
 }
-add_action('wp_head', 'd_theme_preconnect_fonts', 1);
+// add_action('wp_head', 'd_theme_preconnect_fonts', 1);
 
 /**
  * غیرفعال کردن emoji scripts
@@ -94,15 +99,15 @@ function d_theme_remove_jquery_migrate($scripts) {
 add_action('wp_default_scripts', 'd_theme_remove_jquery_migrate');
 
 /**
- * بهینه‌سازی database queries
+ * Optimize database queries
  */
 function d_theme_optimize_database_queries() {
-    // حذف revision های قدیمی
+    // Limit post revisions
     if (!defined('WP_POST_REVISIONS')) {
         define('WP_POST_REVISIONS', 3);
     }
     
-    // خالی کردن trash به صورت خودکار
+    // Auto-empty trash
     if (!defined('EMPTY_TRASH_DAYS')) {
         define('EMPTY_TRASH_DAYS', 7);
     }
@@ -110,45 +115,36 @@ function d_theme_optimize_database_queries() {
 add_action('init', 'd_theme_optimize_database_queries');
 
 /**
- * اضافه کردن Cache-Control headers
+ * Add Cache-Control headers
+ * Note: This may conflict with caching plugins
  */
 function d_theme_add_cache_headers() {
-    if (!is_user_logged_in()) {
+    if (!is_user_logged_in() && !headers_sent()) {
         header('Cache-Control: public, max-age=31536000');
     }
 }
-add_action('send_headers', 'd_theme_add_cache_headers');
+// Disabled by default - may conflict with caching plugins
+// add_action('send_headers', 'd_theme_add_cache_headers');
 
 /**
- * بهینه‌سازی تصاویر با srcset و sizes
+ * Enable responsive images support
+ * WordPress handles srcset automatically when using wp_get_attachment_image()
  */
-function d_theme_responsive_images($html, $post_id, $attachment_id) {
-    // اضافه کردن srcset و sizes به تصاویر
-    $image_meta = wp_get_attachment_metadata($attachment_id);
-    
-    if (!empty($image_meta['sizes'])) {
-        $sizes = array();
-        foreach ($image_meta['sizes'] as $size => $data) {
-            $sizes[] = $data['width'] . 'w';
-        }
-        
-        if (!empty($sizes)) {
-            $html = str_replace('<img', '<img srcset="' . esc_attr(implode(', ', $sizes)) . '" sizes="(max-width: 768px) 100vw, 50vw"', $html);
-        }
-    }
-    
-    return $html;
+function d_theme_setup_responsive_images() {
+    // Add support for responsive images (WordPress 4.4+)
+    add_theme_support('responsive-embeds');
+    // WordPress automatically adds srcset when using wp_get_attachment_image()
 }
-add_filter('post_thumbnail_html', 'd_theme_responsive_images', 10, 3);
+add_action('after_setup_theme', 'd_theme_setup_responsive_images');
 
 /**
- * حذف CSS و JS غیر ضروری از صفحات
+ * Remove unnecessary CSS and JS from pages
  */
 function d_theme_dequeue_unnecessary_scripts() {
-    // حذف jQuery در صفحه اصلی اگر لازم نیست
+    // Remove jQuery from front page if not needed
     // wp_dequeue_script('jquery');
     
-    // حذف WordPress Block Library CSS در فرانت اگر از Gutenberg استفاده نمی‌کنید
+    // Remove WordPress Block Library CSS from frontend if not using Gutenberg
     if (!is_admin()) {
         wp_dequeue_style('wp-block-library');
         wp_dequeue_style('wp-block-library-theme');
@@ -159,17 +155,24 @@ function d_theme_dequeue_unnecessary_scripts() {
 add_action('wp_enqueue_scripts', 'd_theme_dequeue_unnecessary_scripts', 100);
 
 /**
- * اضافه کردن async/defer به اسکریپت‌های خارجی
+ * Add async/defer to external scripts
  */
 function d_theme_async_defer_scripts($tag, $handle, $src) {
-    // لیست اسکریپت‌هایی که باید async باشند
+    if (empty($tag) || empty($handle)) {
+        return $tag;
+    }
+    
+    // List of scripts that should be async
     $async_scripts = array(
         'google-analytics',
         'facebook-pixel',
     );
     
     if (in_array($handle, $async_scripts)) {
-        return str_replace(' src', ' async src', $tag);
+        // Only add async if not already present
+        if (strpos($tag, ' async') === false) {
+            return str_replace(' src', ' async src', $tag);
+        }
     }
     
     return $tag;
@@ -177,28 +180,30 @@ function d_theme_async_defer_scripts($tag, $handle, $src) {
 add_filter('script_loader_tag', 'd_theme_async_defer_scripts', 10, 3);
 
 /**
- * تنظیم expires headers برای فایل‌های استاتیک
+ * Set expires headers for static files
+ * Note: This may conflict with caching plugins
  */
 function d_theme_set_expires_headers() {
-    if (!is_admin()) {
+    if (!is_admin() && !headers_sent()) {
         ?>
         <meta http-equiv="Cache-Control" content="max-age=31536000, public">
         <?php
     }
 }
-add_action('wp_head', 'd_theme_set_expires_headers', 1);
+// Disabled by default - may conflict with caching plugins
+// add_action('wp_head', 'd_theme_set_expires_headers', 1);
 
 /**
- * بهینه‌سازی Google Fonts
+ * Optimize Google Fonts
  */
 function d_theme_optimize_google_fonts() {
-    // اگر از Google Fonts استفاده می‌کنید، این کد را فعال کنید
+    // If using Google Fonts, enable this code
     // wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap', array(), null);
 }
 // add_action('wp_enqueue_scripts', 'd_theme_optimize_google_fonts');
 
 /**
- * حذف Dashicons در فرانت برای کاربران غیر لاگین
+ * Remove Dashicons from frontend for non-logged-in users
  */
 function d_theme_dequeue_dashicons() {
     if (!is_user_logged_in()) {
@@ -209,17 +214,19 @@ function d_theme_dequeue_dashicons() {
 add_action('wp_enqueue_scripts', 'd_theme_dequeue_dashicons');
 
 /**
- * بهینه‌سازی Heartbeat API
+ * Optimize Heartbeat API
  */
 function d_theme_optimize_heartbeat($settings) {
-    // کاهش فرکانس Heartbeat به 60 ثانیه
-    $settings['interval'] = 60;
+    // Reduce Heartbeat frequency to 60 seconds
+    if (is_array($settings)) {
+        $settings['interval'] = 60;
+    }
     return $settings;
 }
 add_filter('heartbeat_settings', 'd_theme_optimize_heartbeat');
 
 /**
- * غیرفعال کردن Heartbeat در فرانت
+ * Disable Heartbeat in frontend
  */
 function d_theme_disable_heartbeat_frontend() {
     if (!is_admin()) {
@@ -229,14 +236,15 @@ function d_theme_disable_heartbeat_frontend() {
 add_action('init', 'd_theme_disable_heartbeat_frontend', 1);
 
 /**
- * اضافه کردن resource hints
+ * Add resource hints
  */
 function d_theme_resource_hints($hints, $relation_type) {
-    if ('dns-prefetch' === $relation_type) {
+    if ('dns-prefetch' === $relation_type && is_array($hints)) {
         $hints[] = '//fonts.googleapis.com';
         $hints[] = '//fonts.gstatic.com';
     }
     
     return $hints;
 }
-add_filter('wp_resource_hints', 'd_theme_resource_hints', 10, 2);
+// Only add if using Google Fonts
+// add_filter('wp_resource_hints', 'd_theme_resource_hints', 10, 2);

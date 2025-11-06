@@ -2,25 +2,25 @@
 /**
  * Customizer Setup
  * 
- * تنظیمات اصلی Customizer قالب
+ * Main Customizer settings for theme
  * 
  * @package D_Theme
  * @version 1.0.0
  */
 
-// جلوگیری از دسترسی مستقیم
+// Prevent direct access
 if (!defined('ABSPATH')) {
     exit('Direct access forbidden.');
 }
 
 /**
- * ثبت تنظیمات Customizer
+ * Register Customizer settings
  * 
- * @param WP_Customize_Manager $wp_customize مدیریت Customizer
+ * @param WP_Customize_Manager $wp_customize Customizer manager
  */
 function d_theme_customize_register($wp_customize) {
     
-    // حذف بخش‌های غیر ضروری پیش‌فرض
+    // Remove unnecessary default sections
     $wp_customize->remove_section('colors');
     $wp_customize->remove_section('background_image');
     
@@ -91,7 +91,7 @@ function d_theme_customize_register($wp_customize) {
 add_action('customize_register', 'd_theme_customize_register');
 
 /**
- * اضافه کردن اسکریپت Live Preview
+ * Add Live Preview script
  */
 function d_theme_customizer_live_preview() {
     wp_enqueue_script(
@@ -105,12 +105,12 @@ function d_theme_customizer_live_preview() {
 add_action('customize_preview_init', 'd_theme_customizer_live_preview');
 
 /**
- * اضافه کردن CSS برای Customizer Panel
+ * Add CSS for Customizer Panel
  */
 function d_theme_customizer_styles() {
     ?>
     <style>
-        /* استایل‌های سفارشی Customizer */
+        /* Custom Customizer styles */
         #customize-theme-controls .customize-pane-child {
             direction: rtl;
         }

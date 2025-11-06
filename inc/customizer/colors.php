@@ -2,24 +2,24 @@
 /**
  * Customizer - Colors
  * 
- * تنظیمات رنگ‌های قالب در Customizer
+ * Theme color settings in Customizer
  * 
  * @package D_Theme
  * @version 1.0.0
  */
 
-// جلوگیری از دسترسی مستقیم
+// Prevent direct access
 if (!defined('ABSPATH')) {
     exit('Direct access forbidden.');
 }
 
 /**
- * اضافه کردن تنظیمات رنگ به Customizer
+ * Add color settings to Customizer
  */
 function d_theme_customize_colors($wp_customize) {
     
     /**
-     * Section: رنگ‌ها
+     * Section: Colors
      */
     $wp_customize->add_section('d_theme_colors', array(
         'title' => __('رنگ‌های قالب', 'd-theme'),
@@ -29,7 +29,7 @@ function d_theme_customize_colors($wp_customize) {
     ));
     
     /**
-     * Setting & Control: رنگ اصلی (Primary)
+     * Setting & Control: Primary Color
      */
     $wp_customize->add_setting('primary_color', array(
         'default' => '#3b82f6',
@@ -45,7 +45,7 @@ function d_theme_customize_colors($wp_customize) {
     )));
     
     /**
-     * Setting & Control: رنگ ثانویه (Secondary)
+     * Setting & Control: Secondary Color
      */
     $wp_customize->add_setting('secondary_color', array(
         'default' => '#64748b',
@@ -61,7 +61,7 @@ function d_theme_customize_colors($wp_customize) {
     )));
     
     /**
-     * Setting & Control: رنگ تاکیدی (Accent)
+     * Setting & Control: Accent Color
      */
     $wp_customize->add_setting('accent_color', array(
         'default' => '#ff8800',
@@ -77,7 +77,7 @@ function d_theme_customize_colors($wp_customize) {
     )));
     
     /**
-     * جداکننده
+     * Separator
      */
     $wp_customize->add_setting('colors_separator', array(
         'sanitize_callback' => 'wp_kses_post',
@@ -91,7 +91,7 @@ function d_theme_customize_colors($wp_customize) {
     )));
     
     /**
-     * توضیح: رنگ‌های دسته‌ها
+     * Note: Category Colors
      */
     $wp_customize->add_setting('colors_category_note', array(
         'sanitize_callback' => 'wp_kses_post',

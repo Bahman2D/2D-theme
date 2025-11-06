@@ -1,6 +1,6 @@
 /**
  * Search Modal - D Theme
- * اسکریپت مودال جستجو
+ * Search modal script
  * 
  * @package D_Theme
  * @version 1.0.0
@@ -17,13 +17,13 @@
   if (!searchModal) return;
   
   /**
-   * باز کردن مودال جستجو
+   * Open search modal
    */
   function openSearch() {
     searchModal.classList.add('active');
     document.body.style.overflow = 'hidden';
     
-    // فوکوس روی اینپوت با تاخیر کوتاه برای انیمیشن
+    // Focus on input with short delay for animation
     setTimeout(() => {
       if (searchInput) {
         searchInput.focus();
@@ -32,18 +32,13 @@
   }
   
   /**
-   * بستن مودال جستجو
+   * Close search modal
    */
   function closeSearch() {
     searchModal.classList.remove('active');
     document.body.style.overflow = '';
     
-    // پاک کردن مقدار اینپوت (اختیاری)
-    // if (searchInput) {
-    //   searchInput.value = '';
-    // }
-    
-    // بازگشت فوکوس به دکمه جستجو
+    // Return focus to search button
     if (searchBtn) {
       searchBtn.focus();
     }
@@ -53,80 +48,36 @@
    * Event Listeners
    */
   
-  // باز کردن جستجو
+  // Open search
   if (searchBtn) {
-    searchBtn.addEventListener('click', function() {
-      openSearch();
-    });
+    searchBtn.addEventListener('click', openSearch);
   }
   
-  // بستن جستجو
+  // Close search
   if (searchModalClose) {
-    searchModalClose.addEventListener('click', function() {
-      closeSearch();
-    });
+    searchModalClose.addEventListener('click', closeSearch);
   }
   
-  // بستن با کلیک روی overlay
-  if (searchModal) {
-    searchModal.addEventListener('click', function(e) {
-      if (e.target === searchModal) {
-        closeSearch();
-      }
-    });
-  }
-  
-  // بستن با کلید ESC
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && searchModal.classList.contains('active')) {
+  // Close on overlay click
+  searchModal.addEventListener('click', function(e) {
+    if (e.target === searchModal) {
       closeSearch();
     }
   });
   
-  /**
-   * کلید Ctrl/Cmd + K برای باز کردن جستجو
-   */
+  // Keyboard shortcuts (combined handler)
   document.addEventListener('keydown', function(e) {
+    // ESC to close
+    if (e.key === 'Escape' && searchModal.classList.contains('active')) {
+      closeSearch();
+      return;
+    }
+    
+    // Ctrl/Cmd + K to open
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
       e.preventDefault();
       openSearch();
     }
   });
-  
-  /**
-   * جستجوی لحظه‌ای (اختیاری)
-   * این بخش را می‌توانید برای AJAX search فعال کنید
-   */
-  /*
-  if (searchInput) {
-    let searchTimeout;
-    
-    searchInput.addEventListener('input', function() {
-      clearTimeout(searchTimeout);
-      
-      const query = this.value.trim();
-      
-      if (query.length < 3) {
-        return;
-      }
-      
-      searchTimeout = setTimeout(() => {
-        performSearch(query);
-      }, 500);
-    });
-  }
-  
-  function performSearch(query) {
-    // AJAX جستجو
-    console.log('Searching for:', query);
-    
-    // می‌توانید از fetch API استفاده کنید:
-    // fetch(dTheme.ajaxUrl + '?action=search&s=' + encodeURIComponent(query))
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     // نمایش نتایج
-    //   });
-  }
-  */
   
 })();

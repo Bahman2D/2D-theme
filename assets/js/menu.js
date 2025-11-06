@@ -1,6 +1,6 @@
 /**
  * Mobile Menu - D Theme
- * اسکریپت منوی موبایل
+ * Mobile menu script
  * 
  * @package D_Theme
  * @version 1.0.0
@@ -9,6 +9,7 @@
 (function() {
   'use strict';
   
+  // Cache DOM elements
   const mobileFooterMenu = document.getElementById('mobileFooterMenu');
   const mobileMenu = document.getElementById('mobileMenu');
   const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
@@ -16,15 +17,21 @@
   
   if (!mobileMenu || !mobileMenuOverlay) return;
   
+  // Cache menu items selectors
+  const menuItemSelector = '.mobile-menu-item > .mobile-menu-link';
+  const submenuItemSelector = '.mobile-submenu-item > .mobile-submenu-link';
+  const submenuLevel2Selector = '.mobile-submenu-level-2-item > .mobile-submenu-level-2-link';
+  const openItemsSelector = '.mobile-menu-item.active, .mobile-submenu-item.active, .mobile-submenu-level-2-item.active';
+  
   /**
-   * باز کردن منوی موبایل
+   * Open mobile menu
    */
   function openMenu() {
     mobileMenu.classList.add('active');
     mobileMenuOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
     
-    // Focus trap برای accessibility
+    // Focus trap for accessibility
     const focusableElements = mobileMenu.querySelectorAll(
       'button, a[href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     );
@@ -35,39 +42,36 @@
   }
   
   /**
-   * بستن منوی موبایل
+   * Close mobile menu
    */
   function closeMenu() {
     mobileMenu.classList.remove('active');
     mobileMenuOverlay.classList.remove('active');
     document.body.style.overflow = '';
     
-    // بستن همه زیرمنوهای باز
-    const openItems = document.querySelectorAll(
-      '.mobile-menu-item.active, .mobile-submenu-item.active, .mobile-submenu-level-2-item.active'
-    );
-    
+    // Close all open submenus
+    const openItems = mobileMenu.querySelectorAll(openItemsSelector);
     openItems.forEach(item => {
       item.classList.remove('active');
     });
     
-    // بازگشت فوکوس به دکمه باز کردن
+    // Return focus to open button
     if (mobileFooterMenu) {
       mobileFooterMenu.focus();
     }
   }
   
   /**
-   * Toggle زیرمنو
+   * Toggle submenu
    */
   function toggleSubmenu(element, submenuClass) {
-    const parent = element.parentElement;
+    const parent = element.closest('.mobile-menu-item, .mobile-submenu-item, .mobile-submenu-level-2-item');
+    if (!parent) return false;
+    
     const hasSubmenu = parent.querySelector(submenuClass);
     
     if (hasSubmenu) {
-      const isActive = parent.classList.contains('active');
-      
-      // بستن سایر آیتم‌های هم‌سطح
+      // Close sibling items at same level
       const siblings = parent.parentElement.children;
       Array.from(siblings).forEach(sibling => {
         if (sibling !== parent) {
@@ -75,20 +79,34 @@
         }
       });
       
-      // Toggle آیتم فعلی
+      // Toggle current item
       parent.classList.toggle('active');
       
-      return true; // زیرمنو دارد
+      return true; // Has submenu
     }
     
-    return false; // زیرمنو ندارد
+    return false; // No submenu
+  }
+  
+  /**
+   * Setup accordion for menu items
+   */
+  function setupAccordion(selector, submenuClass) {
+    const items = mobileMenu.querySelectorAll(selector);
+    items.forEach(item => {
+      item.addEventListener('click', function(e) {
+        if (toggleSubmenu(this, submenuClass)) {
+          e.preventDefault();
+        }
+      });
+    });
   }
   
   /**
    * Event Listeners
    */
   
-  // باز کردن منو
+  // Open menu
   if (mobileFooterMenu) {
     mobileFooterMenu.addEventListener('click', function(e) {
       e.preventDefault();
@@ -96,7 +114,7 @@
     });
   }
   
-  // بستن منو
+  // Close menu
   if (mobileMenuClose) {
     mobileMenuClose.addEventListener('click', closeMenu);
   }
@@ -105,51 +123,31 @@
     mobileMenuOverlay.addEventListener('click', closeMenu);
   }
   
-  // کلید ESC برای بستن منو
+  // ESC key to close menu
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
       closeMenu();
     }
   });
   
-  // آکاردئون سطح اول
-  document.querySelectorAll('.mobile-menu-item > .mobile-menu-link').forEach(item => {
-    item.addEventListener('click', function(e) {
-      if (toggleSubmenu(this, '.mobile-submenu')) {
-        e.preventDefault();
-      }
-    });
-  });
-  
-  // آکاردئون سطح دوم
-  document.querySelectorAll('.mobile-submenu-item > .mobile-submenu-link').forEach(item => {
-    item.addEventListener('click', function(e) {
-      if (toggleSubmenu(this, '.mobile-submenu-level-2')) {
-        e.preventDefault();
-      }
-    });
-  });
-  
-  // آکاردئون سطح سوم
-  document.querySelectorAll('.mobile-submenu-level-2-item > .mobile-submenu-level-2-link').forEach(item => {
-    item.addEventListener('click', function(e) {
-      if (toggleSubmenu(this, '.mobile-submenu-level-3')) {
-        e.preventDefault();
-      }
-    });
-  });
+  // Setup accordions
+  setupAccordion(menuItemSelector, '.mobile-submenu');
+  setupAccordion(submenuItemSelector, '.mobile-submenu-level-2');
+  setupAccordion(submenuLevel2Selector, '.mobile-submenu-level-3');
   
   /**
-   * بستن منو هنگام تغییر اندازه صفحه به دسکتاپ
+   * Close menu when resizing to desktop
    */
   let resizeTimer;
-  window.addEventListener('resize', function() {
+  const debounceResize = () => {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
+    resizeTimer = setTimeout(() => {
       if (window.innerWidth >= 1024 && mobileMenu.classList.contains('active')) {
         closeMenu();
       }
     }, 250);
-  });
+  };
+  
+  window.addEventListener('resize', debounceResize, { passive: true });
   
 })();

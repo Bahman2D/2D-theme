@@ -2,7 +2,7 @@
 /**
  * D Theme - Functions
  * 
- * Ù‡Ø³ØªÙ‡ Ø§ØµÙ„ÛŒ Ù‚Ø§Ù„Ø¨ Ø¯ÛŒ ØªÙ…
+ * Main theme functions file
  * 
  * @package D_Theme
  * @version 1.0.0
@@ -10,7 +10,7 @@
  * @link https://t.me/behman2d
  */
 
-// Ø¬Ù„ÙˆÚ¯ÛŒØ±ÛŒ Ø§Ø² Ø¯Ø³ØªØ±Ø³ÛŒ Ù…Ø³ØªÙ‚ÛŒÙ…
+// Prevent direct access
 if (!defined('ABSPATH')) {
     exit('Direct access forbidden.');
 }
@@ -18,28 +18,28 @@ if (!defined('ABSPATH')) {
 
 /**
  * ==========================================
- * 1️⃣ تنظیمات اولیه قالب
+ * 1️⃣ Theme Setup
  * ==========================================
  */
 function d_theme_setup() {
 
-    // پشتیبانی از Title Tag
+    // Support for Title Tag
     add_theme_support('title-tag');
     
-    // پشتیبانی از تصویر شاخص
+    // Support for Post Thumbnails
     add_theme_support('post-thumbnails');
 
-    // پشتیبانی از متن خلاصه مطلب
+    // Support for Excerpt
     add_post_type_support('page', 'excerpt');
     add_post_type_support('post', 'excerpt');
 
-    // سایزهای تصویر سفارشی
+    // Custom Image Sizes
     add_image_size('d-thumbnail', 400, 300, true);
     add_image_size('d-card', 600, 400, true);
     add_image_size('d-hero', 1920, 1080, true);
     add_image_size('d-banner', 1400, 600, true);
 
-    // پشتیبانی از HTML5
+    // HTML5 Support
     add_theme_support('html5', array(
         'search-form',
         'comment-form',
@@ -50,7 +50,7 @@ function d_theme_setup() {
         'script',
     ));
     
-    // پشتیبانی از Custom Logo
+    // Custom Logo Support
     add_theme_support('custom-logo', array(
         'height' => 100,
         'width' => 300,
@@ -58,20 +58,21 @@ function d_theme_setup() {
         'flex-width' => true,
     ));
     
-    // پشتیبانی از Custom Background
+    // Custom Background Support
     add_theme_support('custom-background', array(
         'default-color' => 'ffffff',
     ));
     
-    // پشتیبانی از Refresh انتخابی در Customizer
+    // Selective Refresh in Customizer
     add_theme_support('customize-selective-refresh-widgets');
 
-    // تنظیم حداقل عرض محتوا
+    // Set content width
+    global $content_width;
     if (!isset($content_width)) {
         $content_width = 1400;
     }
 
-    // ثبت منوها
+    // Register Navigation Menus
     register_nav_menus(array(
         'primary' => __('منوی اصلی', 'd-theme'),
         'footer'  => __('منوی فوتر', 'd-theme'),
@@ -82,14 +83,14 @@ add_action('after_setup_theme', 'd_theme_setup');
 
 /**
  * ==========================================
- * 2️⃣ بارگذاری استایل‌ها و اسکریپت‌ها
+ * 2️⃣ Enqueue Styles and Scripts
  * ==========================================
  */
 function d_theme_enqueue_assets() {
     
     // ========== CSS Files ==========
     
-    // 1. فونت‌ها (اولین و تنهایت)
+    // 1. Fonts (load first)
     wp_enqueue_style(
         'd-theme-fonts',
         get_template_directory_uri() . '/assets/fonts/fontiran.css',
@@ -97,47 +98,47 @@ function d_theme_enqueue_assets() {
         '2.4'
     );
 
-    // 2. متغیرهای CSS
+    // 2. CSS Variables
     wp_enqueue_style(
         'd-theme-variables',
         get_template_directory_uri() . '/assets/css/variables.css',
         array(),
-        '1.0.0'
+        wp_get_theme()->get('Version') ?: '1.0.0'
     );
 
-    // 3. استایل اصلی
+    // 3. Main Styles
     wp_enqueue_style(
         'd-theme-main',
         get_template_directory_uri() . '/assets/css/main.css',
         array('d-theme-variables'),
-        '1.0.0'
+        wp_get_theme()->get('Version') ?: '1.0.0'
     );
 
-    // 4. کامپوننت‌ها
+    // 4. Components
     wp_enqueue_style(
         'd-theme-components',
         get_template_directory_uri() . '/assets/css/components.css',
         array('d-theme-main'),
-        '1.0.0'
+        wp_get_theme()->get('Version') ?: '1.0.0'
     );
 
-    // 5. هدر
+    // 5. Header
     wp_enqueue_style(
         'd-theme-header',
         get_template_directory_uri() . '/assets/css/header.css',
         array('d-theme-main'),
-        '1.0.0'
+        wp_get_theme()->get('Version') ?: '1.0.0'
     );
 
-    // 6. فوتر
+    // 6. Footer
     wp_enqueue_style(
         'd-theme-footer',
         get_template_directory_uri() . '/assets/css/footer.css',
         array('d-theme-main'),
-        '1.0.0'
+        wp_get_theme()->get('Version') ?: '1.0.0'
     );
 
-    // 7. Hero CSS برای صفحه اصلی
+    // 7. Hero CSS for front page
     if (is_front_page()) {
         wp_enqueue_style(
             'd-theme-hero',
@@ -147,7 +148,7 @@ function d_theme_enqueue_assets() {
         );
     }
 
-    // 8. Category CSS برای صفحه دسته‌بندی
+    // 8. Category CSS for category page template
     if (is_page_template('page-category.php')) {
         wp_enqueue_style(
             'd-theme-category',
@@ -159,63 +160,55 @@ function d_theme_enqueue_assets() {
 
     // ========== JavaScript Files ==========
     
-    // 1. اسکریپت اصلی
+    // 1. Main Script
     wp_enqueue_script(
         'd-theme-main',
         get_template_directory_uri() . '/assets/js/main.js',
         array(),
-        '1.0.0',
+        wp_get_theme()->get('Version') ?: '1.0.0',
         true
     );
 
-    // 2. تغییر تم (شب/روز)
+    // 2. Theme Toggle (Dark/Light)
     wp_enqueue_script(
         'd-theme-toggle',
         get_template_directory_uri() . '/assets/js/toggle.js',
         array(),
-        '1.0.0',
+        wp_get_theme()->get('Version') ?: '1.0.0',
         true
     );
 
-    // 3. منو
+    // 3. Menu
     wp_enqueue_script(
         'd-theme-menu',
         get_template_directory_uri() . '/assets/js/menu.js',
         array(),
-        '1.0.0',
+        wp_get_theme()->get('Version') ?: '1.0.0',
         true
     );
 
-    // 4. جستجو
+    // 4. Search
     wp_enqueue_script(
         'd-theme-search',
         get_template_directory_uri() . '/assets/js/search.js',
         array(),
-        '1.0.0',
+        wp_get_theme()->get('Version') ?: '1.0.0',
         true
     );
 
     
-    // 5. آکاردئون (برای سوالات متداول و محتوای تاشو)
-    wp_enqueue_script(
-        'd-theme-accordion',
-        get_template_directory_uri() . '/assets/js/accordion.js',
-        array(),
-        '1.0.0',
-        true
-    );
-    // 5. Hero Slider برای صفحه اصلی
+    // 5. Hero Slider for front page only
     if (is_front_page()) {
         wp_enqueue_script(
             'd-theme-hero-slider',
             get_template_directory_uri() . '/assets/js/hero-slider.js',
             array(),
-            '1.0.0',
+            wp_get_theme()->get('Version') ?: '1.0.0',
             true
         );
     }
 
-    // انتقال داده‌ها به بخش JavaScript
+    // Localize script data for JavaScript
     wp_localize_script('d-theme-main', 'dTheme', array(
         'ajaxUrl' => admin_url('admin-ajax.php'),
         'nonce' => wp_create_nonce('d-theme-nonce'),
@@ -227,71 +220,76 @@ add_action('wp_enqueue_scripts', 'd_theme_enqueue_assets');
 
 /**
  * ==========================================
- * 3️⃣ بارگذاری استایل‌ها و اسکریپت‌ها
+ * 3️⃣ Include Required Files
  * ==========================================
  */
 
-// 🔧 Customizer (پنل تنظیمات)
+// Customizer (Settings Panel)
 require get_template_directory() . '/inc/customizer/customizer.php';
 require get_template_directory() . '/inc/customizer/colors.php';
 require get_template_directory() . '/inc/customizer/logo.php';
 require get_template_directory() . '/inc/customizer/hero.php';
 
-// 🔍 Menus (منوها)
+// Menus
 require get_template_directory() . '/inc/menus/menu-setup.php';
 require get_template_directory() . '/inc/menus/menu-walker.php';
 
-// 🛠 Custom Fields
+// Custom Fields (commented - uncomment if needed)
 // require get_template_directory() . '/inc/custom-fields/category-fields.php';
 
-// 🛠 Helpers (توابع کمکی)
+// Helper Functions
 require get_template_directory() . '/inc/helpers/helpers.php';
 require get_template_directory() . '/inc/helpers/color-helper.php';
 require get_template_directory() . '/inc/helpers/schema.php';
 require get_template_directory() . '/inc/helpers/svg-support.php';
 require get_template_directory() . '/inc/helpers/performance.php';
 
-// 🗓 تاریخ شمسی
+// Persian Date
 require get_template_directory() . '/inc/persian-date.php';
 
 /**
  * ==========================================
- * 4️⃣ تابعه کمکی سریعا
+ * 4️⃣ Helper Functions
  * ==========================================
  */
 
 /**
- * اضافه کردن کلاس به تگ body بر اساس صفحه فعلی
+ * Add classes to body tag based on current page
  */
 function d_theme_body_classes($classes) {
+    if (!is_array($classes)) {
+        $classes = array();
+    }
 
-    // اگر صفحه فعلی از نوع page باشد
+    // If current page is a page
     if (is_page()) {
         global $post;
+        
+        if ($post && isset($post->post_name)) {
+            // Add page slug
+            $classes[] = 'page-' . sanitize_html_class($post->post_name);
 
-        // اضافه کردن slug صفحه
-        $classes[] = 'page-' . $post->post_name;
-
-        // اگر صفحه والد دارد
-        if ($post->post_parent) {
-            $parent = get_post($post->post_parent);
-            if ($parent) {
-                $classes[] = 'category-' . $parent->post_name;
+            // If page has parent
+            if ($post->post_parent) {
+                $parent = get_post($post->post_parent);
+                if ($parent && isset($parent->post_name)) {
+                    $classes[] = 'category-' . sanitize_html_class($parent->post_name);
+                }
             }
         }
     }
 
-    // اگر صفحه اصلی باشد
+    // If front page
     if (is_front_page()) {
         $classes[] = 'front-page';
     }
 
-    // اگر صفحه تکی باشد
+    // If single post
     if (is_single()) {
         $classes[] = 'single-post';
     }
 
-    // اگر صفحه بایگانی باشد
+    // If archive page
     if (is_archive()) {
         $classes[] = 'archive-page';
     }
@@ -301,7 +299,7 @@ function d_theme_body_classes($classes) {
 add_filter('body_class', 'd_theme_body_classes');
 
 /**
- * اضافه کردن کدهای مربوط به تنظیمات رنگی Customizer به بخش head
+ * Add Customizer color settings CSS to head
  */
 function d_theme_customizer_css() {
     $primary = get_theme_mod('primary_color', '#3b82f6');
@@ -320,7 +318,7 @@ function d_theme_customizer_css() {
 add_action('wp_head', 'd_theme_customizer_css');
 
 /**
- * تنظیم طول excerpt
+ * Set excerpt length
  */
 function d_theme_excerpt_length($length) {
     return 30;
@@ -328,7 +326,7 @@ function d_theme_excerpt_length($length) {
 add_filter('excerpt_length', 'd_theme_excerpt_length');
 
 /**
- * تنظیم ... excerpt more
+ * Set excerpt more text
  */
 function d_theme_excerpt_more($more) {
     return '...';
@@ -336,7 +334,7 @@ function d_theme_excerpt_more($more) {
 add_filter('excerpt_more', 'd_theme_excerpt_more');
 
 /**
- * اضافه کردن نوع فایل SVG به آپلود
+ * Add SVG file type to uploads
  */
 function d_theme_mime_types($mimes) {
     $mimes['svg'] = 'image/svg+xml';
@@ -346,30 +344,22 @@ function d_theme_mime_types($mimes) {
 add_filter('upload_mimes', 'd_theme_mime_types');
 
 /**
- * غیرفعال کردن کدهای مربوط به emoji scripts (بهینه‌سازی)
- */
-remove_action('wp_head', 'print_emoji_detection_script', 7);
-remove_action('wp_print_styles', 'print_emoji_styles');
-remove_action('admin_print_scripts', 'print_emoji_detection_script');
-remove_action('admin_print_styles', 'print_emoji_styles');
-
-/**
- * حذف WP version از head (بهینه‌سازی)
+ * Remove WP version from head (optimization)
  */
 remove_action('wp_head', 'wp_generator');
 
 /**
- * حذف RSD link
+ * Remove RSD link
  */
 remove_action('wp_head', 'rsd_link');
 
 /**
- * حذف wlwmanifest link
+ * Remove wlwmanifest link
  */
 remove_action('wp_head', 'wlwmanifest_link');
 
 /**
- * اضافه کردن defer به اسکریپت‌ها (بهینه‌سازی)
+ * Add defer to scripts (optimization)
  */
 
 function d_theme_add_defer($tag, $handle) {
@@ -390,7 +380,7 @@ function d_theme_add_defer($tag, $handle) {
 add_filter('script_loader_tag', 'd_theme_add_defer', 10, 2);
 
 /**
- * اضافه کردن کدهای مربوط به RTL
+ * Add RTL-related code
  */
 function d_theme_rtl_support() {
     if (is_rtl()) {
@@ -405,12 +395,12 @@ add_action('wp_head', 'd_theme_rtl_support');
  * ==========================================
  */
 
-// تنظیم زبان فارسی
+// Set Persian language
 add_filter('locale', function($locale) {
     return 'fa_IR';
 });
 
-// تنظیم منطقه زمانی تهران
+// Set Tehran timezone
 add_action('after_setup_theme', function() {
     date_default_timezone_set('Asia/Tehran');
 });
@@ -430,7 +420,7 @@ add_filter('get_the_date', function($the_date, $format, $post) {
 }, 10, 3);
 
 /**
- * تبدیل زمان get_the_time()
+ * Convert time for get_the_time()
  */
 add_filter('get_the_time', function($the_time, $format, $post) {
     if (function_exists('persian_date')) {
@@ -449,7 +439,7 @@ add_filter('get_the_time', function($the_time, $format, $post) {
  * ==========================================
  */
 function d_theme_widgets_init() {
-    // Sidebar اصلی
+    // Main Sidebar
     register_sidebar(array(
         'name'          => __('سایدبار اصلی', 'd-theme'),
         'id'            => 'sidebar-main',
@@ -513,24 +503,28 @@ add_action('widgets_init', 'd_theme_widgets_init');
  */
 
 /**
- * تاریخافت URL لوگو
+ * Get logo URL
  */
 function d_theme_get_logo() {
     if (has_custom_logo()) {
         $custom_logo_id = get_theme_mod('custom_logo');
-        $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
-        return $logo[0];
+        if ($custom_logo_id) {
+            $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
+            if ($logo && isset($logo[0])) {
+                return esc_url($logo[0]);
+            }
+        }
     }
     return get_template_directory_uri() . '/assets/images/logo.png';
 }
 
 /**
- * نمایش breadcrumb
+ * Display breadcrumb
  */
 function d_theme_breadcrumb() {
-    if (!is_front_page()) {
+    if (!is_front_page() && get_theme_mod('show_breadcrumb', true)) {
         echo '<nav class="breadcrumb" aria-label="breadcrumb">';
-        echo '<a href="' . home_url() . '">خانه</a>';
+        echo '<a href="' . esc_url(home_url()) . '">خانه</a>';
         
         if (is_category() || is_single()) {
             echo ' / ';
@@ -549,20 +543,7 @@ function d_theme_breadcrumb() {
 }
 
 /**
- * نمایش زمان مطالعه محتوا
- */
-if (!function_exists('d_theme_reading_time')) {
-    function d_theme_reading_time() {
-        $content = get_post_field('post_content', get_the_ID());
-        $word_count = str_word_count(strip_tags($content));
-        $reading_time = ceil($word_count / 200); // برآورد زمان مطالعه محتوا در دقیقه
-        
-        return $reading_time . ' دقیقه';
-    }
-}
-
-/**
- * بررسی اینکه آیا صفحه دسته‌بندی است
+ * Check if current page is a category page template
  */
 
 function is_category_page() {
@@ -576,19 +557,19 @@ function is_category_page() {
  */
 
 /**
- * غیرفعال کردن XML-RPC
+ * Disable XML-RPC
  */
 add_filter('xmlrpc_enabled', '__return_false');
 
 /**
- * حذف meta tags اضافی
+ * Remove extra meta tags
  */
 remove_action('wp_head', 'wp_shortlink_wp_head');
 remove_action('wp_head', 'adjacent_posts_rel_link_wp_head');
 
 /**
- * محدود کردن تلا‌ش‌هایی ویرایشگر
- * برای امنیت بیشتر می‌توان پلگین‌های استفاده‌کننده از استافاده‌کننده‌های کد
+ * Limit editor attempts
+ * For better security, can use plugins that use code validators
  */
 
 /**
@@ -610,7 +591,7 @@ function d_theme_preload_fonts() {
 add_action('wp_head', 'd_theme_preload_fonts', 1);
 
 /**
- * غیرفعال کردن Gutenberg CSS در فرانت (اختیاری)
+ * Disable Gutenberg CSS in frontend (optional)
  */
 // add_action('wp_enqueue_scripts', function() {
 //     wp_dequeue_style('wp-block-library');
@@ -619,33 +600,33 @@ add_action('wp_head', 'd_theme_preload_fonts', 1);
 
 /**
  * ==========================================
- * 🔧 Hook هایی که فعال می‌شوند
+ * 🔟 Theme Hooks
  * ==========================================
  */
 
 /**
- * Hook قبل از header
+ * Hook before header
  */
 function d_theme_before_header() {
     do_action('d_theme_before_header');
 }
 
 /**
- * Hook بعد از header
+ * Hook after header
  */
 function d_theme_after_header() {
     do_action('d_theme_after_header');
 }
 
 /**
- * Hook قبل از footer
+ * Hook before footer
  */
 function d_theme_before_footer() {
     do_action('d_theme_before_footer');
 }
 
 /**
- * Hook بعد از footer
+ * Hook after footer
  */
 function d_theme_after_footer() {
     do_action('d_theme_after_footer');
