@@ -19,7 +19,11 @@ $comments_count = get_comments_number();
 <section id="comments" class="comments-area" aria-label="بخش نظرات">
     
     <?php if (have_comments()) : ?>
-        <h2 class="comments-title">
+        <h2 class="comments-title" id="<?php 
+            $comments_count = get_comments_number();
+            $comments_text = ($comments_count === 1) ? 'یک نظر' : sprintf('%s نظر', number_format_i18n($comments_count));
+            echo d_theme_get_heading_id($comments_text, 0);
+        ?>">
             <?php
             if ($comments_count === 1) {
                 echo 'یک نظر';
@@ -57,6 +61,13 @@ $comments_count = get_comments_number();
     if (!comments_open() && get_comments_number() && post_type_supports(get_post_type(), 'comments')) :
     ?>
         <p class="no-comments"><?php _e('نظرات بسته شده‌اند.', 'd-theme'); ?></p>
+    <?php endif; ?>
+
+    <?php
+    // اگر نظری وجود نداشت، اما comments باز است، heading برای "دیدگاه‌ها" اضافه کن
+    if (!have_comments() && comments_open()) :
+    ?>
+        <h2 class="comments-title" id="<?php echo d_theme_get_heading_id('دیدگاه‌ها', 0); ?>">دیدگاه‌ها</h2>
     <?php endif; ?>
 
     <?php

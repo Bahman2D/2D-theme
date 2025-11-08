@@ -37,11 +37,31 @@
     cursor: pointer;
     padding: 0.5rem;
     color: var(--text-secondary, #6b7280);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.toc-toggle:hover {
+    background: var(--bg-hover, #e5e7eb);
+    color: var(--primary, #3b82f6);
+}
+
+.toc-toggle-icon {
     transition: transform 0.3s ease;
+    display: inline-block;
 }
 
 .toc-toggle[aria-expanded="false"] .toc-toggle-icon {
     transform: rotate(-90deg);
+}
+
+/* حالت بسته - مخفی کردن لیست */
+.table-of-contents[data-expanded="false"] .toc-list {
+    max-height: 0 !important;
+    overflow: hidden;
 }
 
 .toc-list {
@@ -92,8 +112,8 @@
     font-size: 0.8rem;
 }
 
-/* ========== Mobile TOC (Accordion) ========== */
-@media (max-width: 767px) {
+/* ========== Mobile & Tablet TOC (Accordion) ========== */
+@media (max-width: 1023px) {
     .toc-mobile-wrapper {
         margin-bottom: 2rem;
     }
@@ -122,7 +142,7 @@
 }
 
 /* ========== Desktop TOC (Sticky Sidebar) ========== */
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
     .toc-mobile-wrapper {
         display: none;
     }

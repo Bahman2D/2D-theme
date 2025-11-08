@@ -66,6 +66,8 @@
   align-items: center;
   flex-shrink: 0;
   transition: transform var(--duration-base) var(--ease-out);
+  overflow: visible;
+  max-width: none;
 }
 
 .logo:hover {
@@ -75,7 +77,10 @@
 .logo-img {
   height: 45px;
   width: auto;
-  object-fit: contain;
+  max-width: none !important;
+  aspect-ratio: auto !important;
+  object-fit: contain !important;
+  object-position: center;
 }
 
 .logo-text {
@@ -787,6 +792,9 @@
   
   .logo-img {
     height: 38px;
+    max-width: none !important;
+    aspect-ratio: auto !important;
+    object-fit: contain !important;
   }
   
   .icon-btn {

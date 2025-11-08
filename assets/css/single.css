@@ -98,6 +98,18 @@
     height: auto;
     border-radius: 8px;
     margin: 1.5rem 0;
+    display: block;
+}
+
+/* جلوگیری از Layout Shift برای تصاویر با width/height */
+.entry-content img[width][height] {
+    aspect-ratio: attr(width) / attr(height);
+}
+
+/* برای تصاویری که width/height ندارند */
+.entry-content img:not([width]):not([height]) {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
 }
 
 .entry-content ul,

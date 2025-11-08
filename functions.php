@@ -180,9 +180,7 @@ function d_theme_enqueue_assets() {
     
     // 9. TOC CSS (for single posts and pages with TOC)
     if (is_singular()) {
-        global $post;
-        $content = $post ? $post->post_content : '';
-        if (d_theme_needs_toc($content)) {
+        if (d_theme_needs_toc()) {
             wp_enqueue_style(
                 'd-theme-toc',
                 $template_uri . '/assets/css/toc.css',
@@ -308,9 +306,7 @@ function d_theme_enqueue_assets() {
     
     // 6. TOC JavaScript (for single posts and pages with TOC)
     if (is_singular()) {
-        global $post;
-        $content = $post ? $post->post_content : '';
-        if (d_theme_needs_toc($content)) {
+        if (d_theme_needs_toc()) {
             wp_enqueue_script(
                 'd-theme-toc',
                 $template_uri . '/assets/js/toc.js',
@@ -686,22 +682,85 @@ function d_theme_get_logo() {
  * Display breadcrumb
  */
 function d_theme_breadcrumb() {
-    if (!is_front_page() && d_theme_get_cached_mod('show_breadcrumb', true)) {
-        echo '<nav class="breadcrumb" aria-label="breadcrumb">';
-        echo '<a href="' . esc_url(home_url()) . '">خانه</a>';
-        
-        if (is_category() || is_single()) {
-            echo ' / ';
-            the_category(' / ');
-            if (is_single()) {
-                echo ' / ';
-                the_title();
-            }
-        } elseif (is_page()) {
-            echo ' / ';
-            the_title();
+    // بررسی صفحه اصلی
+    if (is_front_page()) {
+        return;
+    }
+    
+    // بررسی تنظیمات Customizer
+    $show_breadcrumb = get_theme_mod('show_breadcrumb', true);
+    if (!$show_breadcrumb) {
+        return;
+    }
+    
+    $breadcrumb_items = array();
+    
+    // خانه
+    $breadcrumb_items[] = '<a href="' . esc_url(home_url('/')) . '">خانه</a>';
+    
+    // Taxonomy archive
+    if (is_tax('page_category')) {
+        $term = get_queried_object();
+        if ($term) {
+            $breadcrumb_items[] = '<span class="breadcrumb-current">' . esc_html($term->name) . '</span>';
         }
-        
+    }
+    // Category archive
+    elseif (is_category()) {
+        $category = get_queried_object();
+        if ($category) {
+            $breadcrumb_items[] = '<span class="breadcrumb-current">' . esc_html($category->name) . '</span>';
+        }
+    }
+    // Tag archive
+    elseif (is_tag()) {
+        $tag = get_queried_object();
+        if ($tag) {
+            $breadcrumb_items[] = '<span class="breadcrumb-current">' . esc_html($tag->name) . '</span>';
+        }
+    }
+    // Single post
+    elseif (is_single()) {
+        $categories = get_the_category();
+        if (!empty($categories)) {
+            $category = $categories[0];
+            $breadcrumb_items[] = '<a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . '</a>';
+        }
+        $breadcrumb_items[] = '<span class="breadcrumb-current">' . get_the_title() . '</span>';
+    }
+    // Page
+    elseif (is_page()) {
+        global $post;
+        if ($post->post_parent) {
+            $ancestors = get_post_ancestors($post->ID);
+            $ancestors = array_reverse($ancestors);
+            foreach ($ancestors as $ancestor) {
+                $breadcrumb_items[] = '<a href="' . esc_url(get_permalink($ancestor)) . '">' . get_the_title($ancestor) . '</a>';
+            }
+        }
+        $breadcrumb_items[] = '<span class="breadcrumb-current">' . get_the_title() . '</span>';
+    }
+    // Search
+    elseif (is_search()) {
+        $breadcrumb_items[] = '<span class="breadcrumb-current">نتایج جستجو: ' . esc_html(get_search_query()) . '</span>';
+    }
+    // 404
+    elseif (is_404()) {
+        $breadcrumb_items[] = '<span class="breadcrumb-current">صفحه پیدا نشد</span>';
+    }
+    // Archive
+    elseif (is_archive()) {
+        $breadcrumb_items[] = '<span class="breadcrumb-current">' . get_the_archive_title() . '</span>';
+    }
+    
+    if (count($breadcrumb_items) > 0) {
+        echo '<nav class="breadcrumb" aria-label="breadcrumb">';
+        echo implode(' <span class="breadcrumb-separator">/</span> ', $breadcrumb_items);
+        echo '</nav>';
+    } else {
+        // اگر هیچ آیتمی نبود، حداقل خانه را نمایش بده
+        echo '<nav class="breadcrumb" aria-label="breadcrumb">';
+        echo '<a href="' . esc_url(home_url('/')) . '">خانه</a>';
         echo '</nav>';
     }
 }

@@ -15,14 +15,34 @@
   
   const tocToggle = toc.querySelector('.toc-toggle');
   const tocLinks = toc.querySelectorAll('.toc-link');
-  const header = document.getElementById('header');
-  const headerHeight = header ? header.offsetHeight : 80;
   
-  // ========== Mobile Accordion ==========
-  if (window.innerWidth < 768) {
-    // وضعیت از localStorage
+  // تابع برای محاسبه دقیق ارتفاع header + admin bar
+  function getHeaderHeight() {
+    const header = document.getElementById('header');
+    const adminBar = document.getElementById('wpadminbar');
+    
+    let height = header ? header.offsetHeight : (window.innerWidth >= 1024 ? 100 : 80);
+    
+    // اضافه کردن ارتفاع admin bar اگر وجود داشته باشد
+    if (adminBar) {
+      height += adminBar.offsetHeight;
+    }
+    
+    // 20px فاصله اضافی برای راحتی خواندن
+    return height + 20;
+  }
+  
+  // ========== Mobile & Tablet Accordion ==========
+  if (window.innerWidth < 1024) {
+    // پاک کردن localStorage قدیمی (یک بار) - برای رفع مشکل نسخه‌های قدیمی
+    const oldState = localStorage.getItem('toc-expanded');
+    if (oldState && oldState !== 'true' && oldState !== 'false') {
+      localStorage.removeItem('toc-expanded');
+    }
+    
+    // وضعیت از localStorage - دیفالت: بسته (false)
     const savedState = localStorage.getItem('toc-expanded');
-    const isExpanded = savedState !== 'false';
+    const isExpanded = savedState === 'true'; // فقط اگر صراحتاً true باشد
     
     toc.setAttribute('data-expanded', isExpanded);
     if (tocToggle) {
@@ -31,7 +51,9 @@
     
     // Toggle handler
     if (tocToggle) {
-      tocToggle.addEventListener('click', function() {
+      tocToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        
         const expanded = toc.getAttribute('data-expanded') === 'true';
         const newState = !expanded;
         
@@ -45,16 +67,17 @@
   // ========== Smooth Scroll ==========
   tocLinks.forEach(link => {
     link.addEventListener('click', function(e) {
+      e.preventDefault();
+      
       const targetId = this.getAttribute('data-target') || this.getAttribute('href').substring(1);
       const target = document.getElementById(targetId);
       
       if (target) {
-        e.preventDefault();
-        
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+        const headerHeight = getHeaderHeight();
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
         
         window.scrollTo({
-          top: targetPosition,
+          top: Math.max(0, targetPosition),
           behavior: 'smooth'
         });
         
@@ -66,14 +89,15 @@
   });
   
   // ========== Active Section Highlight ==========
-  if (window.innerWidth >= 768) {
+  if (window.innerWidth >= 1024) {
     const headings = Array.from(document.querySelectorAll('h2[id], h3[id], h4[id]'));
     
     if (headings.length === 0) return;
     
+    const headerHeight = getHeaderHeight();
     const observerOptions = {
       root: null,
-      rootMargin: `-${headerHeight + 20}px 0px -80% 0px`,
+      rootMargin: `-${headerHeight}px 0px -80% 0px`,
       threshold: 0
     };
     
@@ -81,7 +105,11 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const id = entry.target.getAttribute('id');
-          const activeLink = toc.querySelector(`.toc-link[data-target="${id}"]`);
+          
+          // پیدا کردن لینک فعال
+          const activeLink = Array.from(tocLinks).find(link => 
+            link.getAttribute('data-target') === id
+          );
           
           if (activeLink) {
             tocLinks.forEach(l => l.classList.remove('active'));
@@ -115,12 +143,40 @@
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function() {
       // Reload behavior on resize
-      if (window.innerWidth < 768) {
+      if (window.innerWidth < 1024) {
         const savedState = localStorage.getItem('toc-expanded');
-        toc.setAttribute('data-expanded', savedState !== 'false');
+        toc.setAttribute('data-expanded', savedState === 'true');
       }
     }, 250);
   }, { passive: true });
+  
+  // ========== Hash Navigation Support ==========
+  // اگر صفحه با hash لود شد، scroll کن
+  if (window.location.hash) {
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        const targetId = window.location.hash.substring(1);
+        const target = document.getElementById(targetId);
+        
+        if (target) {
+          const headerHeight = getHeaderHeight();
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+          
+          window.scrollTo({
+            top: Math.max(0, targetPosition),
+            behavior: 'smooth'
+          });
+          
+          // Highlight corresponding TOC link
+          tocLinks.forEach(link => {
+            if (link.getAttribute('data-target') === targetId) {
+              link.classList.add('active');
+            }
+          });
+        }
+      }, 100);
+    });
+  }
   
 })();
 

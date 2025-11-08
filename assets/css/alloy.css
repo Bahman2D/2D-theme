@@ -27,9 +27,13 @@
     font-weight: 700;
     margin-bottom: 2rem;
     color: var(--text-primary, #1f2937);
+    /* جلوگیری از Layout Shift */
+    min-height: 1.2em;
+    line-height: 1.2;
 }
 
 .alloy-thumbnail {
+    position: relative;
     border-radius: 8px;
     overflow: hidden;
     margin-bottom: 2rem;
@@ -39,6 +43,17 @@
     width: 100%;
     height: auto;
     display: block;
+    object-fit: cover;
+}
+
+/* جلوگیری از Layout Shift برای تصاویر با width/height */
+.alloy-thumbnail img[width][height] {
+    aspect-ratio: attr(width) / attr(height);
+}
+
+/* برای تصاویری که width/height ندارند */
+.alloy-thumbnail img:not([width]):not([height]) {
+    aspect-ratio: 16 / 9;
 }
 
 /* ========== Alloy Content ========== */

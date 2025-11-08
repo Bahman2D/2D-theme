@@ -21,6 +21,29 @@
     box-sizing: border-box;
 }
 
+/* Scroll Padding برای anchor links با header استیکی */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* فاصله از header */
+}
+
+/* Admin Bar Support */
+.admin-bar html {
+    scroll-padding-top: 132px; /* 100px header + 32px admin bar */
+}
+
+@media screen and (max-width: 782px) {
+    .admin-bar html {
+        scroll-padding-top: 126px; /* 80px header + 46px admin bar */
+    }
+}
+
+@media (max-width: 1023px) {
+    html {
+        scroll-padding-top: 80px; /* فاصله کمتر در mobile */
+    }
+}
+
 /* ========================================
    📝 Typography & Body
 ======================================== */
@@ -124,6 +147,17 @@ img {
     display: block;
 }
 
+/* جلوگیری از Layout Shift برای تصاویر */
+img[width][height] {
+    aspect-ratio: attr(width) / attr(height);
+}
+
+/* برای تصاویری که width/height ندارند - استفاده از aspect-ratio پیش‌فرض */
+img:not([width]):not([height]) {
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
 figure {
     margin: 0;
 }
@@ -141,6 +175,37 @@ figure {
 
 .site-main {
     min-height: 60vh;
+}
+
+/* ========================================
+   📏 HEADER SPACING - رفع مشکل CLS
+======================================== */
+
+/* دسکتاپ - Header Fixed */
+@media screen and (min-width: 1024px) {
+    .site-main {
+        padding-top: 90px !important; /* فاصله کافی از header در دسکتاپ */
+    }
+    
+    /* صفحه اصلی - بدون padding چون header شفاف است */
+    .home .site-main,
+    .page-template-front-page .site-main {
+        padding-top: 0 !important;
+    }
+}
+
+/* تبلت و موبایل - Header Absolute (غیر استیکی) */
+@media screen and (max-width: 1023px) {
+    /* صفحات عادی - با padding */
+    .site-main {
+        padding-top: 54px !important; /* 38px logo + 16px padding */
+    }
+    
+    /* صفحه اصلی - بدون padding */
+    .home .site-main,
+    .page-template-front-page .site-main {
+        padding-top: 0 !important;
+    }
 }
 
 .content-section {
@@ -415,14 +480,6 @@ li {
     color: var(--text-muted);
     text-align: center;
     margin-top: var(--space-2);
-}
-
-.sticky {
-    /* استایل برای پست‌های sticky */
-}
-
-.bypostauthor {
-    /* استایل برای نویسنده پست */
 }
 
 .gallery-caption {

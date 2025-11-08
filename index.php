@@ -14,6 +14,8 @@ get_header(); ?>
 
 <main class="site-main" id="main" role="main">
     <div class="container">
+        <!-- Breadcrumbs -->
+        <?php d_theme_breadcrumb(); ?>
         
         <?php if (have_posts()) : ?>
             

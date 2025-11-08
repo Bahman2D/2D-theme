@@ -30,7 +30,7 @@ $schema_data = array(
 ?>
 <section class="faq-section" id="faq-section" aria-label="سوالات متداول">
     <div class="faq-container">
-        <h2 class="faq-title">سوالات متداول</h2>
+        <h2 class="faq-title" id="<?php echo d_theme_get_heading_id('سوالات متداول', 0); ?>">سوالات متداول</h2>
         
         <div class="faq-list" role="list">
             <?php foreach ($faqs as $index => $faq) : 

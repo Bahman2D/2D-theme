@@ -12,10 +12,9 @@ get_header(); ?>
 
 <main class="site-main alloy-page-main" id="main" role="main">
     
-    <!-- Breadcrumbs -->
-    <?php d_theme_breadcrumb(); ?>
-    
     <div class="container">
+        <!-- Breadcrumbs -->
+        <?php d_theme_breadcrumb(); ?>
         
         <?php while (have_posts()) : the_post(); ?>
             
@@ -45,8 +44,8 @@ get_header(); ?>
                         <!-- TOC Mobile -->
                         <div class="toc-mobile-wrapper">
                             <?php 
-                            $content = get_the_content();
-                            if (d_theme_needs_toc($content)) {
+                            // نمایش TOC (اگر شرایط لازم برقرار باشد)
+                            if (d_theme_needs_toc()) {
                                 get_template_part('template-parts/components/toc');
                             }
                             ?>
@@ -67,7 +66,7 @@ get_header(); ?>
                         if (!empty($alloy_specs) && is_array($alloy_specs)) :
                         ?>
                             <section class="alloy-specs" itemscope itemtype="https://schema.org/Product">
-                                <h2 class="alloy-specs-title">مشخصات فنی</h2>
+                                <h2 class="alloy-specs-title" id="<?php echo d_theme_get_heading_id('مشخصات فنی', 0); ?>">مشخصات فنی</h2>
                                 
                                 <table class="alloy-specs-table" itemprop="additionalProperty" itemscope itemtype="https://schema.org/PropertyValue">
                                     <tbody>
@@ -130,8 +129,8 @@ get_header(); ?>
                     <aside class="alloy-sidebar" role="complementary">
                         <div class="toc-desktop-wrapper">
                             <?php 
-                            $content = get_the_content();
-                            if (d_theme_needs_toc($content)) {
+                            // نمایش TOC (اگر شرایط لازم برقرار باشد)
+                            if (d_theme_needs_toc()) {
                                 get_template_part('template-parts/components/toc');
                             }
                             ?>

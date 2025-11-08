@@ -108,7 +108,25 @@
         
         // Only for real anchor links, not #
         if (href !== '#' && href !== '#!') {
-          const target = document.querySelector(href);
+          // استفاده از getElementById به جای querySelector برای ID های URL-encoded
+          const id = href.substring(1); // حذف #
+          let target = document.getElementById(id);
+          
+          // اگر با getElementById پیدا نشد، سعی کن decode کن
+          if (!target && id) {
+            try {
+              const decodedId = decodeURIComponent(id);
+              target = document.getElementById(decodedId);
+            } catch (e) {
+              // اگر decode نشد، سعی کن با querySelector
+              try {
+                target = document.querySelector(href);
+              } catch (e2) {
+                // اگر باز هم خطا داد، skip کن
+                return;
+              }
+            }
+          }
           
           if (target) {
             e.preventDefault();

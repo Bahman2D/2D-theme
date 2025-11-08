@@ -12,10 +12,9 @@ get_header(); ?>
 
 <main class="site-main blog-page-main" id="main" role="main">
     
-    <!-- Breadcrumbs -->
-    <?php d_theme_breadcrumb(); ?>
-    
     <div class="container">
+        <!-- Breadcrumbs -->
+        <?php d_theme_breadcrumb(); ?>
         <div class="blog-page-wrapper">
             
             <!-- محتوای اصلی -->

@@ -14,12 +14,11 @@ get_header(); ?>
     
     <?php while (have_posts()) : the_post(); ?>
         
-        <!-- Breadcrumbs -->
-        <?php d_theme_breadcrumb(); ?>
-        
         <article id="post-<?php the_ID(); ?>" <?php post_class('single-post'); ?> itemscope itemtype="https://schema.org/Article">
             
             <div class="container">
+                <!-- Breadcrumbs -->
+                <?php d_theme_breadcrumb(); ?>
                 <div class="single-post-wrapper">
                     
                     <!-- محتوای اصلی -->
@@ -78,8 +77,8 @@ get_header(); ?>
                         <!-- TOC Mobile (در بالای محتوا) -->
                         <div class="toc-mobile-wrapper">
                             <?php 
-                            $content = get_the_content();
-                            if (d_theme_needs_toc($content)) {
+                            // نمایش TOC (اگر شرایط لازم برقرار باشد)
+                            if (d_theme_needs_toc()) {
                                 get_template_part('template-parts/components/toc');
                             }
                             ?>
@@ -237,8 +236,8 @@ get_header(); ?>
                     <aside class="single-post-sidebar" role="complementary">
                         <div class="toc-desktop-wrapper">
                             <?php 
-                            $content = get_the_content();
-                            if (d_theme_needs_toc($content)) {
+                            // نمایش TOC (اگر شرایط لازم برقرار باشد)
+                            if (d_theme_needs_toc()) {
                                 get_template_part('template-parts/components/toc');
                             }
                             ?>
