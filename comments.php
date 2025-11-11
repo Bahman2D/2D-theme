@@ -16,21 +16,21 @@ if (post_password_required()) {
 $comments_count = get_comments_number();
 ?>
 
-<section id="comments" class="comments-area" aria-label="بخش نظرات">
+<section id="comments" class="comments-area" aria-label="بخش دیدگاه‌ها">
     
     <?php if (have_comments()) : ?>
         <h2 class="comments-title" id="<?php 
             $comments_count = get_comments_number();
-            $comments_text = ($comments_count === 1) ? 'یک نظر' : sprintf('%s نظر', number_format_i18n($comments_count));
+            $comments_text = ($comments_count === 1) ? 'یک دیدگاه' : sprintf('%s دیدگاه', number_format_i18n($comments_count));
             echo d_theme_get_heading_id($comments_text, 0);
         ?>">
             <?php
             if ($comments_count === 1) {
-                echo 'یک نظر';
+                echo 'یک دیدگاه';
             } else {
                 printf(
-                    /* translators: %s: تعداد نظرات */
-                    esc_html('%s نظر'),
+                    /* translators: %s: تعداد دیدگاه‌ها */
+                    esc_html('%s دیدگاه'),
                     number_format_i18n($comments_count)
                 );
             }
@@ -50,8 +50,8 @@ $comments_count = get_comments_number();
 
         <?php
         the_comments_pagination(array(
-            'prev_text' => '← نظرات قبلی',
-            'next_text' => 'نظرات بعدی →',
+            'prev_text' => '← دیدگاه‌های قبلی',
+            'next_text' => 'دیدگاه‌های بعدی →',
         ));
         ?>
 
@@ -60,27 +60,30 @@ $comments_count = get_comments_number();
     <?php
     if (!comments_open() && get_comments_number() && post_type_supports(get_post_type(), 'comments')) :
     ?>
-        <p class="no-comments"><?php _e('نظرات بسته شده‌اند.', 'd-theme'); ?></p>
+        <p class="no-comments"><?php _e('دیدگاه‌ها بسته شده‌اند.', 'd-theme'); ?></p>
     <?php endif; ?>
 
     <?php
-    // اگر نظری وجود نداشت، اما comments باز است، heading برای "دیدگاه‌ها" اضافه کن
+    // اگر دیدگاهی وجود نداشت، اما comments باز است، heading برای "دیدگاه‌ها" اضافه کن
     if (!have_comments() && comments_open()) :
     ?>
         <h2 class="comments-title" id="<?php echo d_theme_get_heading_id('دیدگاه‌ها', 0); ?>">دیدگاه‌ها</h2>
     <?php endif; ?>
 
     <?php
+    $commenter = wp_get_current_commenter();
+    $req = get_option('require_name_email');
+    
     comment_form(array(
-        'title_reply' => 'نظر خود را بنویسید',
+        'title_reply' => 'دیدگاه خود را بنویسید',
         'title_reply_to' => 'پاسخ به %s',
         'cancel_reply_link' => 'لغو پاسخ',
-        'label_submit' => 'ارسال نظر',
-        'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x('نظر', 'noun') . '</label><textarea id="comment" name="comment" cols="45" rows="8" required></textarea></p>',
+        'label_submit' => 'ارسال دیدگاه',
+        'comment_field' => '<div class="comment-form-comment"><label for="comment">دیدگاه</label><textarea id="comment" name="comment" cols="45" rows="8" required></textarea></div>',
         'fields' => array(
-            'author' => '<p class="comment-form-author"><label for="author">' . __('نام', 'd-theme') . ($req ? ' <span class="required">*</span>' : '') . '</label><input id="author" name="author" type="text" value="' . esc_attr($commenter['comment_author']) . '" size="30"' . ($req ? ' required' : '') . ' /></p>',
-            'email' => '<p class="comment-form-email"><label for="email">' . __('ایمیل', 'd-theme') . ($req ? ' <span class="required">*</span>' : '') . '</label><input id="email" name="email" type="email" value="' . esc_attr($commenter['comment_author_email']) . '" size="30"' . ($req ? ' required' : '') . ' /></p>',
-            'url' => '<p class="comment-form-url"><label for="url">' . __('وب‌سایت', 'd-theme') . '</label><input id="url" name="url" type="url" value="' . esc_attr($commenter['comment_author_url']) . '" size="30" /></p>',
+            'author' => '<div class="comment-form-author"><label for="author">' . __('نام', 'd-theme') . ($req ? ' <span class="required">*</span>' : '') . '</label><input id="author" name="author" type="text" value="' . esc_attr($commenter['comment_author']) . '" size="30"' . ($req ? ' required' : '') . ' /></div>',
+            'email' => '<div class="comment-form-email"><label for="email">' . __('ایمیل', 'd-theme') . ($req ? ' <span class="required">*</span>' : '') . '</label><input id="email" name="email" type="email" value="' . esc_attr($commenter['comment_author_email']) . '" size="30"' . ($req ? ' required' : '') . ' /></div>',
+            'phone' => '<div class="comment-form-phone"><label for="phone">' . __('شماره تماس', 'd-theme') . '</label><input id="phone" name="phone" type="tel" value="" size="30" placeholder="09123456789" /></div>',
         ),
     ));
     ?>
@@ -129,7 +132,7 @@ function d_theme_comment_callback($comment, $args, $depth) {
                 
                 <?php if ($comment->comment_approved == '0') : ?>
                     <p class="comment-awaiting-moderation">
-                        <?php _e('نظر شما در انتظار تایید است.', 'd-theme'); ?>
+                        <?php _e('دیدگاه شما در انتظار تایید است.', 'd-theme'); ?>
                     </p>
                 <?php endif; ?>
                 

@@ -8,35 +8,32 @@
  */
 
 .alloy-page-main {
-    padding: 2rem 0;
+    padding: var(--space-4) 0;
 }
 
 .alloy-wrapper {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: var(--space-4);
 }
 
 /* ========== Alloy Header ========== */
 .alloy-header {
-    margin-bottom: 3rem;
+    margin-bottom: var(--space-8);
 }
 
 .alloy-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    color: var(--text-primary, #1f2937);
-    /* جلوگیری از Layout Shift */
-    min-height: 1.2em;
-    line-height: 1.2;
+    font-size: var(--text-title);
+    font-weight: var(--font-bold);
+    margin-bottom: var(--space-4);
+    color: var(--text-primary);
+    line-height: var(--leading-tight);
 }
 
 .alloy-thumbnail {
-    position: relative;
-    border-radius: 8px;
+    border-radius: var(--radius-m);
     overflow: hidden;
-    margin-bottom: 2rem;
+    margin-bottom: var(--space-4);
 }
 
 .alloy-thumbnail img {
@@ -46,12 +43,11 @@
     object-fit: cover;
 }
 
-/* جلوگیری از Layout Shift برای تصاویر با width/height */
+/* جلوگیری از Layout Shift */
 .alloy-thumbnail img[width][height] {
     aspect-ratio: attr(width) / attr(height);
 }
 
-/* برای تصاویری که width/height ندارند */
 .alloy-thumbnail img:not([width]):not([height]) {
     aspect-ratio: 16 / 9;
 }
@@ -61,45 +57,51 @@
     max-width: 100%;
 }
 
+.entry-content {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-m);
+    padding: var(--space-4);
+}
+
 /* ========== Specs Table ========== */
 .alloy-specs {
-    margin: 3rem 0;
-    padding: 2rem;
-    background: var(--bg-secondary, #f8f9fa);
-    border-radius: 8px;
+    margin: var(--space-8) 0;
+    padding: var(--space-4);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-m);
 }
 
 .alloy-specs-title {
-    font-size: 1.75rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    color: var(--text-primary, #1f2937);
+    font-size: var(--text-heading);
+    font-weight: var(--font-bold);
+    margin-bottom: var(--space-3);
+    color: var(--text-primary);
 }
 
 .alloy-specs-table {
     width: 100%;
     border-collapse: collapse;
-    background: var(--bg-primary, #fff);
-    border-radius: 8px;
+    background: var(--bg-primary);
+    border-radius: var(--radius-m);
     overflow: hidden;
 }
 
 .alloy-specs-table th,
 .alloy-specs-table td {
-    padding: 1rem 1.5rem;
+    padding: var(--space-2) var(--space-3);
     text-align: right;
-    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    border-bottom: 1px solid var(--border-light);
 }
 
 .alloy-specs-table th {
-    background: var(--bg-secondary, #f8f9fa);
-    font-weight: 600;
-    color: var(--text-primary, #1f2937);
+    background: var(--bg-secondary);
+    font-weight: var(--font-bold);
+    color: var(--text-primary);
     width: 40%;
 }
 
 .alloy-specs-table td {
-    color: var(--text-secondary, #6b7280);
+    color: var(--text-secondary);
 }
 
 .alloy-specs-table tr:last-child th,
@@ -108,7 +110,7 @@
 }
 
 .alloy-specs-table tr:hover {
-    background: var(--bg-hover, #f8f9fa);
+    background: var(--bg-secondary);
 }
 
 /* ========== Sidebar ========== */
@@ -133,21 +135,20 @@
 
 /* ========== Mobile ========== */
 @media (max-width: 767px) {
-    .alloy-title {
-        font-size: 1.75rem;
+    .alloy-page-main {
+        padding: var(--space-3) 0;
     }
     
     .alloy-specs {
-        padding: 1.5rem;
+        padding: var(--space-3);
     }
     
     .alloy-specs-table {
-        font-size: 0.9rem;
+        font-size: var(--text-small);
     }
     
     .alloy-specs-table th,
     .alloy-specs-table td {
-        padding: 0.75rem 1rem;
+        padding: var(--space-1) var(--space-2);
     }
 }
-

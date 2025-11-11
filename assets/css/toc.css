@@ -11,17 +11,17 @@
 .table-of-contents {
     background: var(--bg-secondary, #f8f9fa);
     border-radius: 8px;
-    padding: 1.5rem;
-    margin-bottom: 2rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
 }
 
 .toc-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid var(--border-color, #e5e7eb);
+    margin-bottom: 0rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-medium);
 }
 
 .toc-title {
@@ -115,7 +115,7 @@
 /* ========== Mobile & Tablet TOC (Accordion) ========== */
 @media (max-width: 1023px) {
     .toc-mobile-wrapper {
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
     }
     
     .toc-desktop-wrapper {
@@ -123,7 +123,7 @@
     }
     
     .table-of-contents {
-        border: 1px solid var(--border-color, #e5e7eb);
+        border: 1px solid var(--border-light);
     }
     
     .toc-list {
@@ -178,7 +178,7 @@
 }
 
 .toc-desktop-wrapper::-webkit-scrollbar-thumb {
-    background: var(--border-color, #e5e7eb);
+    background: var(--bg-secondary);
     border-radius: 3px;
 }
 

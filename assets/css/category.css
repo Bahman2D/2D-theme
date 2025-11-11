@@ -1,0 +1,365 @@
+/**
+ * Category Page Styles
+ * استایل‌های صفحات دسته‌بندی (Parent Pages)
+ * 
+ * @package D_Theme
+ * @version 1.0.0
+ */
+
+/* ==========================================================================
+   Category Page Main
+   ========================================================================== */
+
+.category-page-main {
+    padding: var(--space-8) 0;
+    background: var(--bg);
+    min-height: 60vh;
+}
+
+/* ==========================================================================
+   Category Header
+   ========================================================================== */
+
+.category-header {
+    text-align: center;
+    margin-bottom: var(--space-12);
+    padding-bottom: var(--space-8);
+    border-bottom: 2px solid var(--border);
+}
+
+.category-title {
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--heading);
+    margin-bottom: var(--space-4);
+    line-height: 1.2;
+}
+
+.category-description {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    max-width: 800px;
+    margin: 0 auto var(--space-6);
+    line-height: 1.8;
+}
+
+.category-description p {
+    margin-bottom: var(--space-4);
+}
+
+.category-description p:last-child {
+    margin-bottom: 0;
+}
+
+.category-count {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: var(--primary-light);
+    color: var(--primary);
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.category-toc {
+    margin: var(--space-6) auto;
+    max-width: 800px;
+}
+
+/* ==========================================================================
+   Category Pages Grid
+   ========================================================================== */
+
+.category-pages-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    margin-bottom: var(--space-8);
+}
+
+@media (min-width: 640px) {
+    .category-pages-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .category-pages-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-8);
+    }
+}
+
+/* ==========================================================================
+   Category Page Item
+   ========================================================================== */
+
+.category-page-item {
+    display: flex;
+    flex-direction: column;
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s var(--ease);
+    border: 1px solid var(--border);
+}
+
+.category-page-item:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+}
+
+.category-page-item:hover .page-thumbnail img {
+    transform: scale(1.05);
+}
+
+/* Thumbnail */
+.page-thumbnail {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    overflow: hidden;
+    background: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s var(--ease);
+}
+
+.page-thumbnail-placeholder {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--border) 100%);
+}
+
+.page-thumbnail-placeholder svg {
+    opacity: 0.3;
+}
+
+/* Content */
+.page-content {
+    padding: var(--space-6);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: var(--space-3);
+    line-height: 1.4;
+}
+
+.page-title a {
+    color: var(--heading);
+    text-decoration: none;
+    transition: color 0.2s var(--ease);
+}
+
+.page-title a:hover {
+    color: var(--primary);
+}
+
+.page-excerpt {
+    font-size: 0.9375rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: var(--space-4);
+    flex: 1;
+}
+
+.page-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition: gap 0.2s var(--ease);
+    margin-top: auto;
+}
+
+.page-read-more:hover {
+    gap: var(--space-3);
+}
+
+.page-read-more svg {
+    transition: transform 0.2s var(--ease);
+    transform: rotate(180deg);
+}
+
+.page-read-more:hover svg {
+    transform: rotate(180deg) translateX(-2px);
+}
+
+/* ==========================================================================
+   No Pages State
+   ========================================================================== */
+
+.category-no-pages {
+    text-align: center;
+    padding: var(--space-16) var(--space-8);
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    border: 2px dashed var(--border);
+    margin-bottom: var(--space-8);
+}
+
+.category-no-pages svg {
+    margin: 0 auto var(--space-6);
+    opacity: 0.5;
+}
+
+.category-no-pages p {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    margin-bottom: var(--space-6);
+}
+
+.category-no-pages .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
+    background: var(--primary);
+    color: white;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s var(--ease);
+}
+
+.category-no-pages .btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+/* Mobile Optimization */
+@media (max-width: 640px) {
+    .category-page-main {
+        padding: var(--space-6) 0;
+    }
+    
+    .category-header {
+        margin-bottom: var(--space-8);
+        padding-bottom: var(--space-6);
+    }
+    
+    .category-title {
+        font-size: 1.75rem;
+    }
+    
+    .category-description {
+        font-size: 1rem;
+    }
+    
+    .category-pages-grid {
+        gap: var(--space-5);
+    }
+    
+    .page-content {
+        padding: var(--space-5);
+    }
+    
+    .page-title {
+        font-size: 1.125rem;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .category-pages-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-6);
+    }
+}
+
+/* ==========================================================================
+   Dark Mode Support
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+    .page-thumbnail-placeholder {
+        background: linear-gradient(135deg, var(--bg-secondary) 0%, rgba(255, 255, 255, 0.05) 100%);
+    }
+}
+
+/* ==========================================================================
+   Print Styles
+   ========================================================================== */
+
+@media print {
+    .category-page-main {
+        padding: 0;
+    }
+    
+    .page-read-more {
+        display: none;
+    }
+    
+    .category-pages-grid {
+        display: block;
+    }
+    
+    .category-page-item {
+        break-inside: avoid;
+        margin-bottom: 1rem;
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    .page-thumbnail {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   Accessibility
+   ========================================================================== */
+
+.category-page-item:focus-within {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.page-title a:focus,
+.page-read-more:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .category-page-item,
+    .page-thumbnail img,
+    .page-title a,
+    .page-read-more,
+    .page-read-more svg {
+        transition: none;
+    }
+    
+    .category-page-item:hover {
+        transform: none;
+    }
+    
+    .category-page-item:hover .page-thumbnail img {
+        transform: none;
+    }
+}
+

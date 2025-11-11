@@ -167,7 +167,7 @@ function d_theme_enqueue_assets() {
             $theme_version
         );
     }
-
+    
     // 8. Category CSS for category page template
     if (is_page_template('page-category.php')) {
         wp_enqueue_style(
@@ -177,7 +177,7 @@ function d_theme_enqueue_assets() {
             $theme_version
         );
     }
-    
+
     // 9. TOC CSS (for single posts and pages with TOC)
     if (is_singular()) {
         if (d_theme_needs_toc()) {
@@ -234,17 +234,7 @@ function d_theme_enqueue_assets() {
         );
     }
     
-    // 14. Taxonomy CSS
-    if (is_tax('page_category')) {
-        wp_enqueue_style(
-            'd-theme-taxonomy',
-            $template_uri . '/assets/css/taxonomy.css',
-            array('d-theme-main'),
-            $theme_version
-        );
-    }
-    
-    // 15. Comments CSS
+    // 14. Comments CSS
     if (is_singular() && (comments_open() || get_comments_number())) {
         wp_enqueue_style(
             'd-theme-comments',
@@ -369,9 +359,6 @@ require get_template_directory() . '/inc/helpers/svg-support.php';
 require get_template_directory() . '/inc/helpers/performance.php';
 require get_template_directory() . '/inc/helpers/toc-helper.php';
 require get_template_directory() . '/inc/helpers/seo-helper.php';
-
-// Taxonomies
-require get_template_directory() . '/inc/taxonomies/page-category.php';
 
 // Metaboxes
 require get_template_directory() . '/inc/metaboxes/faq-metabox.php';
@@ -698,15 +685,8 @@ function d_theme_breadcrumb() {
     // خانه
     $breadcrumb_items[] = '<a href="' . esc_url(home_url('/')) . '">خانه</a>';
     
-    // Taxonomy archive
-    if (is_tax('page_category')) {
-        $term = get_queried_object();
-        if ($term) {
-            $breadcrumb_items[] = '<span class="breadcrumb-current">' . esc_html($term->name) . '</span>';
-        }
-    }
     // Category archive
-    elseif (is_category()) {
+    if (is_category()) {
         $category = get_queried_object();
         if ($category) {
             $breadcrumb_items[] = '<span class="breadcrumb-current">' . esc_html($category->name) . '</span>';
@@ -763,14 +743,6 @@ function d_theme_breadcrumb() {
         echo '<a href="' . esc_url(home_url('/')) . '">خانه</a>';
         echo '</nav>';
     }
-}
-
-/**
- * Check if current page is a category page template
- */
-
-function is_category_page() {
-    return is_page_template('page-category.php');
 }
 
 /**
@@ -854,4 +826,21 @@ function d_theme_before_footer() {
 function d_theme_after_footer() {
     do_action('d_theme_after_footer');
 }
+
+/**
+ * ==========================================
+ * 🔟 Save Phone Number in Comments
+ * ==========================================
+ */
+
+/**
+ * Save phone number to comment meta
+ */
+function d_theme_save_comment_phone($comment_id) {
+    if (isset($_POST['phone']) && !empty($_POST['phone'])) {
+        $phone = sanitize_text_field($_POST['phone']);
+        add_comment_meta($comment_id, 'phone', $phone);
+    }
+}
+add_action('comment_post', 'd_theme_save_comment_phone');
 

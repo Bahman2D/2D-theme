@@ -31,7 +31,7 @@ D-theme/
 │   │   ├── header.css          # هدر
 │   │   ├── footer.css          # فوتر
 │   │   ├── hero.css            # Hero slider
-│   │   ├── taxonomy.css        # [جدید] Taxonomy pages
+│   │   ├── category.css        # [جدید] دسته‌بندی صفحات
 │   │   ├── alloy.css           # [جدید] آلیاژها
 │   │   ├── blog.css            # [جدید] بلاگ
 │   │   ├── single.css          # [جدید] نوشته‌ها
@@ -68,8 +68,6 @@ D-theme/
 │   ├── metaboxes/              # متاباکس‌ها
 │   │   ├── faq-metabox.php     # [جدید] متاباکس FAQ
 │   │   └── alloy-metabox.php   # [جدید] متاباکس آلیاژ
-│   ├── taxonomies/             # [جدید] Taxonomy ها
-│   │   └── page-category.php   # Taxonomy صفحات
 │   └── persian-date.php        # تاریخ شمسی
 ├── template-parts/             # بخش‌های تمپلیت
 │   ├── home/
@@ -87,7 +85,7 @@ D-theme/
 ├── single.php                  # [جدید] تمپلیت نوشته‌ها
 ├── page-blog.php               # [جدید] تمپلیت بلاگ
 ├── page-alloy.php              # [جدید] تمپلیت آلیاژها
-├── taxonomy-page_category.php  # [جدید] تمپلیت کتگوری صفحات
+├── page-category.php           # [جدید] تمپلیت دسته‌بندی صفحات
 ├── comments.php                # [جدید] کامنت‌ها
 └── AI-GUIDE.md                 # همین فایل!
 ```
@@ -128,7 +126,7 @@ D-theme/
 - `single.php` - تمپلیت نوشته‌ها با TOC و FAQ
 - `page-blog.php` - تمپلیت بلاگ
 - `page-alloy.php` - تمپلیت آلیاژها
-- `taxonomy-page_category.php` - تمپلیت کتگوری صفحات
+- `page-category.php` - تمپلیت دسته‌بندی صفحات (Parent Pages)
 - `comments.php` - سیستم کامنت سفارشی
 
 #### نیاز به ساخت (اختیاری):
@@ -267,11 +265,6 @@ d_theme_add_schema_markup($post, $type);
 }
 ```
 
-### Taxonomy
-- **Prefix**: `page_category` برای taxonomy صفحات
-- **Slug**: `page-cat`
-- **Hierarchical**: بله (سلسله مراتبی)
-
 ### Metabox Fields
 - **Prefix**: `d_theme_` برای فیلدهای سفارشی
 - مثال: `d_theme_faq_items`, `d_theme_alloy_specs`
@@ -388,7 +381,6 @@ wp_nonce_field('action_name', 'nonce_field_name');
 - **صفحه**: WebPage
 - **آلیاژ**: Product
 - **بلاگ**: Blog + ItemList
-- **کتگوری**: CollectionPage
 - **FAQ**: FAQPage (در صورت وجود)
 - **Breadcrumb**: BreadcrumbList (همه صفحات)
 - **Comments**: Comment (در صورت وجود)
@@ -498,25 +490,61 @@ if (!empty($faqs)) {
 ?>
 ```
 
-## 🏗️ ساخت Taxonomy برای صفحات
+## 📁 دسته‌بندی صفحات با Parent-Child
 
-### ثبت Taxonomy:
-```php
-register_taxonomy('page_category', 'page', [
-    'hierarchical' => true,
-    'label' => 'دسته‌بندی صفحات',
-    'show_in_rest' => true,
-    'rewrite' => ['slug' => 'page-cat'],
-]);
+### ساختار سلسله مراتبی صفحات
+
+به جای استفاده از Taxonomy، از سیستم Parent-Child صفحات وردپرس استفاده می‌شود:
+
+### نحوه استفاده:
+
+1. **ساخت صفحه والد (Parent Page)**:
+   - یک صفحه جدید بسازید (مثلاً "آلیاژها")
+   - Template را روی "دسته‌بندی صفحات" تنظیم کنید
+   - محتوای توضیحات را بنویسید
+
+2. **ساخت زیرصفحات (Child Pages)**:
+   - صفحات جدید بسازید (مثلاً "آلیاژ 304")
+   - در قسمت Page Attributes، Parent را روی صفحه والد تنظیم کنید
+   - تصویر شاخص و محتوا را اضافه کنید
+
+### ویژگی‌ها:
+- نمایش خودکار زیرصفحات در Grid layout
+- مرتب‌سازی بر اساس Menu Order
+- پشتیبانی از تصویر شاخص
+- TOC برای محتوای طولانی
+- FAQ Section
+- Schema Markup (CollectionPage + ItemList)
+- Breadcrumb کامل
+- Responsive design
+
+### مثال ساختار:
+
+```
+آلیاژها (Parent - با تمپلیت page-category.php)
+├── آلیاژ 304 (Child)
+├── آلیاژ 316 (Child)
+├── آلیاژ 430 (Child)
+└── آلیاژ 201 (Child)
 ```
 
-### استفاده:
-```php
-// گرفتن دسته‌های یک صفحه
-$terms = get_the_terms($post->ID, 'page_category');
+### کد نمونه:
 
-// نمایش صفحات یک دسته
-// از taxonomy-page_category.php استفاده می‌شود
+```php
+// دریافت زیرصفحات یک صفحه
+$child_pages = new WP_Query(array(
+    'post_type'      => 'page',
+    'post_parent'    => get_the_ID(),
+    'posts_per_page' => -1,
+    'orderby'        => 'menu_order title',
+    'order'          => 'ASC',
+));
+
+// نمایش
+while ($child_pages->have_posts()) : $child_pages->the_post();
+    the_title();
+    the_permalink();
+endwhile;
 ```
 
 ## 💬 سیستم Comments
@@ -623,30 +651,28 @@ if (comments_open() || get_comments_number()) {
 5. رفع باگ hero customizer
 
 ### ✅ در حال انجام (2025-01-06):
-1. اضافه کردن taxonomy برای صفحات
-2. ساخت تمپلیت‌های کامل با TOC و FAQ
-3. سیستم SEO جامع
-4. Schema markup برای همه صفحات
-5. کامپوننت‌های قابل استفاده مجدد
+1. ساخت تمپلیت‌های کامل با TOC و FAQ
+2. سیستم SEO جامع
+3. Schema markup برای همه صفحات
+4. کامپوننت‌های قابل استفاده مجدد
 
 ### 📝 فایل‌های جدید:
 
 **PHP**:
-- `inc/taxonomies/page-category.php` - Taxonomy صفحات
 - `inc/helpers/toc-helper.php` - فهرست مطالب
 - `inc/helpers/seo-helper.php` - SEO helpers
 - `inc/metaboxes/faq-metabox.php` - متاباکس FAQ
 - `inc/metaboxes/alloy-metabox.php` - متاباکس آلیاژ
 - `template-parts/components/toc.php` - کامپوننت TOC
 - `template-parts/components/faq.php` - کامپوننت FAQ
-- `taxonomy-page_category.php` - تمپلیت کتگوری
 - `page-alloy.php` - تمپلیت آلیاژها
 - `page-blog.php` - تمپلیت بلاگ
+- `page-category.php` - تمپلیت دسته‌بندی صفحات
 - `single.php` - تمپلیت نوشته‌ها
 - `comments.php` - سیستم کامنت
 
 **CSS**:
-- `assets/css/taxonomy.css`
+- `assets/css/category.css`
 - `assets/css/alloy.css`
 - `assets/css/blog.css`
 - `assets/css/single.css`
