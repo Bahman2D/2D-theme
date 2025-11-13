@@ -244,6 +244,24 @@ function d_theme_enqueue_assets() {
         );
     }
 
+    // 15. Alloy Selector Wizard CSS & JS
+    if (is_page_template('page-alloy-selector.php')) {
+        wp_enqueue_style(
+            'd-theme-alloy-selector-wizard',
+            $template_uri . '/assets/css/alloy-selector-wizard.css',
+            array('d-theme-main'),
+            $theme_version
+        );
+        
+        wp_enqueue_script(
+            'd-theme-alloy-selector-wizard',
+            $template_uri . '/assets/js/alloy-selector-wizard.js',
+            array(),
+            $theme_version,
+            true
+        );
+    }
+
     // ========== JavaScript Files ==========
     
     // 1. Main Script
@@ -329,6 +347,14 @@ function d_theme_enqueue_assets() {
         'themeUrl' => $template_uri,
         'homeUrl' => home_url('/'),
     ));
+    
+    // Localize alloy selector wizard data
+    if (is_page_template('page-alloy-selector.php')) {
+        wp_localize_script('d-theme-alloy-selector-wizard', 'alloyWizardData', array(
+            'databaseUrl' => $template_uri . '/assets/data/steel_alloys_database.json',
+            'homeUrl'     => home_url('/'),
+        ));
+    }
 }
 add_action('wp_enqueue_scripts', 'd_theme_enqueue_assets');
 

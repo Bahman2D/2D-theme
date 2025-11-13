@@ -20,7 +20,7 @@
   font-size: var(--text-base);
   font-weight: var(--font-bold);
   font-family: inherit;
-  border: none;
+  border: 2px solid transparent;
   cursor: pointer;
   text-decoration: none;
   transition: all var(--duration-base) var(--ease-out);
@@ -29,8 +29,7 @@
 }
 
 .btn:focus {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
+  outline: none;
 }
 
 .btn-primary {
@@ -39,19 +38,20 @@
 }
 
 .btn-primary:hover {
-  filter: brightness(1.1);
+  border-color: var(--primary);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-primary);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-secondary {
-  background: var(--secondary);
-  color: white;
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
 }
 
 .btn-secondary:hover {
-  filter: brightness(1.1);
   transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-accent {

@@ -1,0 +1,3260 @@
+{
+  "database_info": {
+    "title": "پایگاه داده آلیاژهای فولادی - Eghbali Steel",
+    "version": "1.0",
+    "date_created": "2025-11-11",
+    "total_alloys": 41,
+    "categories": [
+      "Bearing Steel",
+      "Tool Steel",
+      "Spring Steel",
+      "Structural Steel",
+      "Nitriding Steel",
+      "Heat Resistant Steel",
+      "Case Hardening Steel"
+    ],
+    "missing_alloys": ["1.2007", "1.7791"],
+    "notes": "Data compiled from EN/DIN standards, manufacturer datasheets, and authoritative materials databases"
+  },
+  "alloys": [
+    {
+      "id": 1,
+      "material_number": "1.3505",
+      "name_en": "100Cr6",
+      "name_fa": "فولاد بلبرینگ 100Cr6",
+      "category": "Bearing Steel",
+      "category_fa": "فولاد بلبرینگ",
+      "mechanical_properties": {
+        "hardness_hrc_min": 60,
+        "hardness_hrc_max": 66,
+        "hardness_grade": "Very High",
+        "hardenability": "Shallow (17mm)",
+        "hardenability_rating": "Shallow",
+        "wear_resistance": 8,
+        "toughness_rating": 6,
+        "impact_resistance_joules": 25,
+        "tensile_strength_min": 600,
+        "tensile_strength_max": 1470,
+        "yield_strength_min": null,
+        "elongation_percent": null,
+        "fracture_toughness": "Medium",
+        "fatigue_strength": "Excellent"
+      },
+      "temperature_performance": {
+        "temp_range_min": -50,
+        "temp_range_max": 150,
+        "creep_resistance": "Poor",
+        "heat_resistance": "Moderate - limited to 150°C",
+        "cryogenic_service": true
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 3,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Limited",
+        "suitable_environments": ["indoor", "oil-lubricated"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 40,
+        "weldability": "Poor",
+        "formability": "Medium",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Moderate",
+        "heat_treatment_details": "Harden: 830-870°C oil quench, Temper: 150-180°C",
+        "distortion_tendency": "Low"
+      },
+      "standards": {
+        "sae_aisi": "52100",
+        "iso_standard": "ISO 683-17 Group 1",
+        "din_en": "EN 100Cr6",
+        "astm": "ASTM A295",
+        "trade_names": ["EN31", "SUJ2", "GCr15", "Ovako 803"]
+      },
+      "applications": {
+        "application_categories": ["bearing", "precision"],
+        "load_types": ["rolling", "cyclic"],
+        "primary_uses": "بلبرینگ‌های غلتشی و گلوله‌ای، اجزای دقیق صنعتی",
+        "primary_uses_en": "Ball and roller bearings, precision mechanical components",
+        "success_stories": "Aircraft bearings, automotive bearings, precision machinery",
+        "common_components": ["Bearing rings", "Balls", "Rollers", "CV joint components"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["nitriding", "coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Good"
+      },
+      "physical_properties": {
+        "density": 7.8,
+        "thermal_conductivity": 45,
+        "thermal_expansion": 13,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Standard",
+        "cost_multiplier": 2.4,
+        "availability": "Excellent",
+        "availability_rating": 10,
+        "lead_time_days": 7
+      }
+    },
+    {
+      "id": 2,
+      "material_number": "1.3520",
+      "name_en": "100Cr6",
+      "name_fa": "فولاد بلبرینگ 100Cr6 (گرید خاص)",
+      "category": "Bearing Steel",
+      "category_fa": "فولاد بلبرینگ",
+      "mechanical_properties": {
+        "hardness_hrc_min": 60,
+        "hardness_hrc_max": 65,
+        "hardness_grade": "Very High",
+        "hardenability": "Shallow (20mm)",
+        "hardenability_rating": "Shallow",
+        "wear_resistance": 8,
+        "toughness_rating": 6,
+        "impact_resistance_joules": 28,
+        "tensile_strength_min": 650,
+        "tensile_strength_max": 1400,
+        "yield_strength_min": null,
+        "elongation_percent": null,
+        "fracture_toughness": "Medium",
+        "fatigue_strength": "Excellent"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 200,
+        "creep_resistance": "Poor",
+        "heat_resistance": "Moderate - up to 200°C",
+        "cryogenic_service": true
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 3,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Limited",
+        "suitable_environments": ["indoor", "oil-lubricated"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 42,
+        "weldability": "Poor",
+        "formability": "Medium",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Moderate",
+        "heat_treatment_details": "Harden: 820-860°C, Temper: 160-200°C",
+        "distortion_tendency": "Low"
+      },
+      "standards": {
+        "sae_aisi": "52100",
+        "iso_standard": "ISO 683-17",
+        "din_en": "EN 100Cr6",
+        "astm": "ASTM A295",
+        "trade_names": ["EN31", "SUJ2"]
+      },
+      "applications": {
+        "application_categories": ["bearing", "precision"],
+        "load_types": ["rolling", "cyclic"],
+        "primary_uses": "بلبرینگ‌های سنگین، اجزای دقیق با بار بالا",
+        "primary_uses_en": "Heavy-duty bearings, precision components under high loads",
+        "success_stories": "Industrial machinery bearings, automotive transmission bearings",
+        "common_components": ["Heavy-duty bearing rings", "Large diameter bearings"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Good"
+      },
+      "physical_properties": {
+        "density": 7.81,
+        "thermal_conductivity": 46,
+        "thermal_expansion": 13,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Standard",
+        "cost_multiplier": 2.5,
+        "availability": "Good",
+        "availability_rating": 8,
+        "lead_time_days": 10
+      }
+    },
+    {
+      "id": 3,
+      "material_number": "1.3539",
+      "name_en": "100CrMnMoSi8-4-6",
+      "name_fa": "فولاد بلبرینگ 100CrMnMoSi8-4-6",
+      "category": "Bearing Steel",
+      "category_fa": "فولاد بلبرینگ",
+      "mechanical_properties": {
+        "hardness_hrc_min": 58,
+        "hardness_hrc_max": 64,
+        "hardness_grade": "Very High",
+        "hardenability": "Very Deep (75mm through-hardening)",
+        "hardenability_rating": "Very Deep",
+        "wear_resistance": 9,
+        "toughness_rating": 7,
+        "impact_resistance_joules": 35,
+        "tensile_strength_min": 800,
+        "tensile_strength_max": 1600,
+        "yield_strength_min": 650,
+        "elongation_percent": 10,
+        "fracture_toughness": "High",
+        "fatigue_strength": "Excellent"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 250,
+        "creep_resistance": "Fair",
+        "heat_resistance": "Good - up to 250°C",
+        "cryogenic_service": true
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 4,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Fair",
+        "suitable_environments": ["indoor", "industrial"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 45,
+        "weldability": "Poor",
+        "formability": "Medium",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Moderate",
+        "heat_treatment_details": "Through-harden: 840-880°C oil, Temper: 180-220°C",
+        "distortion_tendency": "Medium"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 683-17",
+        "din_en": "EN 100CrMnMoSi8-4-6",
+        "astm": null,
+        "trade_names": ["Ovako 825"]
+      },
+      "applications": {
+        "application_categories": ["bearing", "heavy-duty"],
+        "load_types": ["rolling", "impact", "cyclic"],
+        "primary_uses": "بلبرینگ‌های قطر بزرگ، اجزای با سختی‌پذیری عمیق",
+        "primary_uses_en": "Large section bearings, through-hardened components, heavy machinery",
+        "success_stories": "Wind turbine bearings, mining equipment, steel mill bearings",
+        "common_components": ["Large diameter bearing rings", "Heavy-duty rollers"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Fair"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 42,
+        "thermal_expansion": 13.5,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Premium",
+        "cost_multiplier": 3.2,
+        "availability": "Available",
+        "availability_rating": 7,
+        "lead_time_days": 14
+      }
+    },
+    {
+      "id": 4,
+      "material_number": "1.2067",
+      "name_en": "102Cr6",
+      "name_fa": "فولاد ابزار 102Cr6",
+      "category": "Tool Steel",
+      "category_fa": "فولاد ابزار",
+      "mechanical_properties": {
+        "hardness_hrc_min": 60,
+        "hardness_hrc_max": 63,
+        "hardness_grade": "Very High",
+        "hardenability": "Medium",
+        "hardenability_rating": "Medium",
+        "wear_resistance": 8,
+        "toughness_rating": 5,
+        "impact_resistance_joules": 20,
+        "tensile_strength_min": 750,
+        "tensile_strength_max": 1500,
+        "yield_strength_min": null,
+        "elongation_percent": 8,
+        "fracture_toughness": "Medium",
+        "fatigue_strength": "Good"
+      },
+      "temperature_performance": {
+        "temp_range_min": -20,
+        "temp_range_max": 200,
+        "creep_resistance": "Poor",
+        "heat_resistance": "Limited - up to 200°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 3,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Limited",
+        "suitable_environments": ["indoor"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 50,
+        "weldability": "Poor",
+        "formability": "Low",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Moderate",
+        "heat_treatment_details": "Harden: 820-860°C oil, Temper: 150-200°C",
+        "distortion_tendency": "Medium"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 4957",
+        "din_en": "EN 102Cr6",
+        "astm": null,
+        "trade_names": []
+      },
+      "applications": {
+        "application_categories": ["tool", "precision"],
+        "load_types": ["static", "cyclic"],
+        "primary_uses": "ابزار دقیق، قالب‌های سرد، اجزای مقاوم به سایش",
+        "primary_uses_en": "Precision tools, cold work dies, wear-resistant components",
+        "success_stories": "Measuring tools, gauges, cold forming dies",
+        "common_components": ["Dies", "Punches", "Gauges", "Precision tools"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["nitriding", "coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Good"
+      },
+      "physical_properties": {
+        "density": 7.8,
+        "thermal_conductivity": 46,
+        "thermal_expansion": 13,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Standard",
+        "cost_multiplier": 2.6,
+        "availability": "Good",
+        "availability_rating": 8,
+        "lead_time_days": 10
+      }
+    },
+    {
+      "id": 5,
+      "material_number": "1.2063",
+      "name_en": "145Cr6",
+      "name_fa": "فولاد ابزار 145Cr6",
+      "category": "Tool Steel",
+      "category_fa": "فولاد ابزار",
+      "mechanical_properties": {
+        "hardness_hrc_min": 61,
+        "hardness_hrc_max": 64,
+        "hardness_grade": "Very High",
+        "hardenability": "Shallow",
+        "hardenability_rating": "Shallow",
+        "wear_resistance": 9,
+        "toughness_rating": 4,
+        "impact_resistance_joules": 15,
+        "tensile_strength_min": 800,
+        "tensile_strength_max": 1600,
+        "yield_strength_min": null,
+        "elongation_percent": 6,
+        "fracture_toughness": "Low",
+        "fatigue_strength": "Good"
+      },
+      "temperature_performance": {
+        "temp_range_min": -20,
+        "temp_range_max": 200,
+        "creep_resistance": "Poor",
+        "heat_resistance": "Limited - up to 200°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 3,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Limited",
+        "suitable_environments": ["indoor"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 48,
+        "weldability": "Very Poor",
+        "formability": "Low",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Moderate",
+        "heat_treatment_details": "Harden: 810-850°C oil, Temper: 150-180°C",
+        "distortion_tendency": "Low"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 4957",
+        "din_en": "EN 145Cr6",
+        "astm": null,
+        "trade_names": []
+      },
+      "applications": {
+        "application_categories": ["tool", "wear-resistant"],
+        "load_types": ["static", "abrasive"],
+        "primary_uses": "قالب‌های سرد، ابزار برش، اجزای مقاوم به سایش شدید",
+        "primary_uses_en": "Cold work dies, cutting tools, severe wear components",
+        "success_stories": "Stamping dies, thread rolling dies, cutting blades",
+        "common_components": ["Punches", "Dies", "Cutting blades", "Thread rollers"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Fair"
+      },
+      "physical_properties": {
+        "density": 7.8,
+        "thermal_conductivity": 43,
+        "thermal_expansion": 13,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Standard",
+        "cost_multiplier": 2.7,
+        "availability": "Available",
+        "availability_rating": 7,
+        "lead_time_days": 12
+      }
+    },
+    {
+      "id": 6,
+      "material_number": "1.7176",
+      "name_en": "55Cr3",
+      "name_fa": "فولاد فنر 55Cr3",
+      "category": "Spring Steel",
+      "category_fa": "فولاد فنر",
+      "mechanical_properties": {
+        "hardness_hrc_min": 42,
+        "hardness_hrc_max": 52,
+        "hardness_grade": "High",
+        "hardenability": "Medium",
+        "hardenability_rating": "Medium",
+        "wear_resistance": 6,
+        "toughness_rating": 7,
+        "impact_resistance_joules": 40,
+        "tensile_strength_min": 1200,
+        "tensile_strength_max": 1600,
+        "yield_strength_min": 1000,
+        "elongation_percent": 7,
+        "fracture_toughness": "Medium",
+        "fatigue_strength": "Excellent"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 250,
+        "creep_resistance": "Fair",
+        "heat_resistance": "Moderate - up to 250°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 3,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Limited",
+        "suitable_environments": ["indoor", "automotive"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 55,
+        "weldability": "Fair",
+        "formability": "Good",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Simple",
+        "heat_treatment_details": "Harden: 850-880°C oil, Temper: 400-500°C",
+        "distortion_tendency": "Medium"
+      },
+      "standards": {
+        "sae_aisi": "5155",
+        "iso_standard": "ISO 683-14",
+        "din_en": "EN 55Cr3",
+        "astm": "ASTM A689",
+        "trade_names": ["SAE 5155"]
+      },
+      "applications": {
+        "application_categories": ["spring", "automotive"],
+        "load_types": ["cyclic", "dynamic"],
+        "primary_uses": "فنرهای خودرو، فنرهای صنعتی، قطعات الاستیک",
+        "primary_uses_en": "Automotive springs, industrial springs, elastic components",
+        "success_stories": "Vehicle suspension springs, valve springs, clutch springs",
+        "common_components": ["Leaf springs", "Coil springs", "Torsion bars"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["shot-peening", "coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Good"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 42,
+        "thermal_expansion": 12,
+        "youngs_modulus": 205
+      },
+      "economic_data": {
+        "cost_relative": "Standard",
+        "cost_multiplier": 2.0,
+        "availability": "Excellent",
+        "availability_rating": 9,
+        "lead_time_days": 7
+      }
+    },
+    {
+      "id": 7,
+      "material_number": "1.8519",
+      "name_en": "31CrMoV9",
+      "name_fa": "فولاد نیتروژن‌دار 31CrMoV9",
+      "category": "Nitriding Steel",
+      "category_fa": "فولاد نیتروژن‌دار",
+      "mechanical_properties": {
+        "hardness_hrc_min": 30,
+        "hardness_hrc_max": 38,
+        "hardness_grade": "Medium (Core)",
+        "hardenability": "Deep",
+        "hardenability_rating": "Deep",
+        "wear_resistance": 9,
+        "toughness_rating": 7,
+        "impact_resistance_joules": 60,
+        "tensile_strength_min": 900,
+        "tensile_strength_max": 1200,
+        "yield_strength_min": 750,
+        "elongation_percent": 12,
+        "fracture_toughness": "High",
+        "fatigue_strength": "Excellent"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 450,
+        "creep_resistance": "Good",
+        "heat_resistance": "Good - up to 450°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 5,
+        "corrosion_types": ["uniform", "pitting"],
+        "oxidation_resistance": "Good",
+        "suitable_environments": ["indoor", "industrial", "automotive"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 60,
+        "weldability": "Fair",
+        "formability": "Good",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Complex",
+        "heat_treatment_details": "Quench & temper, then nitride: 500-540°C for 10-90 hours",
+        "distortion_tendency": "Low (after nitriding)"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 683-5",
+        "din_en": "EN 31CrMoV9",
+        "astm": null,
+        "trade_names": ["34CrAlMo5", "32CrMoV12-10"]
+      },
+      "applications": {
+        "application_categories": ["nitriding", "gear", "automotive"],
+        "load_types": ["cyclic", "impact", "wear"],
+        "primary_uses": "چرخ‌دنده‌های نیتروژن‌شده، شفت‌های توربین، قطعات با سختی سطحی بالا",
+        "primary_uses_en": "Nitrided gears, turbine shafts, high-wear surface components",
+        "success_stories": "Power generation turbine components, automotive gearboxes, aerospace fasteners",
+        "common_components": ["Gears", "Shafts", "Crankshafts", "Turbine blades"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["nitriding"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Excellent (950-1100 HV surface)"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 38,
+        "thermal_expansion": 12.5,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Premium",
+        "cost_multiplier": 3.5,
+        "availability": "Available",
+        "availability_rating": 7,
+        "lead_time_days": 15
+      }
+    },
+    {
+      "id": 8,
+      "material_number": "1.7707",
+      "name_en": "30CrMoV9",
+      "name_fa": "فولاد نیتروژن‌دار 30CrMoV9",
+      "category": "Nitriding Steel",
+      "category_fa": "فولاد نیتروژن‌دار",
+      "mechanical_properties": {
+        "hardness_hrc_min": 28,
+        "hardness_hrc_max": 36,
+        "hardness_grade": "Medium (Core)",
+        "hardenability": "Deep",
+        "hardenability_rating": "Deep",
+        "wear_resistance": 8,
+        "toughness_rating": 8,
+        "impact_resistance_joules": 65,
+        "tensile_strength_min": 850,
+        "tensile_strength_max": 1150,
+        "yield_strength_min": 700,
+        "elongation_percent": 13,
+        "fracture_toughness": "High",
+        "fatigue_strength": "Excellent"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 500,
+        "creep_resistance": "Excellent",
+        "heat_resistance": "Excellent - up to 500°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 5,
+        "corrosion_types": ["uniform", "pitting"],
+        "oxidation_resistance": "Good",
+        "suitable_environments": ["industrial", "high-temperature"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 58,
+        "weldability": "Fair",
+        "formability": "Good",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Complex",
+        "heat_treatment_details": "Q&T: 920°C oil/water, Temper: 550-650°C, Nitride: 500-540°C",
+        "distortion_tendency": "Low"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 683-5",
+        "din_en": "EN 30CrMoV9",
+        "astm": null,
+        "trade_names": ["31CrMoV9"]
+      },
+      "applications": {
+        "application_categories": ["nitriding", "turbine", "power-generation"],
+        "load_types": ["cyclic", "high-temperature", "creep"],
+        "primary_uses": "پره‌های توربین، قطعات دمای بالا، شفت‌های نیتروژن‌شده",
+        "primary_uses_en": "Turbine blades, high-temperature components, nitrided shafts",
+        "success_stories": "Steam turbine rotors, gas turbine components, power plant equipment",
+        "common_components": ["Turbine blades", "Rotors", "High-temp fasteners"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["nitriding"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Excellent (900-1000 HV surface)"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 39,
+        "thermal_expansion": 12.3,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Premium",
+        "cost_multiplier": 3.4,
+        "availability": "Available",
+        "availability_rating": 7,
+        "lead_time_days": 15
+      }
+    },
+    {
+      "id": 9,
+      "material_number": "1.8159",
+      "name_en": "51CrV4",
+      "name_fa": "فولاد فنر 51CrV4",
+      "category": "Spring Steel",
+      "category_fa": "فولاد فنر",
+      "mechanical_properties": {
+        "hardness_hrc_min": 45,
+        "hardness_hrc_max": 52,
+        "hardness_grade": "High",
+        "hardenability": "Medium",
+        "hardenability_rating": "Medium",
+        "wear_resistance": 7,
+        "toughness_rating": 7,
+        "impact_resistance_joules": 45,
+        "tensile_strength_min": 1300,
+        "tensile_strength_max": 1700,
+        "yield_strength_min": 1100,
+        "elongation_percent": 8,
+        "fracture_toughness": "Medium",
+        "fatigue_strength": "Excellent"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 300,
+        "creep_resistance": "Fair",
+        "heat_resistance": "Good - up to 300°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 3,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Fair",
+        "suitable_environments": ["indoor", "automotive"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 52,
+        "weldability": "Fair",
+        "formability": "Good",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Simple",
+        "heat_treatment_details": "Harden: 870-910°C oil, Temper: 380-500°C",
+        "distortion_tendency": "Medium"
+      },
+      "standards": {
+        "sae_aisi": "6150",
+        "iso_standard": "ISO 683-14",
+        "din_en": "EN 51CrV4",
+        "astm": "ASTM A689",
+        "trade_names": ["SAE 6150"]
+      },
+      "applications": {
+        "application_categories": ["spring", "automotive", "heavy-duty"],
+        "load_types": ["cyclic", "dynamic", "impact"],
+        "primary_uses": "فنرهای سنگین، میل لنگ، قطعات فنری با بار بالا",
+        "primary_uses_en": "Heavy-duty springs, crankshafts, high-load spring components",
+        "success_stories": "Truck suspension springs, valve springs, torsion bars",
+        "common_components": ["Leaf springs", "Coil springs", "Stabilizer bars", "Crankshafts"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["shot-peening", "nitriding", "coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Good"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 41,
+        "thermal_expansion": 12.2,
+        "youngs_modulus": 206
+      },
+      "economic_data": {
+        "cost_relative": "Standard",
+        "cost_multiplier": 2.3,
+        "availability": "Excellent",
+        "availability_rating": 9,
+        "lead_time_days": 7
+      }
+    },
+    {
+      "id": 10,
+      "material_number": "1.1248",
+      "name_en": "C75S",
+      "name_fa": "فولاد کربنی فنری C75S",
+      "category": "Spring Steel",
+      "category_fa": "فولاد فنر",
+      "mechanical_properties": {
+        "hardness_hrc_min": 40,
+        "hardness_hrc_max": 50,
+        "hardness_grade": "High",
+        "hardenability": "Shallow",
+        "hardenability_rating": "Shallow",
+        "wear_resistance": 5,
+        "toughness_rating": 6,
+        "impact_resistance_joules": 30,
+        "tensile_strength_min": 1100,
+        "tensile_strength_max": 1500,
+        "yield_strength_min": 900,
+        "elongation_percent": 9,
+        "fracture_toughness": "Medium",
+        "fatigue_strength": "Good"
+      },
+      "temperature_performance": {
+        "temp_range_min": -30,
+        "temp_range_max": 200,
+        "creep_resistance": "Poor",
+        "heat_resistance": "Limited - up to 200°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 2,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Poor",
+        "suitable_environments": ["indoor"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 50,
+        "weldability": "Poor",
+        "formability": "Good",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Simple",
+        "heat_treatment_details": "Harden: 800-850°C water/oil, Temper: 350-500°C",
+        "distortion_tendency": "High"
+      },
+      "standards": {
+        "sae_aisi": "1075",
+        "iso_standard": "ISO 683-14",
+        "din_en": "EN C75S",
+        "astm": "ASTM A682",
+        "trade_names": ["C75", "Ck75"]
+      },
+      "applications": {
+        "application_categories": ["spring", "agricultural", "general"],
+        "load_types": ["cyclic", "static"],
+        "primary_uses": "فنرهای سبک، تیغه‌های فنری، قطعات کشاورزی",
+        "primary_uses_en": "Light springs, spring blades, agricultural components",
+        "success_stories": "Agricultural equipment springs, light vehicle springs, hand tools",
+        "common_components": ["Light coil springs", "Flat springs", "Spring washers"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["shot-peening", "coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Fair"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 49,
+        "thermal_expansion": 11.5,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Budget",
+        "cost_multiplier": 1.2,
+        "availability": "Excellent",
+        "availability_rating": 10,
+        "lead_time_days": 3
+      }
+    },
+    {
+      "id": 11,
+      "material_number": "1.1221",
+      "name_en": "C60E",
+      "name_fa": "فولاد کربنی C60E",
+      "category": "Structural Steel",
+      "category_fa": "فولاد ساختاری",
+      "mechanical_properties": {
+        "hardness_hrc_min": 20,
+        "hardness_hrc_max": 45,
+        "hardness_grade": "Medium-High",
+        "hardenability": "Shallow",
+        "hardenability_rating": "Shallow",
+        "wear_resistance": 5,
+        "toughness_rating": 7,
+        "impact_resistance_joules": 40,
+        "tensile_strength_min": 700,
+        "tensile_strength_max": 1100,
+        "yield_strength_min": 430,
+        "elongation_percent": 14,
+        "fracture_toughness": "Medium",
+        "fatigue_strength": "Good"
+      },
+      "temperature_performance": {
+        "temp_range_min": -30,
+        "temp_range_max": 350,
+        "creep_resistance": "Poor",
+        "heat_resistance": "Moderate - up to 350°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 2,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Poor",
+        "suitable_environments": ["indoor"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 60,
+        "weldability": "Good",
+        "formability": "Good",
+        "heat_treatment_required": false,
+        "heat_treatment_complexity": "Simple",
+        "heat_treatment_details": "Optional Q&T: 820-850°C, Temper: 500-650°C",
+        "distortion_tendency": "Medium"
+      },
+      "standards": {
+        "sae_aisi": "1060",
+        "iso_standard": "ISO 683-1",
+        "din_en": "EN C60E",
+        "astm": "ASTM A29",
+        "trade_names": ["C60", "Ck60"]
+      },
+      "applications": {
+        "application_categories": ["structural", "automotive", "machinery"],
+        "load_types": ["static", "dynamic"],
+        "primary_uses": "اجزای ماشین‌آلات، قطعات خودرو، شفت‌ها و محورها",
+        "primary_uses_en": "Machine parts, automotive components, shafts and axles",
+        "success_stories": "General machinery, automotive components, construction equipment",
+        "common_components": ["Shafts", "Axles", "Gears (low stress)", "Structural parts"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["carburizing", "nitriding", "coating"],
+        "case_hardening_suitable": true,
+        "nitriding_response": "Good"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 50,
+        "thermal_expansion": 11.5,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Budget",
+        "cost_multiplier": 1.1,
+        "availability": "Excellent",
+        "availability_rating": 10,
+        "lead_time_days": 2
+      }
+    },
+    {
+      "id": 12,
+      "material_number": "1.1231",
+      "name_en": "C80U",
+      "name_fa": "فولاد کربنی بالا C80U",
+      "category": "Spring Steel",
+      "category_fa": "فولاد فنر",
+      "mechanical_properties": {
+        "hardness_hrc_min": 42,
+        "hardness_hrc_max": 52,
+        "hardness_grade": "High",
+        "hardenability": "Shallow",
+        "hardenability_rating": "Shallow",
+        "wear_resistance": 6,
+        "toughness_rating": 5,
+        "impact_resistance_joules": 25,
+        "tensile_strength_min": 1200,
+        "tensile_strength_max": 1600,
+        "yield_strength_min": 1000,
+        "elongation_percent": 8,
+        "fracture_toughness": "Low",
+        "fatigue_strength": "Good"
+      },
+      "temperature_performance": {
+        "temp_range_min": -20,
+        "temp_range_max": 200,
+        "creep_resistance": "Poor",
+        "heat_resistance": "Limited - up to 200°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 2,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Poor",
+        "suitable_environments": ["indoor"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 47,
+        "weldability": "Very Poor",
+        "formability": "Fair",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Simple",
+        "heat_treatment_details": "Harden: 780-820°C water, Temper: 350-500°C",
+        "distortion_tendency": "High"
+      },
+      "standards": {
+        "sae_aisi": "1080",
+        "iso_standard": "ISO 683-14",
+        "din_en": "EN C80U",
+        "astm": "ASTM A682",
+        "trade_names": ["C80", "Ck80"]
+      },
+      "applications": {
+        "application_categories": ["spring", "tool", "wear"],
+        "load_types": ["cyclic", "abrasive"],
+        "primary_uses": "فنرهای کوچک، ابزار دستی، اجزای مقاوم به سایش",
+        "primary_uses_en": "Small springs, hand tools, wear-resistant parts",
+        "success_stories": "Spring clips, chisels, wire springs, wear plates",
+        "common_components": ["Wire springs", "Clips", "Blades", "Hand tools"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Fair"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 48,
+        "thermal_expansion": 11.5,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Budget",
+        "cost_multiplier": 1.2,
+        "availability": "Excellent",
+        "availability_rating": 10,
+        "lead_time_days": 3
+      }
+    },
+    {
+      "id": 13,
+      "material_number": "1.7108",
+      "name_en": "60SiCr7",
+      "name_fa": "فولاد فنر 60SiCr7",
+      "category": "Spring Steel",
+      "category_fa": "فولاد فنر",
+      "mechanical_properties": {
+        "hardness_hrc_min": 48,
+        "hardness_hrc_max": 55,
+        "hardness_grade": "Very High",
+        "hardenability": "Medium",
+        "hardenability_rating": "Medium",
+        "wear_resistance": 7,
+        "toughness_rating": 6,
+        "impact_resistance_joules": 35,
+        "tensile_strength_min": 1500,
+        "tensile_strength_max": 2000,
+        "yield_strength_min": 1300,
+        "elongation_percent": 6,
+        "fracture_toughness": "Medium",
+        "fatigue_strength": "Excellent"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 250,
+        "creep_resistance": "Fair",
+        "heat_resistance": "Moderate - up to 250°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 3,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Limited",
+        "suitable_environments": ["indoor", "automotive"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 50,
+        "weldability": "Poor",
+        "formability": "Fair",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Simple",
+        "heat_treatment_details": "Harden: 870-900°C oil, Temper: 380-480°C",
+        "distortion_tendency": "Medium"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 683-14",
+        "din_en": "EN 60SiCr7",
+        "astm": null,
+        "trade_names": ["SAE 9260 (similar)"]
+      },
+      "applications": {
+        "application_categories": ["spring", "automotive", "heavy-duty"],
+        "load_types": ["cyclic", "dynamic", "high-stress"],
+        "primary_uses": "فنرهای پر تنش، فنر سوپاپ، قطعات الاستیک پرقدرت",
+        "primary_uses_en": "High-stress springs, valve springs, heavy-duty elastic components",
+        "success_stories": "Engine valve springs, clutch springs, high-performance suspension",
+        "common_components": ["Valve springs", "Heavy coil springs", "Disc springs"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["shot-peening", "coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Good"
+      },
+      "physical_properties": {
+        "density": 7.83,
+        "thermal_conductivity": 40,
+        "thermal_expansion": 11.8,
+        "youngs_modulus": 206
+      },
+      "economic_data": {
+        "cost_relative": "Standard",
+        "cost_multiplier": 2.1,
+        "availability": "Good",
+        "availability_rating": 8,
+        "lead_time_days": 7
+      }
+    },
+    {
+      "id": 14,
+      "material_number": "1.7103",
+      "name_en": "67SiCr5",
+      "name_fa": "فولاد فنر 67SiCr5",
+      "category": "Spring Steel",
+      "category_fa": "فولاد فنر",
+      "mechanical_properties": {
+        "hardness_hrc_min": 50,
+        "hardness_hrc_max": 56,
+        "hardness_grade": "Very High",
+        "hardenability": "Medium",
+        "hardenability_rating": "Medium",
+        "wear_resistance": 7,
+        "toughness_rating": 6,
+        "impact_resistance_joules": 32,
+        "tensile_strength_min": 1600,
+        "tensile_strength_max": 2100,
+        "yield_strength_min": 1400,
+        "elongation_percent": 5,
+        "fracture_toughness": "Medium",
+        "fatigue_strength": "Excellent"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 250,
+        "creep_resistance": "Fair",
+        "heat_resistance": "Moderate - up to 250°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 3,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Limited",
+        "suitable_environments": ["indoor", "automotive"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 48,
+        "weldability": "Poor",
+        "formability": "Fair",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Simple",
+        "heat_treatment_details": "Harden: 850-880°C oil, Temper: 370-460°C",
+        "distortion_tendency": "Medium"
+      },
+      "standards": {
+        "sae_aisi": "9254",
+        "iso_standard": "ISO 683-14",
+        "din_en": "EN 67SiCr5",
+        "astm": "ASTM A689",
+        "trade_names": ["SAE 9254"]
+      },
+      "applications": {
+        "application_categories": ["spring", "automotive", "industrial"],
+        "load_types": ["cyclic", "dynamic", "extreme-stress"],
+        "primary_uses": "فنرهای سوپاپ موتور، فنرهای کلاچ، قطعات با استحکام بسیار بالا",
+        "primary_uses_en": "Engine valve springs, clutch springs, ultra-high-strength components",
+        "success_stories": "Racing engine valve springs, high-performance automotive, heavy machinery",
+        "common_components": ["Valve springs", "Clutch springs", "High-load coil springs"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["shot-peening", "coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Good"
+      },
+      "physical_properties": {
+        "density": 7.82,
+        "thermal_conductivity": 39,
+        "thermal_expansion": 11.8,
+        "youngs_modulus": 206
+      },
+      "economic_data": {
+        "cost_relative": "Standard",
+        "cost_multiplier": 2.2,
+        "availability": "Good",
+        "availability_rating": 8,
+        "lead_time_days": 8
+      }
+    },
+    {
+      "id": 15,
+      "material_number": "1.1269",
+      "name_en": "C85S",
+      "name_fa": "فولاد کربنی بالا C85S",
+      "category": "Structural Steel",
+      "category_fa": "فولاد ساختاری",
+      "mechanical_properties": {
+        "hardness_hrc_min": 20,
+        "hardness_hrc_max": 50,
+        "hardness_grade": "Medium-High",
+        "hardenability": "Shallow",
+        "hardenability_rating": "Shallow",
+        "wear_resistance": 6,
+        "toughness_rating": 5,
+        "impact_resistance_joules": 22,
+        "tensile_strength_min": 800,
+        "tensile_strength_max": 1400,
+        "yield_strength_min": 500,
+        "elongation_percent": 10,
+        "fracture_toughness": "Low",
+        "fatigue_strength": "Good"
+      },
+      "temperature_performance": {
+        "temp_range_min": -20,
+        "temp_range_max": 300,
+        "creep_resistance": "Poor",
+        "heat_resistance": "Moderate - up to 300°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 2,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Poor",
+        "suitable_environments": ["indoor"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 45,
+        "weldability": "Poor",
+        "formability": "Fair",
+        "heat_treatment_required": false,
+        "heat_treatment_complexity": "Simple",
+        "heat_treatment_details": "Optional Q&T: 800-840°C, Temper: 500-650°C",
+        "distortion_tendency": "High"
+      },
+      "standards": {
+        "sae_aisi": "1085",
+        "iso_standard": "ISO 683-1",
+        "din_en": "EN C85S",
+        "astm": "ASTM A29",
+        "trade_names": ["C85", "Ck85"]
+      },
+      "applications": {
+        "application_categories": ["structural", "tool", "wear"],
+        "load_types": ["static", "abrasive"],
+        "primary_uses": "قطعات مقاوم به سایش، ابزار دستی، اجزای ماشین‌آلات",
+        "primary_uses_en": "Wear-resistant parts, hand tools, machine components",
+        "success_stories": "Agricultural tools, construction equipment parts, wear plates",
+        "common_components": ["Wear plates", "Shanks", "Blades", "Tool holders"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["case-hardening", "coating"],
+        "case_hardening_suitable": true,
+        "nitriding_response": "Fair"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 48,
+        "thermal_expansion": 11.5,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Budget",
+        "cost_multiplier": 1.2,
+        "availability": "Excellent",
+        "availability_rating": 10,
+        "lead_time_days": 3
+      }
+    },
+    {
+      "id": 16,
+      "material_number": "1.1275",
+      "name_en": "C100S",
+      "name_fa": "فولاد کربنی خیلی بالا C100S",
+      "category": "Tool Steel",
+      "category_fa": "فولاد ابزار",
+      "mechanical_properties": {
+        "hardness_hrc_min": 55,
+        "hardness_hrc_max": 62,
+        "hardness_grade": "Very High",
+        "hardenability": "Shallow",
+        "hardenability_rating": "Shallow",
+        "wear_resistance": 8,
+        "toughness_rating": 3,
+        "impact_resistance_joules": 12,
+        "tensile_strength_min": 900,
+        "tensile_strength_max": 1700,
+        "yield_strength_min": null,
+        "elongation_percent": 5,
+        "fracture_toughness": "Very Low",
+        "fatigue_strength": "Fair"
+      },
+      "temperature_performance": {
+        "temp_range_min": -10,
+        "temp_range_max": 200,
+        "creep_resistance": "Poor",
+        "heat_resistance": "Limited - up to 200°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 2,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Poor",
+        "suitable_environments": ["indoor"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 40,
+        "weldability": "Very Poor",
+        "formability": "Poor",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Simple",
+        "heat_treatment_details": "Harden: 760-800°C water, Temper: 150-200°C",
+        "distortion_tendency": "Very High"
+      },
+      "standards": {
+        "sae_aisi": "1095",
+        "iso_standard": "ISO 683-17",
+        "din_en": "EN C100S",
+        "astm": "ASTM A681",
+        "trade_names": ["W1", "C100", "Ck101"]
+      },
+      "applications": {
+        "application_categories": ["tool", "knife", "wear"],
+        "load_types": ["static", "abrasive"],
+        "primary_uses": "ابزار برش، چاقو، اجزای مقاوم به سایش شدید",
+        "primary_uses_en": "Cutting tools, knives, severe wear components",
+        "success_stories": "Knives, blades, cutting dies, woodworking tools",
+        "common_components": ["Knives", "Blades", "Cutting dies", "Chisels"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Poor"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 47,
+        "thermal_expansion": 11.5,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Budget",
+        "cost_multiplier": 1.3,
+        "availability": "Excellent",
+        "availability_rating": 10,
+        "lead_time_days": 3
+      }
+    },
+    {
+      "id": 17,
+      "material_number": "1.7102",
+      "name_en": "54SiCr6",
+      "name_fa": "فولاد فنر 54SiCr6",
+      "category": "Spring Steel",
+      "category_fa": "فولاد فنر",
+      "mechanical_properties": {
+        "hardness_hrc_min": 47,
+        "hardness_hrc_max": 54,
+        "hardness_grade": "Very High",
+        "hardenability": "Medium",
+        "hardenability_rating": "Medium",
+        "wear_resistance": 7,
+        "toughness_rating": 6,
+        "impact_resistance_joules": 33,
+        "tensile_strength_min": 1400,
+        "tensile_strength_max": 1900,
+        "yield_strength_min": 1200,
+        "elongation_percent": 6,
+        "fracture_toughness": "Medium",
+        "fatigue_strength": "Excellent"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 250,
+        "creep_resistance": "Fair",
+        "heat_resistance": "Moderate - up to 250°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 3,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Limited",
+        "suitable_environments": ["indoor", "automotive"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 50,
+        "weldability": "Poor",
+        "formability": "Fair",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Simple",
+        "heat_treatment_details": "Harden: 860-890°C oil, Temper: 380-470°C",
+        "distortion_tendency": "Medium"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 683-14",
+        "din_en": "EN 54SiCr6",
+        "astm": null,
+        "trade_names": []
+      },
+      "applications": {
+        "application_categories": ["spring", "automotive", "industrial"],
+        "load_types": ["cyclic", "dynamic"],
+        "primary_uses": "فنرهای خودرو، فنر سوپاپ، قطعات الاستیک صنعتی",
+        "primary_uses_en": "Automotive springs, valve springs, industrial elastic components",
+        "success_stories": "Vehicle suspension, valve springs, clutch components",
+        "common_components": ["Coil springs", "Leaf springs", "Valve springs"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["shot-peening", "coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Good"
+      },
+      "physical_properties": {
+        "density": 7.83,
+        "thermal_conductivity": 40,
+        "thermal_expansion": 11.8,
+        "youngs_modulus": 206
+      },
+      "economic_data": {
+        "cost_relative": "Standard",
+        "cost_multiplier": 2.1,
+        "availability": "Good",
+        "availability_rating": 8,
+        "lead_time_days": 7
+      }
+    },
+    {
+      "id": 18,
+      "material_number": "1.7701",
+      "name_en": "21CrMoV5-7",
+      "name_fa": "فولاد مقاوم به دما 21CrMoV5-7",
+      "category": "Heat Resistant Steel",
+      "category_fa": "فولاد مقاوم به دما",
+      "mechanical_properties": {
+        "hardness_hrc_min": 25,
+        "hardness_hrc_max": 35,
+        "hardness_grade": "Medium",
+        "hardenability": "Deep",
+        "hardenability_rating": "Deep",
+        "wear_resistance": 6,
+        "toughness_rating": 8,
+        "impact_resistance_joules": 70,
+        "tensile_strength_min": 800,
+        "tensile_strength_max": 1100,
+        "yield_strength_min": 650,
+        "elongation_percent": 15,
+        "fracture_toughness": "High",
+        "fatigue_strength": "Good"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 530,
+        "creep_resistance": "Excellent",
+        "heat_resistance": "Excellent - up to 530°C continuous",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 5,
+        "corrosion_types": ["uniform", "oxidation"],
+        "oxidation_resistance": "Excellent",
+        "suitable_environments": ["high-temperature", "industrial", "power-generation"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 55,
+        "weldability": "Good",
+        "formability": "Good",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Moderate",
+        "heat_treatment_details": "Normalize: 920-960°C, Temper: 680-720°C",
+        "distortion_tendency": "Low"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 9328-3",
+        "din_en": "EN 21CrMoV5-7",
+        "astm": "ASTM A182 F22",
+        "trade_names": ["20CDV5.7 (AFNOR)"]
+      },
+      "applications": {
+        "application_categories": ["high-temperature", "turbine", "boiler", "power-generation"],
+        "load_types": ["creep", "high-temperature", "cyclic"],
+        "primary_uses": "پیچ‌های دمای بالا، قطعات توربین، دیگ بخار، لوله‌های دمای بالا",
+        "primary_uses_en": "High-temp fasteners, turbine components, boiler tubes, pressure vessels",
+        "success_stories": "Steam turbine bolts, power plant piping, refinery equipment",
+        "common_components": ["Turbine bolts", "Steam pipes", "Pressure vessel parts", "Flanges"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Fair"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 38,
+        "thermal_expansion": 12.8,
+        "youngs_modulus": 205
+      },
+      "economic_data": {
+        "cost_relative": "Premium",
+        "cost_multiplier": 3.0,
+        "availability": "Available",
+        "availability_rating": 7,
+        "lead_time_days": 14
+      }
+    },
+    {
+      "id": 19,
+      "material_number": "1.7117",
+      "name_en": "52SiCrNi5",
+      "name_fa": "فولاد فنر 52SiCrNi5",
+      "category": "Spring Steel",
+      "category_fa": "فولاد فنر",
+      "mechanical_properties": {
+        "hardness_hrc_min": 46,
+        "hardness_hrc_max": 53,
+        "hardness_grade": "Very High",
+        "hardenability": "Deep",
+        "hardenability_rating": "Deep",
+        "wear_resistance": 7,
+        "toughness_rating": 7,
+        "impact_resistance_joules": 42,
+        "tensile_strength_min": 1400,
+        "tensile_strength_max": 1800,
+        "yield_strength_min": 1200,
+        "elongation_percent": 7,
+        "fracture_toughness": "Medium",
+        "fatigue_strength": "Excellent"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 300,
+        "creep_resistance": "Fair",
+        "heat_resistance": "Good - up to 300°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 4,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Fair",
+        "suitable_environments": ["indoor", "automotive"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 48,
+        "weldability": "Poor",
+        "formability": "Good",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Simple",
+        "heat_treatment_details": "Harden: 870-900°C oil, Temper: 390-490°C",
+        "distortion_tendency": "Low"
+      },
+      "standards": {
+        "sae_aisi": "9254 (similar)",
+        "iso_standard": "ISO 683-14",
+        "din_en": "EN 52SiCrNi5",
+        "astm": null,
+        "trade_names": []
+      },
+      "applications": {
+        "application_categories": ["spring", "automotive", "high-stress"],
+        "load_types": ["cyclic", "dynamic", "impact"],
+        "primary_uses": "فنرهای پر تنش، قطعات الاستیک سنگین، فنر سوپاپ موتور",
+        "primary_uses_en": "High-stress springs, heavy elastic components, engine valve springs",
+        "success_stories": "Performance automotive, racing springs, heavy machinery",
+        "common_components": ["High-load coil springs", "Torsion bars", "Valve springs"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["shot-peening", "nitriding", "coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Good"
+      },
+      "physical_properties": {
+        "density": 7.84,
+        "thermal_conductivity": 40,
+        "thermal_expansion": 11.9,
+        "youngs_modulus": 206
+      },
+      "economic_data": {
+        "cost_relative": "Premium",
+        "cost_multiplier": 2.8,
+        "availability": "Available",
+        "availability_rating": 7,
+        "lead_time_days": 10
+      }
+    },
+    {
+      "id": 20,
+      "material_number": "1.2243",
+      "name_en": "90MnCrV8",
+      "name_fa": "فولاد ابزار 90MnCrV8",
+      "category": "Tool Steel",
+      "category_fa": "فولاد ابزار",
+      "mechanical_properties": {
+        "hardness_hrc_min": 60,
+        "hardness_hrc_max": 64,
+        "hardness_grade": "Very High",
+        "hardenability": "Medium",
+        "hardenability_rating": "Medium",
+        "wear_resistance": 9,
+        "toughness_rating": 5,
+        "impact_resistance_joules": 18,
+        "tensile_strength_min": 800,
+        "tensile_strength_max": 1600,
+        "yield_strength_min": null,
+        "elongation_percent": 7,
+        "fracture_toughness": "Low",
+        "fatigue_strength": "Good"
+      },
+      "temperature_performance": {
+        "temp_range_min": -20,
+        "temp_range_max": 200,
+        "creep_resistance": "Poor",
+        "heat_resistance": "Limited - up to 200°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 3,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Limited",
+        "suitable_environments": ["indoor"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 42,
+        "weldability": "Very Poor",
+        "formability": "Low",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Moderate",
+        "heat_treatment_details": "Harden: 800-850°C oil, Temper: 150-200°C",
+        "distortion_tendency": "Medium"
+      },
+      "standards": {
+        "sae_aisi": "O2",
+        "iso_standard": "ISO 4957",
+        "din_en": "EN 90MnCrV8",
+        "astm": "ASTM A681",
+        "trade_names": ["O2 Tool Steel"]
+      },
+      "applications": {
+        "application_categories": ["tool", "cold-work", "die"],
+        "load_types": ["static", "impact", "abrasive"],
+        "primary_uses": "قالب‌های سرد، پانچ، ابزار برش، قطعات مقاوم به سایش",
+        "primary_uses_en": "Cold work dies, punches, cutting tools, wear-resistant parts",
+        "success_stories": "Stamping dies, punches, shear blades, thread rolling dies",
+        "common_components": ["Dies", "Punches", "Shear blades", "Gauges"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["nitriding", "coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Good"
+      },
+      "physical_properties": {
+        "density": 7.8,
+        "thermal_conductivity": 44,
+        "thermal_expansion": 12.5,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Standard",
+        "cost_multiplier": 2.5,
+        "availability": "Good",
+        "availability_rating": 8,
+        "lead_time_days": 10
+      }
+    },
+    {
+      "id": 21,
+      "material_number": "1.5025",
+      "name_en": "38Si6",
+      "name_fa": "فولاد فنر 38Si6",
+      "category": "Spring Steel",
+      "category_fa": "فولاد فنر",
+      "mechanical_properties": {
+        "hardness_hrc_min": 40,
+        "hardness_hrc_max": 48,
+        "hardness_grade": "High",
+        "hardenability": "Shallow",
+        "hardenability_rating": "Shallow",
+        "wear_resistance": 5,
+        "toughness_rating": 7,
+        "impact_resistance_joules": 38,
+        "tensile_strength_min": 1100,
+        "tensile_strength_max": 1500,
+        "yield_strength_min": 900,
+        "elongation_percent": 9,
+        "fracture_toughness": "Medium",
+        "fatigue_strength": "Good"
+      },
+      "temperature_performance": {
+        "temp_range_min": -30,
+        "temp_range_max": 200,
+        "creep_resistance": "Poor",
+        "heat_resistance": "Limited - up to 200°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 2,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Limited",
+        "suitable_environments": ["indoor"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 55,
+        "weldability": "Fair",
+        "formability": "Good",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Simple",
+        "heat_treatment_details": "Harden: 870-900°C oil, Temper: 400-500°C",
+        "distortion_tendency": "Medium"
+      },
+      "standards": {
+        "sae_aisi": "5120 (similar)",
+        "iso_standard": "ISO 683-14",
+        "din_en": "EN 38Si6",
+        "astm": null,
+        "trade_names": []
+      },
+      "applications": {
+        "application_categories": ["spring", "general", "automotive"],
+        "load_types": ["cyclic", "static"],
+        "primary_uses": "فنرهای متوسط، قطعات الاستیک عمومی، اجزای ماشین‌آلات",
+        "primary_uses_en": "Medium-duty springs, general elastic components, machine parts",
+        "success_stories": "General machinery springs, agricultural equipment, construction equipment",
+        "common_components": ["Light coil springs", "Flat springs", "Leaf springs"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["shot-peening", "coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Fair"
+      },
+      "physical_properties": {
+        "density": 7.83,
+        "thermal_conductivity": 44,
+        "thermal_expansion": 11.7,
+        "youngs_modulus": 206
+      },
+      "economic_data": {
+        "cost_relative": "Budget",
+        "cost_multiplier": 1.5,
+        "availability": "Excellent",
+        "availability_rating": 9,
+        "lead_time_days": 5
+      }
+    },
+    {
+      "id": 22,
+      "material_number": "1.5026",
+      "name_en": "46Si7",
+      "name_fa": "فولاد فنر 46Si7",
+      "category": "Spring Steel",
+      "category_fa": "فولاد فنر",
+      "mechanical_properties": {
+        "hardness_hrc_min": 42,
+        "hardness_hrc_max": 50,
+        "hardness_grade": "High",
+        "hardenability": "Medium",
+        "hardenability_rating": "Medium",
+        "wear_resistance": 6,
+        "toughness_rating": 7,
+        "impact_resistance_joules": 40,
+        "tensile_strength_min": 1200,
+        "tensile_strength_max": 1600,
+        "yield_strength_min": 1000,
+        "elongation_percent": 8,
+        "fracture_toughness": "Medium",
+        "fatigue_strength": "Excellent"
+      },
+      "temperature_performance": {
+        "temp_range_min": -30,
+        "temp_range_max": 220,
+        "creep_resistance": "Fair",
+        "heat_resistance": "Moderate - up to 220°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 3,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Limited",
+        "suitable_environments": ["indoor", "automotive"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 52,
+        "weldability": "Fair",
+        "formability": "Good",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Simple",
+        "heat_treatment_details": "Harden: 860-890°C oil, Temper: 400-500°C",
+        "distortion_tendency": "Medium"
+      },
+      "standards": {
+        "sae_aisi": "9260 (similar)",
+        "iso_standard": "ISO 683-14",
+        "din_en": "EN 46Si7",
+        "astm": null,
+        "trade_names": []
+      },
+      "applications": {
+        "application_categories": ["spring", "automotive", "industrial"],
+        "load_types": ["cyclic", "dynamic"],
+        "primary_uses": "فنرهای خودرو، فنرهای صنعتی، قطعات الاستیک",
+        "primary_uses_en": "Automotive springs, industrial springs, elastic components",
+        "success_stories": "Vehicle suspension, machinery springs, clutch components",
+        "common_components": ["Coil springs", "Leaf springs", "Torsion bars"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["shot-peening", "coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Good"
+      },
+      "physical_properties": {
+        "density": 7.83,
+        "thermal_conductivity": 43,
+        "thermal_expansion": 11.8,
+        "youngs_modulus": 206
+      },
+      "economic_data": {
+        "cost_relative": "Budget",
+        "cost_multiplier": 1.7,
+        "availability": "Excellent",
+        "availability_rating": 9,
+        "lead_time_days": 5
+      }
+    },
+    {
+      "id": 23,
+      "material_number": "1.5028",
+      "name_en": "56Si7",
+      "name_fa": "فولاد فنر 56Si7",
+      "category": "Spring Steel",
+      "category_fa": "فولاد فنر",
+      "mechanical_properties": {
+        "hardness_hrc_min": 44,
+        "hardness_hrc_max": 52,
+        "hardness_grade": "High",
+        "hardenability": "Medium",
+        "hardenability_rating": "Medium",
+        "wear_resistance": 6,
+        "toughness_rating": 6,
+        "impact_resistance_joules": 35,
+        "tensile_strength_min": 1300,
+        "tensile_strength_max": 1700,
+        "yield_strength_min": 1100,
+        "elongation_percent": 7,
+        "fracture_toughness": "Medium",
+        "fatigue_strength": "Excellent"
+      },
+      "temperature_performance": {
+        "temp_range_min": -30,
+        "temp_range_max": 230,
+        "creep_resistance": "Fair",
+        "heat_resistance": "Moderate - up to 230°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 3,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Limited",
+        "suitable_environments": ["indoor", "automotive"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 50,
+        "weldability": "Fair",
+        "formability": "Good",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Simple",
+        "heat_treatment_details": "Harden: 860-890°C oil, Temper: 390-490°C",
+        "distortion_tendency": "Medium"
+      },
+      "standards": {
+        "sae_aisi": "9260 (similar)",
+        "iso_standard": "ISO 683-14",
+        "din_en": "EN 56Si7",
+        "astm": null,
+        "trade_names": []
+      },
+      "applications": {
+        "application_categories": ["spring", "automotive", "industrial"],
+        "load_types": ["cyclic", "dynamic", "high-stress"],
+        "primary_uses": "فنرهای پر تنش، فنر سوپاپ، اجزای الاستیک صنعتی",
+        "primary_uses_en": "High-stress springs, valve springs, industrial elastic components",
+        "success_stories": "Performance automotive, heavy machinery, valve springs",
+        "common_components": ["Valve springs", "Heavy coil springs", "Torsion bars"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["shot-peening", "coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Good"
+      },
+      "physical_properties": {
+        "density": 7.82,
+        "thermal_conductivity": 42,
+        "thermal_expansion": 11.8,
+        "youngs_modulus": 206
+      },
+      "economic_data": {
+        "cost_relative": "Standard",
+        "cost_multiplier": 1.9,
+        "availability": "Good",
+        "availability_rating": 8,
+        "lead_time_days": 7
+      }
+    },
+    {
+      "id": 24,
+      "material_number": "1.8509",
+      "name_en": "41CrAlMo7-10",
+      "name_fa": "فولاد نیتروژن‌دار 41CrAlMo7-10",
+      "category": "Nitriding Steel",
+      "category_fa": "فولاد نیتروژن‌دار",
+      "mechanical_properties": {
+        "hardness_hrc_min": 32,
+        "hardness_hrc_max": 40,
+        "hardness_grade": "Medium (Core)",
+        "hardenability": "Very Deep",
+        "hardenability_rating": "Very Deep",
+        "wear_resistance": 10,
+        "toughness_rating": 8,
+        "impact_resistance_joules": 70,
+        "tensile_strength_min": 950,
+        "tensile_strength_max": 1250,
+        "yield_strength_min": 800,
+        "elongation_percent": 12,
+        "fracture_toughness": "High",
+        "fatigue_strength": "Excellent"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 500,
+        "creep_resistance": "Good",
+        "heat_resistance": "Good - up to 500°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 6,
+        "corrosion_types": ["uniform", "pitting"],
+        "oxidation_resistance": "Good",
+        "suitable_environments": ["indoor", "industrial", "marine"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 58,
+        "weldability": "Fair",
+        "formability": "Good",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Complex",
+        "heat_treatment_details": "Q&T: 900-950°C oil, Temper: 550-650°C, Nitride: 500-540°C",
+        "distortion_tendency": "Very Low (after nitriding)"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 683-5",
+        "din_en": "EN 41CrAlMo7-10",
+        "astm": null,
+        "trade_names": ["Nitralloy 135M", "905M31 (BS)", "EN41B"]
+      },
+      "applications": {
+        "application_categories": ["nitriding", "gear", "aerospace", "high-wear"],
+        "load_types": ["cyclic", "impact", "extreme-wear"],
+        "primary_uses": "چرخ‌دنده‌های دقیق، قطعات با سختی سطحی فوق‌العاده، اجزای هوافضا",
+        "primary_uses_en": "Precision gears, ultra-hard surface components, aerospace parts",
+        "success_stories": "Aircraft landing gear, precision gearboxes, high-performance racing",
+        "common_components": ["Gears", "Crankshafts", "Cam shafts", "Landing gear"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["nitriding"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Excellent (950-1100 HV surface)"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 37,
+        "thermal_expansion": 12.7,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Premium",
+        "cost_multiplier": 3.8,
+        "availability": "Available",
+        "availability_rating": 6,
+        "lead_time_days": 20
+      }
+    },
+    {
+      "id": 25,
+      "material_number": "1.8550",
+      "name_en": "34CrAlMo5",
+      "name_fa": "فولاد نیتروژن‌دار 34CrAlMo5",
+      "category": "Nitriding Steel",
+      "category_fa": "فولاد نیتروژن‌دار",
+      "mechanical_properties": {
+        "hardness_hrc_min": 28,
+        "hardness_hrc_max": 36,
+        "hardness_grade": "Medium (Core)",
+        "hardenability": "Deep",
+        "hardenability_rating": "Deep",
+        "wear_resistance": 8,
+        "toughness_rating": 7,
+        "impact_resistance_joules": 60,
+        "tensile_strength_min": 850,
+        "tensile_strength_max": 1150,
+        "yield_strength_min": 700,
+        "elongation_percent": 13,
+        "fracture_toughness": "High",
+        "fatigue_strength": "Excellent"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 450,
+        "creep_resistance": "Good",
+        "heat_resistance": "Good - up to 450°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 5,
+        "corrosion_types": ["uniform", "pitting"],
+        "oxidation_resistance": "Good",
+        "suitable_environments": ["indoor", "industrial"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 60,
+        "weldability": "Fair",
+        "formability": "Good",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Complex",
+        "heat_treatment_details": "Q&T: 880-920°C oil, Temper: 550-650°C, Nitride: 500-540°C",
+        "distortion_tendency": "Low"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 683-5",
+        "din_en": "EN 34CrAlMo5",
+        "astm": null,
+        "trade_names": ["Nitralloy N", "905M39"]
+      },
+      "applications": {
+        "application_categories": ["nitriding", "gear", "automotive"],
+        "load_types": ["cyclic", "wear", "fatigue"],
+        "primary_uses": "چرخ‌دنده‌های نیتروژن‌شده، شفت‌ها، اجزای با سختی سطحی",
+        "primary_uses_en": "Nitrided gears, shafts, surface-hardened components",
+        "success_stories": "Automotive gearboxes, industrial gears, high-wear shafts",
+        "common_components": ["Gears", "Shafts", "Crankshafts", "Cam shafts"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["nitriding"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Excellent (900-1000 HV surface)"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 38,
+        "thermal_expansion": 12.6,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Premium",
+        "cost_multiplier": 3.3,
+        "availability": "Available",
+        "availability_rating": 7,
+        "lead_time_days": 15
+      }
+    },
+    {
+      "id": 26,
+      "material_number": "1.8522",
+      "name_en": "34CrAlNi7-10",
+      "name_fa": "فولاد نیتروژن‌دار 34CrAlNi7-10",
+      "category": "Nitriding Steel",
+      "category_fa": "فولاد نیتروژن‌دار",
+      "mechanical_properties": {
+        "hardness_hrc_min": 30,
+        "hardness_hrc_max": 38,
+        "hardness_grade": "Medium (Core)",
+        "hardenability": "Very Deep",
+        "hardenability_rating": "Very Deep",
+        "wear_resistance": 9,
+        "toughness_rating": 8,
+        "impact_resistance_joules": 75,
+        "tensile_strength_min": 900,
+        "tensile_strength_max": 1200,
+        "yield_strength_min": 750,
+        "elongation_percent": 12,
+        "fracture_toughness": "High",
+        "fatigue_strength": "Excellent"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 480,
+        "creep_resistance": "Good",
+        "heat_resistance": "Good - up to 480°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 6,
+        "corrosion_types": ["uniform", "pitting"],
+        "oxidation_resistance": "Good",
+        "suitable_environments": ["indoor", "industrial", "aerospace"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 56,
+        "weldability": "Fair",
+        "formability": "Good",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Complex",
+        "heat_treatment_details": "Q&T: 920-960°C oil, Temper: 550-650°C, Nitride: 500-540°C",
+        "distortion_tendency": "Very Low"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 683-5",
+        "din_en": "EN 34CrAlNi7-10",
+        "astm": null,
+        "trade_names": ["Nitralloy 135"]
+      },
+      "applications": {
+        "application_categories": ["nitriding", "aerospace", "precision"],
+        "load_types": ["cyclic", "high-wear", "precision"],
+        "primary_uses": "قطعات هوافضا، چرخ‌دنده‌های دقیق، اجزای با چقرمگی و سختی بالا",
+        "primary_uses_en": "Aerospace components, precision gears, high-toughness parts",
+        "success_stories": "Aircraft components, precision machinery, racing transmissions",
+        "common_components": ["Aircraft gears", "Precision shafts", "Landing gear parts"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["nitriding"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Excellent (950-1100 HV surface)"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 37,
+        "thermal_expansion": 12.8,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Specialty",
+        "cost_multiplier": 4.0,
+        "availability": "Limited",
+        "availability_rating": 6,
+        "lead_time_days": 21
+      }
+    },
+    {
+      "id": 27,
+      "material_number": "1.8507",
+      "name_en": "34CrAlMo5-10",
+      "name_fa": "فولاد نیتروژن‌دار 34CrAlMo5-10",
+      "category": "Nitriding Steel",
+      "category_fa": "فولاد نیتروژن‌دار",
+      "mechanical_properties": {
+        "hardness_hrc_min": 28,
+        "hardness_hrc_max": 36,
+        "hardness_grade": "Medium (Core)",
+        "hardenability": "Deep",
+        "hardenability_rating": "Deep",
+        "wear_resistance": 8,
+        "toughness_rating": 7,
+        "impact_resistance_joules": 62,
+        "tensile_strength_min": 870,
+        "tensile_strength_max": 1170,
+        "yield_strength_min": 710,
+        "elongation_percent": 13,
+        "fracture_toughness": "High",
+        "fatigue_strength": "Excellent"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 460,
+        "creep_resistance": "Good",
+        "heat_resistance": "Good - up to 460°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 5,
+        "corrosion_types": ["uniform", "pitting"],
+        "oxidation_resistance": "Good",
+        "suitable_environments": ["indoor", "industrial"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 59,
+        "weldability": "Fair",
+        "formability": "Good",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Complex",
+        "heat_treatment_details": "Q&T: 890-930°C oil, Temper: 550-650°C, Nitride: 500-540°C",
+        "distortion_tendency": "Low"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 683-5",
+        "din_en": "EN 34CrAlMo5-10",
+        "astm": null,
+        "trade_names": []
+      },
+      "applications": {
+        "application_categories": ["nitriding", "gear", "automotive"],
+        "load_types": ["cyclic", "wear"],
+        "primary_uses": "چرخ‌دنده‌ها، شفت‌های نیتروژن‌شده، قطعات سخت‌شده سطحی",
+        "primary_uses_en": "Gears, nitrided shafts, surface-hardened components",
+        "success_stories": "Automotive transmissions, industrial gearboxes, high-wear shafts",
+        "common_components": ["Transmission gears", "Drive shafts", "Crankshafts"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["nitriding"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Excellent (900-1000 HV surface)"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 38,
+        "thermal_expansion": 12.6,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Premium",
+        "cost_multiplier": 3.4,
+        "availability": "Available",
+        "availability_rating": 7,
+        "lead_time_days": 15
+      }
+    },
+    {
+      "id": 28,
+      "material_number": "1.8515",
+      "name_en": "31CrMo12",
+      "name_fa": "فولاد نیتروژن‌دار 31CrMo12",
+      "category": "Nitriding Steel",
+      "category_fa": "فولاد نیتروژن‌دار",
+      "mechanical_properties": {
+        "hardness_hrc_min": 26,
+        "hardness_hrc_max": 34,
+        "hardness_grade": "Medium (Core)",
+        "hardenability": "Medium",
+        "hardenability_rating": "Medium",
+        "wear_resistance": 7,
+        "toughness_rating": 7,
+        "impact_resistance_joules": 55,
+        "tensile_strength_min": 800,
+        "tensile_strength_max": 1100,
+        "yield_strength_min": 650,
+        "elongation_percent": 14,
+        "fracture_toughness": "Medium",
+        "fatigue_strength": "Good"
+      },
+      "temperature_performance": {
+        "temp_range_min": -30,
+        "temp_range_max": 400,
+        "creep_resistance": "Fair",
+        "heat_resistance": "Moderate - up to 400°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 4,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Fair",
+        "suitable_environments": ["indoor", "industrial"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 62,
+        "weldability": "Good",
+        "formability": "Good",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Moderate",
+        "heat_treatment_details": "Q&T: 850-900°C oil, Temper: 550-650°C, Nitride: 500-540°C",
+        "distortion_tendency": "Low"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 683-5",
+        "din_en": "EN 31CrMo12",
+        "astm": null,
+        "trade_names": ["32CrMo12", "EN40B"]
+      },
+      "applications": {
+        "application_categories": ["nitriding", "general", "machinery"],
+        "load_types": ["cyclic", "static"],
+        "primary_uses": "قطعات عمومی نیتروژن‌شده، اجزای ماشین‌آلات، شفت‌ها",
+        "primary_uses_en": "General nitrided parts, machine components, shafts",
+        "success_stories": "General machinery, automotive components, industrial equipment",
+        "common_components": ["Shafts", "Spindles", "Pistons", "Machine parts"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["nitriding"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Good (800-900 HV surface)"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 40,
+        "thermal_expansion": 12.4,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Standard",
+        "cost_multiplier": 2.6,
+        "availability": "Good",
+        "availability_rating": 8,
+        "lead_time_days": 10
+      }
+    },
+    {
+      "id": 29,
+      "material_number": "1.7711",
+      "name_en": "40CrMoV4-6",
+      "name_fa": "فولاد مقاوم به خزش 40CrMoV4-6",
+      "category": "Heat Resistant Steel",
+      "category_fa": "فولاد مقاوم به دما",
+      "mechanical_properties": {
+        "hardness_hrc_min": 28,
+        "hardness_hrc_max": 38,
+        "hardness_grade": "Medium",
+        "hardenability": "Deep",
+        "hardenability_rating": "Deep",
+        "wear_resistance": 6,
+        "toughness_rating": 8,
+        "impact_resistance_joules": 75,
+        "tensile_strength_min": 900,
+        "tensile_strength_max": 1200,
+        "yield_strength_min": 750,
+        "elongation_percent": 14,
+        "fracture_toughness": "High",
+        "fatigue_strength": "Good"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 550,
+        "creep_resistance": "Excellent",
+        "heat_resistance": "Excellent - up to 550°C continuous",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 5,
+        "corrosion_types": ["uniform", "oxidation"],
+        "oxidation_resistance": "Excellent",
+        "suitable_environments": ["high-temperature", "industrial", "power-generation"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 54,
+        "weldability": "Good",
+        "formability": "Good",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Moderate",
+        "heat_treatment_details": "Q&T: 920-960°C oil, Temper: 650-700°C",
+        "distortion_tendency": "Low"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 9328-3",
+        "din_en": "EN 40CrMoV4-6",
+        "astm": "ASTM A193 B16",
+        "trade_names": ["40CrMoV4-7"]
+      },
+      "applications": {
+        "application_categories": ["high-temperature", "boiler", "turbine", "fasteners"],
+        "load_types": ["creep", "high-temperature", "static"],
+        "primary_uses": "پیچ‌های دمای بالا، قطعات دیگ بخار، اجزای توربین",
+        "primary_uses_en": "High-temp bolts, boiler components, turbine parts",
+        "success_stories": "Power plant bolts, steam turbine components, refinery equipment",
+        "common_components": ["High-temp bolts", "Studs", "Turbine blades", "Boiler tubes"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Fair"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 38,
+        "thermal_expansion": 12.9,
+        "youngs_modulus": 205
+      },
+      "economic_data": {
+        "cost_relative": "Premium",
+        "cost_multiplier": 3.2,
+        "availability": "Available",
+        "availability_rating": 7,
+        "lead_time_days": 14
+      }
+    },
+    {
+      "id": 30,
+      "material_number": "1.8070",
+      "name_en": "21CrMoV5-11",
+      "name_fa": "فولاد مقاوم به خزش 21CrMoV5-11",
+      "category": "Heat Resistant Steel",
+      "category_fa": "فولاد مقاوم به دما",
+      "mechanical_properties": {
+        "hardness_hrc_min": 24,
+        "hardness_hrc_max": 34,
+        "hardness_grade": "Medium",
+        "hardenability": "Deep",
+        "hardenability_rating": "Deep",
+        "wear_resistance": 6,
+        "toughness_rating": 8,
+        "impact_resistance_joules": 75,
+        "tensile_strength_min": 820,
+        "tensile_strength_max": 1120,
+        "yield_strength_min": 670,
+        "elongation_percent": 16,
+        "fracture_toughness": "High",
+        "fatigue_strength": "Good"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 550,
+        "creep_resistance": "Excellent",
+        "heat_resistance": "Excellent - up to 550°C continuous",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 5,
+        "corrosion_types": ["uniform", "oxidation"],
+        "oxidation_resistance": "Excellent",
+        "suitable_environments": ["high-temperature", "industrial", "power-generation"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 56,
+        "weldability": "Good",
+        "formability": "Excellent",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Moderate",
+        "heat_treatment_details": "Normalize: 920-970°C air, Temper: 680-730°C",
+        "distortion_tendency": "Very Low"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 9328-3",
+        "din_en": "EN 21CrMoV5-11",
+        "astm": "ASTM A182 F22V",
+        "trade_names": []
+      },
+      "applications": {
+        "application_categories": ["high-temperature", "turbine", "boiler", "power-generation"],
+        "load_types": ["creep", "high-temperature", "cyclic"],
+        "primary_uses": "پره‌های توربین، لوله‌های دیگ بخار، اجزای دمای بالا با استحکام بالا",
+        "primary_uses_en": "Turbine blades, boiler tubes, high-temp high-strength components",
+        "success_stories": "Steam turbines, power plant piping, high-temp pressure vessels",
+        "common_components": ["Turbine rotors", "Steam pipes", "Boiler headers", "Pressure vessel parts"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Fair"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 39,
+        "thermal_expansion": 12.7,
+        "youngs_modulus": 205
+      },
+      "economic_data": {
+        "cost_relative": "Premium",
+        "cost_multiplier": 3.1,
+        "availability": "Available",
+        "availability_rating": 7,
+        "lead_time_days": 14
+      }
+    },
+    {
+      "id": 31,
+      "material_number": "1.7335",
+      "name_en": "13CrMo4-5",
+      "name_fa": "فولاد دیگ بخار 13CrMo4-5",
+      "category": "Heat Resistant Steel",
+      "category_fa": "فولاد مقاوم به دما",
+      "mechanical_properties": {
+        "hardness_hrc_min": 18,
+        "hardness_hrc_max": 28,
+        "hardness_grade": "Low-Medium",
+        "hardenability": "Medium",
+        "hardenability_rating": "Medium",
+        "wear_resistance": 4,
+        "toughness_rating": 7,
+        "impact_resistance_joules": 50,
+        "tensile_strength_min": 450,
+        "tensile_strength_max": 650,
+        "yield_strength_min": 280,
+        "elongation_percent": 20,
+        "fracture_toughness": "High",
+        "fatigue_strength": "Good"
+      },
+      "temperature_performance": {
+        "temp_range_min": -20,
+        "temp_range_max": 530,
+        "creep_resistance": "Good",
+        "heat_resistance": "Good - up to 530°C continuous",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 4,
+        "corrosion_types": ["uniform", "oxidation"],
+        "oxidation_resistance": "Good",
+        "suitable_environments": ["high-temperature", "industrial"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 65,
+        "weldability": "Excellent",
+        "formability": "Excellent",
+        "heat_treatment_required": false,
+        "heat_treatment_complexity": "Simple",
+        "heat_treatment_details": "Normalize: 900-950°C air cool (optional)",
+        "distortion_tendency": "Low"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 9328-2",
+        "din_en": "EN 13CrMo4-5",
+        "astm": "ASTM A335 P11",
+        "trade_names": ["P11", "SS 2216"]
+      },
+      "applications": {
+        "application_categories": ["boiler", "pressure-vessel", "piping"],
+        "load_types": ["static", "pressure", "high-temperature"],
+        "primary_uses": "لوله‌های دیگ بخار، مخازن تحت فشار، لوله‌کشی دمای بالا",
+        "primary_uses_en": "Boiler tubes, pressure vessels, high-temp piping",
+        "success_stories": "Power plant boilers, refinery piping, petrochemical equipment",
+        "common_components": ["Boiler tubes", "Headers", "Pressure vessels", "Steam pipes"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Poor"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 42,
+        "thermal_expansion": 12.2,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Standard",
+        "cost_multiplier": 2.2,
+        "availability": "Excellent",
+        "availability_rating": 9,
+        "lead_time_days": 7
+      }
+    },
+    {
+      "id": 32,
+      "material_number": "1.7338",
+      "name_en": "13CrMo4-4",
+      "name_fa": "فولاد دیگ بخار 13CrMo4-4",
+      "category": "Heat Resistant Steel",
+      "category_fa": "فولاد مقاوم به دما",
+      "mechanical_properties": {
+        "hardness_hrc_min": 18,
+        "hardness_hrc_max": 28,
+        "hardness_grade": "Low-Medium",
+        "hardenability": "Medium",
+        "hardenability_rating": "Medium",
+        "wear_resistance": 4,
+        "toughness_rating": 7,
+        "impact_resistance_joules": 48,
+        "tensile_strength_min": 440,
+        "tensile_strength_max": 640,
+        "yield_strength_min": 270,
+        "elongation_percent": 21,
+        "fracture_toughness": "High",
+        "fatigue_strength": "Good"
+      },
+      "temperature_performance": {
+        "temp_range_min": -20,
+        "temp_range_max": 525,
+        "creep_resistance": "Good",
+        "heat_resistance": "Good - up to 525°C continuous",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 4,
+        "corrosion_types": ["uniform", "oxidation"],
+        "oxidation_resistance": "Good",
+        "suitable_environments": ["high-temperature", "industrial"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 65,
+        "weldability": "Excellent",
+        "formability": "Excellent",
+        "heat_treatment_required": false,
+        "heat_treatment_complexity": "Simple",
+        "heat_treatment_details": "Normalize: 900-950°C air cool (optional)",
+        "distortion_tendency": "Low"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 9328-2",
+        "din_en": "EN 13CrMo4-4",
+        "astm": "ASTM A335 P11 (similar)",
+        "trade_names": []
+      },
+      "applications": {
+        "application_categories": ["boiler", "pressure-vessel", "piping"],
+        "load_types": ["static", "pressure", "high-temperature"],
+        "primary_uses": "لوله‌های دیگ بخار، مخازن تحت فشار، تجهیزات پتروشیمی",
+        "primary_uses_en": "Boiler tubes, pressure vessels, petrochemical equipment",
+        "success_stories": "Power plant boilers, refinery equipment, heat exchangers",
+        "common_components": ["Boiler tubes", "Heat exchanger tubes", "Pressure vessels"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Poor"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 42,
+        "thermal_expansion": 12.2,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Standard",
+        "cost_multiplier": 2.2,
+        "availability": "Excellent",
+        "availability_rating": 9,
+        "lead_time_days": 7
+      }
+    },
+    {
+      "id": 33,
+      "material_number": "1.7380",
+      "name_en": "10CrMo9-10",
+      "name_fa": "فولاد دیگ بخار 10CrMo9-10",
+      "category": "Heat Resistant Steel",
+      "category_fa": "فولاد مقاوم به دما",
+      "mechanical_properties": {
+        "hardness_hrc_min": 16,
+        "hardness_hrc_max": 25,
+        "hardness_grade": "Low",
+        "hardenability": "Medium",
+        "hardenability_rating": "Medium",
+        "wear_resistance": 3,
+        "toughness_rating": 7,
+        "impact_resistance_joules": 45,
+        "tensile_strength_min": 480,
+        "tensile_strength_max": 680,
+        "yield_strength_min": 280,
+        "elongation_percent": 19,
+        "fracture_toughness": "High",
+        "fatigue_strength": "Fair"
+      },
+      "temperature_performance": {
+        "temp_range_min": -20,
+        "temp_range_max": 540,
+        "creep_resistance": "Good",
+        "heat_resistance": "Good - up to 540°C continuous",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 4,
+        "corrosion_types": ["uniform", "oxidation"],
+        "oxidation_resistance": "Good",
+        "suitable_environments": ["high-temperature", "industrial"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 68,
+        "weldability": "Excellent",
+        "formability": "Excellent",
+        "heat_treatment_required": false,
+        "heat_treatment_complexity": "Simple",
+        "heat_treatment_details": "Normalize: 930-980°C air cool",
+        "distortion_tendency": "Very Low"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 9328-2",
+        "din_en": "EN 10CrMo9-10",
+        "astm": "ASTM A335 P22",
+        "trade_names": ["P22", "T22"]
+      },
+      "applications": {
+        "application_categories": ["boiler", "pressure-vessel", "piping", "heat-exchanger"],
+        "load_types": ["static", "pressure", "high-temperature"],
+        "primary_uses": "لوله‌های دیگ بخار، مبدل‌های حرارتی، مخازن تحت فشار دمای بالا",
+        "primary_uses_en": "Boiler tubes, heat exchangers, high-temp pressure vessels",
+        "success_stories": "Power plant superheater tubes, refinery heat exchangers, chemical reactors",
+        "common_components": ["Superheater tubes", "Heat exchanger tubes", "Pressure vessel shells"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Poor"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 40,
+        "thermal_expansion": 12.5,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Standard",
+        "cost_multiplier": 2.3,
+        "availability": "Excellent",
+        "availability_rating": 9,
+        "lead_time_days": 7
+      }
+    },
+    {
+      "id": 34,
+      "material_number": "1.7765",
+      "name_en": "X10CrMoVNb9-1",
+      "name_fa": "فولاد مقاوم به خزش X10CrMoVNb9-1",
+      "category": "Heat Resistant Steel",
+      "category_fa": "فولاد مقاوم به دما",
+      "mechanical_properties": {
+        "hardness_hrc_min": 20,
+        "hardness_hrc_max": 30,
+        "hardness_grade": "Medium",
+        "hardenability": "Medium",
+        "hardenability_rating": "Medium",
+        "wear_resistance": 5,
+        "toughness_rating": 7,
+        "impact_resistance_joules": 55,
+        "tensile_strength_min": 590,
+        "tensile_strength_max": 770,
+        "yield_strength_min": 400,
+        "elongation_percent": 18,
+        "fracture_toughness": "High",
+        "fatigue_strength": "Good"
+      },
+      "temperature_performance": {
+        "temp_range_min": -20,
+        "temp_range_max": 600,
+        "creep_resistance": "Excellent",
+        "heat_resistance": "Excellent - up to 600°C continuous",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 6,
+        "corrosion_types": ["uniform", "oxidation"],
+        "oxidation_resistance": "Excellent",
+        "suitable_environments": ["high-temperature", "steam", "oxidizing"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 52,
+        "weldability": "Good",
+        "formability": "Good",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Moderate",
+        "heat_treatment_details": "Normalize: 1050-1100°C, Temper: 730-780°C",
+        "distortion_tendency": "Low"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 9328-4",
+        "din_en": "EN X10CrMoVNb9-1",
+        "astm": "ASTM A213 T91",
+        "trade_names": ["P91", "T91", "Grade 91"]
+      },
+      "applications": {
+        "application_categories": ["boiler", "turbine", "power-generation", "ultra-high-temp"],
+        "load_types": ["creep", "high-temperature", "pressure"],
+        "primary_uses": "لوله‌های ابرگرم‌کن، قطعات توربین بخار، مخازن دمای بالا",
+        "primary_uses_en": "Superheater tubes, steam turbine components, ultra-high-temp vessels",
+        "success_stories": "Ultra-supercritical power plants, advanced turbines, high-efficiency boilers",
+        "common_components": ["Superheater tubes", "Reheater tubes", "Steam pipes", "Headers"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Poor"
+      },
+      "physical_properties": {
+        "density": 7.80,
+        "thermal_conductivity": 27,
+        "thermal_expansion": 11.5,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Premium",
+        "cost_multiplier": 3.5,
+        "availability": "Available",
+        "availability_rating": 7,
+        "lead_time_days": 14
+      }
+    },
+    {
+      "id": 35,
+      "material_number": "1.7709",
+      "name_en": "21CrMoV5-7",
+      "name_fa": "فولاد مقاوم به دما 21CrMoV5-7",
+      "category": "Heat Resistant Steel",
+      "category_fa": "فولاد مقاوم به دما",
+      "mechanical_properties": {
+        "hardness_hrc_min": 25,
+        "hardness_hrc_max": 35,
+        "hardness_grade": "Medium",
+        "hardenability": "Deep",
+        "hardenability_rating": "Deep",
+        "wear_resistance": 6,
+        "toughness_rating": 8,
+        "impact_resistance_joules": 70,
+        "tensile_strength_min": 800,
+        "tensile_strength_max": 1100,
+        "yield_strength_min": 650,
+        "elongation_percent": 15,
+        "fracture_toughness": "High",
+        "fatigue_strength": "Good"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 530,
+        "creep_resistance": "Excellent",
+        "heat_resistance": "Excellent - up to 530°C continuous",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 5,
+        "corrosion_types": ["uniform", "oxidation"],
+        "oxidation_resistance": "Excellent",
+        "suitable_environments": ["high-temperature", "industrial", "power-generation"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 55,
+        "weldability": "Good",
+        "formability": "Good",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Moderate",
+        "heat_treatment_details": "Normalize: 920-960°C, Temper: 680-720°C",
+        "distortion_tendency": "Low"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 9328-3",
+        "din_en": "EN 21CrMoV5-7",
+        "astm": "ASTM A182 F22",
+        "trade_names": ["20CDV5.7 (AFNOR)"]
+      },
+      "applications": {
+        "application_categories": ["high-temperature", "turbine", "boiler", "power-generation"],
+        "load_types": ["creep", "high-temperature", "cyclic"],
+        "primary_uses": "پیچ‌های دمای بالا، قطعات توربین، دیگ بخار، لوله‌های دمای بالا",
+        "primary_uses_en": "High-temp fasteners, turbine components, boiler tubes, pressure vessels",
+        "success_stories": "Steam turbine bolts, power plant piping, refinery equipment",
+        "common_components": ["Turbine bolts", "Steam pipes", "Pressure vessel parts", "Flanges"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Fair"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 38,
+        "thermal_expansion": 12.8,
+        "youngs_modulus": 205
+      },
+      "economic_data": {
+        "cost_relative": "Premium",
+        "cost_multiplier": 3.0,
+        "availability": "Available",
+        "availability_rating": 7,
+        "lead_time_days": 14
+      }
+    },
+    {
+      "id": 36,
+      "material_number": "1.7362",
+      "name_en": "12CrMo9-10",
+      "name_fa": "فولاد دیگ بخار 12CrMo9-10",
+      "category": "Heat Resistant Steel",
+      "category_fa": "فولاد مقاوم به دما",
+      "mechanical_properties": {
+        "hardness_hrc_min": 17,
+        "hardness_hrc_max": 26,
+        "hardness_grade": "Low-Medium",
+        "hardenability": "Medium",
+        "hardenability_rating": "Medium",
+        "wear_resistance": 4,
+        "toughness_rating": 7,
+        "impact_resistance_joules": 48,
+        "tensile_strength_min": 470,
+        "tensile_strength_max": 670,
+        "yield_strength_min": 280,
+        "elongation_percent": 20,
+        "fracture_toughness": "High",
+        "fatigue_strength": "Good"
+      },
+      "temperature_performance": {
+        "temp_range_min": -20,
+        "temp_range_max": 535,
+        "creep_resistance": "Good",
+        "heat_resistance": "Good - up to 535°C continuous",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 4,
+        "corrosion_types": ["uniform", "oxidation"],
+        "oxidation_resistance": "Good",
+        "suitable_environments": ["high-temperature", "industrial"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 66,
+        "weldability": "Excellent",
+        "formability": "Excellent",
+        "heat_treatment_required": false,
+        "heat_treatment_complexity": "Simple",
+        "heat_treatment_details": "Normalize: 920-970°C air cool (optional)",
+        "distortion_tendency": "Low"
+      },
+      "standards": {
+        "sae_aisi": null,
+        "iso_standard": "ISO 9328-2",
+        "din_en": "EN 12CrMo9-10",
+        "astm": null,
+        "trade_names": []
+      },
+      "applications": {
+        "application_categories": ["boiler", "pressure-vessel", "piping"],
+        "load_types": ["static", "pressure", "high-temperature"],
+        "primary_uses": "لوله‌های دیگ بخار، مخازن تحت فشار، تجهیزات پتروشیمی",
+        "primary_uses_en": "Boiler tubes, pressure vessels, petrochemical equipment",
+        "success_stories": "Power plant boilers, refinery piping, chemical plants",
+        "common_components": ["Boiler tubes", "Pressure vessels", "Steam pipes"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Poor"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 41,
+        "thermal_expansion": 12.3,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Standard",
+        "cost_multiplier": 2.2,
+        "availability": "Excellent",
+        "availability_rating": 9,
+        "lead_time_days": 7
+      }
+    },
+    {
+      "id": 37,
+      "material_number": "1.2210",
+      "name_en": "115CrV3",
+      "name_fa": "فولاد ابزار 115CrV3",
+      "category": "Tool Steel",
+      "category_fa": "فولاد ابزار",
+      "mechanical_properties": {
+        "hardness_hrc_min": 58,
+        "hardness_hrc_max": 62,
+        "hardness_grade": "Very High",
+        "hardenability": "Shallow",
+        "hardenability_rating": "Shallow",
+        "wear_resistance": 8,
+        "toughness_rating": 4,
+        "impact_resistance_joules": 15,
+        "tensile_strength_min": 750,
+        "tensile_strength_max": 1500,
+        "yield_strength_min": null,
+        "elongation_percent": 6,
+        "fracture_toughness": "Low",
+        "fatigue_strength": "Fair"
+      },
+      "temperature_performance": {
+        "temp_range_min": -20,
+        "temp_range_max": 200,
+        "creep_resistance": "Poor",
+        "heat_resistance": "Limited - up to 200°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 3,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Limited",
+        "suitable_environments": ["indoor"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 45,
+        "weldability": "Very Poor",
+        "formability": "Low",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Moderate",
+        "heat_treatment_details": "Harden: 800-840°C oil, Temper: 150-200°C",
+        "distortion_tendency": "Medium"
+      },
+      "standards": {
+        "sae_aisi": "L2",
+        "iso_standard": "ISO 4957",
+        "din_en": "EN 115CrV3",
+        "astm": "ASTM A681",
+        "trade_names": ["L2 Tool Steel"]
+      },
+      "applications": {
+        "application_categories": ["tool", "cutting", "cold-work"],
+        "load_types": ["static", "abrasive"],
+        "primary_uses": "ابزار برش، قالب‌های سرد، دمپر",
+        "primary_uses_en": "Cutting tools, cold work dies, punches",
+        "success_stories": "Knives, cutting blades, shear blades, punches",
+        "common_components": ["Cutting blades", "Dies", "Punches", "Knives"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Fair"
+      },
+      "physical_properties": {
+        "density": 7.80,
+        "thermal_conductivity": 45,
+        "thermal_expansion": 12.8,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Standard",
+        "cost_multiplier": 2.4,
+        "availability": "Good",
+        "availability_rating": 8,
+        "lead_time_days": 10
+      }
+    },
+    {
+      "id": 38,
+      "material_number": "1.6523",
+      "name_en": "21NiCrMo2",
+      "name_fa": "فولاد سمانته 21NiCrMo2",
+      "category": "Case Hardening Steel",
+      "category_fa": "فولاد سمانته",
+      "mechanical_properties": {
+        "hardness_hrc_min": 58,
+        "hardness_hrc_max": 62,
+        "hardness_grade": "Very High (Surface)",
+        "hardenability": "Deep",
+        "hardenability_rating": "Deep",
+        "wear_resistance": 8,
+        "toughness_rating": 8,
+        "impact_resistance_joules": 80,
+        "tensile_strength_min": 850,
+        "tensile_strength_max": 1250,
+        "yield_strength_min": 650,
+        "elongation_percent": 12,
+        "fracture_toughness": "High",
+        "fatigue_strength": "Excellent"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 250,
+        "creep_resistance": "Poor",
+        "heat_resistance": "Moderate - up to 250°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 3,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Limited",
+        "suitable_environments": ["indoor", "automotive"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 58,
+        "weldability": "Fair",
+        "formability": "Good",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Complex",
+        "heat_treatment_details": "Carburize: 920°C, Quench: 820°C oil, Temper: 180°C",
+        "distortion_tendency": "Medium"
+      },
+      "standards": {
+        "sae_aisi": "8620",
+        "iso_standard": "ISO 683-11",
+        "din_en": "EN 21NiCrMo2",
+        "astm": "ASTM A534",
+        "trade_names": ["SNCM220", "8620"]
+      },
+      "applications": {
+        "application_categories": ["gear", "automotive", "case-hardening"],
+        "load_types": ["cyclic", "impact", "wear"],
+        "primary_uses": "چرخ‌دنده‌ها، میل‌گردان، قطعات سمانته‌شده با چقرمگی بالا",
+        "primary_uses_en": "Gears, shafts, case-hardened components with high toughness",
+        "success_stories": "Automotive gearboxes, heavy machinery gears, drive shafts",
+        "common_components": ["Transmission gears", "Drive shafts", "Axles", "Crankshafts"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["carburizing"],
+        "case_hardening_suitable": true,
+        "nitriding_response": "Good"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 42,
+        "thermal_expansion": 12.1,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Standard",
+        "cost_multiplier": 2.5,
+        "availability": "Excellent",
+        "availability_rating": 9,
+        "lead_time_days": 7
+      }
+    },
+    {
+      "id": 39,
+      "material_number": "1.2327",
+      "name_en": "86CrMoV7",
+      "name_fa": "فولاد ابزار گرم 86CrMoV7",
+      "category": "Tool Steel",
+      "category_fa": "فولاد ابزار",
+      "mechanical_properties": {
+        "hardness_hrc_min": 52,
+        "hardness_hrc_max": 58,
+        "hardness_grade": "Very High",
+        "hardenability": "Medium",
+        "hardenability_rating": "Medium",
+        "wear_resistance": 7,
+        "toughness_rating": 6,
+        "impact_resistance_joules": 30,
+        "tensile_strength_min": 850,
+        "tensile_strength_max": 1400,
+        "yield_strength_min": null,
+        "elongation_percent": 10,
+        "fracture_toughness": "Medium",
+        "fatigue_strength": "Good"
+      },
+      "temperature_performance": {
+        "temp_range_min": -10,
+        "temp_range_max": 500,
+        "creep_resistance": "Good",
+        "heat_resistance": "Good - up to 500°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 4,
+        "corrosion_types": ["uniform", "oxidation"],
+        "oxidation_resistance": "Good",
+        "suitable_environments": ["indoor", "hot-work"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 48,
+        "weldability": "Poor",
+        "formability": "Low",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Moderate",
+        "heat_treatment_details": "Harden: 1020-1050°C oil/air, Temper: 500-600°C",
+        "distortion_tendency": "Low"
+      },
+      "standards": {
+        "sae_aisi": "H11 (similar)",
+        "iso_standard": "ISO 4957",
+        "din_en": "EN 86CrMoV7",
+        "astm": "ASTM A681",
+        "trade_names": []
+      },
+      "applications": {
+        "application_categories": ["tool", "hot-work", "die"],
+        "load_types": ["thermal-shock", "high-temperature"],
+        "primary_uses": "قالب‌های گرم، ابزار فورج، دایکست",
+        "primary_uses_en": "Hot work dies, forging tools, die casting",
+        "success_stories": "Aluminum die casting, forging dies, extrusion tooling",
+        "common_components": ["Die casting dies", "Forging dies", "Extrusion dies"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["nitriding", "coating"],
+        "case_hardening_suitable": false,
+        "nitriding_response": "Excellent"
+      },
+      "physical_properties": {
+        "density": 7.80,
+        "thermal_conductivity": 30,
+        "thermal_expansion": 13.2,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Premium",
+        "cost_multiplier": 3.0,
+        "availability": "Available",
+        "availability_rating": 7,
+        "lead_time_days": 12
+      }
+    },
+    {
+      "id": 40,
+      "material_number": "1.7218",
+      "name_en": "25CrMo4",
+      "name_fa": "فولاد آلیاژی 25CrMo4",
+      "category": "Case Hardening Steel",
+      "category_fa": "فولاد آلیاژی",
+      "mechanical_properties": {
+        "hardness_hrc_min": 25,
+        "hardness_hrc_max": 40,
+        "hardness_grade": "Medium",
+        "hardenability": "Deep",
+        "hardenability_rating": "Deep",
+        "wear_resistance": 6,
+        "toughness_rating": 8,
+        "impact_resistance_joules": 70,
+        "tensile_strength_min": 700,
+        "tensile_strength_max": 1100,
+        "yield_strength_min": 500,
+        "elongation_percent": 14,
+        "fracture_toughness": "High",
+        "fatigue_strength": "Good"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 400,
+        "creep_resistance": "Fair",
+        "heat_resistance": "Moderate - up to 400°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 3,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Limited",
+        "suitable_environments": ["indoor", "automotive", "industrial"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 70,
+        "weldability": "Good",
+        "formability": "Excellent",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Simple",
+        "heat_treatment_details": "Q&T: 850-900°C oil/water, Temper: 550-680°C",
+        "distortion_tendency": "Medium"
+      },
+      "standards": {
+        "sae_aisi": "4130",
+        "iso_standard": "ISO 683-2",
+        "din_en": "EN 25CrMo4",
+        "astm": "ASTM A29",
+        "trade_names": ["SCM430", "708A25", "4130"]
+      },
+      "applications": {
+        "application_categories": ["structural", "automotive", "aerospace", "machinery"],
+        "load_types": ["static", "dynamic", "cyclic"],
+        "primary_uses": "شفت‌ها، محورها، قطعات ماشین‌آلات، اجزای خودرو و هوافضا",
+        "primary_uses_en": "Shafts, axles, machine parts, automotive and aerospace components",
+        "success_stories": "Aircraft frames, automotive chassis, high-strength machine parts",
+        "common_components": ["Shafts", "Axles", "Gears", "Aircraft tubing", "Chassis parts"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["carburizing", "nitriding", "coating"],
+        "case_hardening_suitable": true,
+        "nitriding_response": "Good"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 42,
+        "thermal_expansion": 12.0,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Standard",
+        "cost_multiplier": 2.0,
+        "availability": "Excellent",
+        "availability_rating": 10,
+        "lead_time_days": 5
+      }
+    },
+    {
+      "id": 41,
+      "material_number": "1.6580",
+      "name_en": "30CrNiMo8",
+      "name_fa": "فولاد آلیاژی 30CrNiMo8",
+      "category": "Case Hardening Steel",
+      "category_fa": "فولاد آلیاژی",
+      "mechanical_properties": {
+        "hardness_hrc_min": 28,
+        "hardness_hrc_max": 45,
+        "hardness_grade": "Medium-High",
+        "hardenability": "Very Deep",
+        "hardenability_rating": "Very Deep",
+        "wear_resistance": 7,
+        "toughness_rating": 9,
+        "impact_resistance_joules": 90,
+        "tensile_strength_min": 900,
+        "tensile_strength_max": 1400,
+        "yield_strength_min": 750,
+        "elongation_percent": 12,
+        "fracture_toughness": "Very High",
+        "fatigue_strength": "Excellent"
+      },
+      "temperature_performance": {
+        "temp_range_min": -40,
+        "temp_range_max": 400,
+        "creep_resistance": "Fair",
+        "heat_resistance": "Moderate - up to 400°C",
+        "cryogenic_service": false
+      },
+      "environmental_resistance": {
+        "corrosion_resistance": 4,
+        "corrosion_types": ["uniform"],
+        "oxidation_resistance": "Fair",
+        "suitable_environments": ["indoor", "automotive", "aerospace"]
+      },
+      "manufacturing_properties": {
+        "machinability_rating": 55,
+        "weldability": "Fair",
+        "formability": "Good",
+        "heat_treatment_required": true,
+        "heat_treatment_complexity": "Moderate",
+        "heat_treatment_details": "Q&T: 820-870°C oil, Temper: 550-680°C",
+        "distortion_tendency": "Low"
+      },
+      "standards": {
+        "sae_aisi": "4340",
+        "iso_standard": "ISO 683-2",
+        "din_en": "EN 30CrNiMo8",
+        "astm": "ASTM A322",
+        "trade_names": ["SNCM431", "4340", "817M40"]
+      },
+      "applications": {
+        "application_categories": ["aerospace", "automotive", "heavy-duty", "structural"],
+        "load_types": ["dynamic", "impact", "cyclic", "high-stress"],
+        "primary_uses": "قطعات هوافضا، شافت‌های سنگین، چرخ‌دنده‌های قدرت، اجزای بحرانی",
+        "primary_uses_en": "Aerospace parts, heavy-duty shafts, power gears, critical components",
+        "success_stories": "Aircraft landing gear, racing components, high-strength bolts, crankshafts",
+        "common_components": ["Landing gear", "Crankshafts", "Drive shafts", "Heavy gears", "Connecting rods"]
+      },
+      "surface_treatments": {
+        "surface_treatments": ["carburizing", "nitriding", "shot-peening"],
+        "case_hardening_suitable": true,
+        "nitriding_response": "Excellent"
+      },
+      "physical_properties": {
+        "density": 7.85,
+        "thermal_conductivity": 38,
+        "thermal_expansion": 12.3,
+        "youngs_modulus": 210
+      },
+      "economic_data": {
+        "cost_relative": "Premium",
+        "cost_multiplier": 4.3,
+        "availability": "Good",
+        "availability_rating": 8,
+        "lead_time_days": 10
+      }
+    }
+  ]
+}
